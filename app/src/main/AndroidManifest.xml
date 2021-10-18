@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PayerTrustDemo">
         <activity
+            android:name=".WalletPaySuccess"
+            android:exported="false" />
+        <activity
             android:name=".PrepaidRecharge"
             android:exported="true" />
         <activity

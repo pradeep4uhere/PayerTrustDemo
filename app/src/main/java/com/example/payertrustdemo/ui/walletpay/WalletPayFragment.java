@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.payertrustdemo.R;
+import com.example.payertrustdemo.WalletPaySuccess;
 import com.example.payertrustdemo.databinding.FragmentContactBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -21,9 +22,6 @@ public class WalletPayFragment extends Fragment {
 
     private static final String AGR_PARAM1 = "param1";
     private static final String AGR_PARAM2 = "param2";
-
-    public FloatingActionButton floatingActionButton;
-
 
     private String mParam1;
     private String mParam2;
@@ -52,7 +50,7 @@ public class WalletPayFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getParentFragment().getContext(), WalletPaySuccess.class);
+                Intent intent = new Intent(getContext(), WalletPaySuccess.class);
                 startActivity(intent);
             }
         });
@@ -63,6 +61,7 @@ public class WalletPayFragment extends Fragment {
     {
         Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
