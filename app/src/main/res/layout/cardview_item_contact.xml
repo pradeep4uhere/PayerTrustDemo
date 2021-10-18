@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="1dp"
+    app:cardCornerRadius="4dp"
+    android:elevation="4dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/contact_image_id"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/profile"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="266dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:id="@+id/contact_name_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pradeep Kumar"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp"
+                />
+
+            <TextView
+                android:id="@+id/contact_number_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+91-9015446567"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="0dp"/>
+
+            <TextView
+                android:id="@+id/contact_email_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pradeep3300@gamil.com"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="1dp"
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right_24"
+                android:layout_gravity="center"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
