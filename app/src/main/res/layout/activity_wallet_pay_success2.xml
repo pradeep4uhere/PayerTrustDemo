@@ -60,13 +60,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:elevation="8dp"
+            android:elevation="10dp"
             android:padding="20dp"
             app:cardCornerRadius="8dp">
             >
@@ -74,22 +74,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#E4FAE5"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
-                    android:src="@drawable/ok" />
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/green_ok" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_medium"
+                    android:fontFamily="@font/aref_ruqaa_bold"
                     android:text="Sachin Kumar"
-                    android:textSize="20dp" />
+                    android:textSize="30dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -104,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/ubuntu_medium"
+                    android:fontFamily="@font/baloo_bhai"
                     android:text="Rs. 25,000.00"
                     android:textSize="28dp" />
 
@@ -121,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/ubuntu_medium"
+                    android:fontFamily="@font/baloo_bhai"
                     android:text="25th Oct 2021 10:30:43AM"
                     android:textColor="@android:color/holo_blue_light"
                     android:textSize="12dp" />
