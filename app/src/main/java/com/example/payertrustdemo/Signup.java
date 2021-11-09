@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -49,8 +50,8 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(Signup.this,"Enter Last Name",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else if(TextUtils.isEmpty(email)){
-                    Toast.makeText(Signup.this,"Enter Email",Toast.LENGTH_SHORT).show();
+                else if(TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(Signup.this,"Enter Valid Email",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else if(TextUtils.isEmpty(password)){

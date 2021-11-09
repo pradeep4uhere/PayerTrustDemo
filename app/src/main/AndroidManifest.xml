@@ -25,6 +25,7 @@
             android:name=".LeftNavigation"
             android:exported="true"
             android:label="@string/title_activity_left_navigation"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.PayerTrustDemo.NoActionBar" />
         <activity
             android:name=".RestPasswordSuccess"

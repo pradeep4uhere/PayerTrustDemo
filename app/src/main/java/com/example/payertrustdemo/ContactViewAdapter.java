@@ -11,15 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.ui.contact.ContactFragment;
 
 import java.util.List;
 
 public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.MyViewHolder> {
 
-    private final List<Person> mData;
+    private final List<ContactResponse.Datum> mData;
     Context context;
-    public ContactViewAdapter(List<Person> mData, Context context) {
+    public ContactViewAdapter(List<ContactResponse.Datum> mData, Context context) {
         this.mData = mData;
     }
 
@@ -34,21 +35,21 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        final Person temp = mData.get(position);
+        final ContactResponse.Datum temp = mData.get(position);
 
-        holder.person_title.setText(mData.get(position).getTitle());
-        holder.person_mobile.setText(mData.get(position).getMobile());
-        holder.person_email.setText(mData.get(position).getEmail());
-        holder.person_image.setImageResource(mData.get(position).getThumbnail());
+        holder.person_title.setText(mData.get(position).name);
+        holder.person_mobile.setText( mData.get(position).mobileNumber);
+        holder.person_email.setText(mData.get(position).emailAddress);
+        //holder.person_image.setImageResource(mData.get(position).getThumbnail());
 
         holder.person_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,Dashbaord.class);
-                intent.putExtra("Contact Details",temp.getTitle());
-                intent.putExtra("Contact Email",temp.getEmail());
-                intent.putExtra("Contact Email",temp.getMobile());
-                intent.putExtra("Contact Email",temp.getThumbnail());
+//                intent.putExtra("Contact Details",temp.getTitle());
+//                intent.putExtra("Contact Email",temp.getEmail());
+//                intent.putExtra("Contact Email",temp.getMobile());
+//                intent.putExtra("Contact Email",temp.getThumbnail());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivities(new Intent[]{intent});
 

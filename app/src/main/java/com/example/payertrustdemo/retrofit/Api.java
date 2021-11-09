@@ -1,5 +1,6 @@
 package com.example.payertrustdemo.retrofit;
 
+import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.LoginRequest;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
@@ -29,6 +30,10 @@ public interface Api {
     Call<RegistrationResponse> signup(@Field("mobile") String mobile, @Field("first_name") String firstName,
                                       @Field("last_name") String lastName, @Field("email") String email,
                                       @Field("password") String password, @Field("confirm_password") String confirmPassword);
+
+    @POST("api/v1/contactlist")
+    @FormUrlEncoded
+    Call<ContactResponse> getAllContact(@Field("user_id") String userId);
 
 //
 //    @POST("/api/users")

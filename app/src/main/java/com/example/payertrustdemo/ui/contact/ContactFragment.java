@@ -30,22 +30,33 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.payertrustdemo.ContactViewAdapter;
 import com.example.payertrustdemo.Dashbaord;
+import com.example.payertrustdemo.Login;
 import com.example.payertrustdemo.Person;
 import com.example.payertrustdemo.R;
 
 import com.example.payertrustdemo.databinding.FragmentContactBinding;
+import com.example.payertrustdemo.model.ContactResponse;
+import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ContactFragment extends Fragment  {
 
@@ -61,7 +72,7 @@ public class ContactFragment extends Fragment  {
 
     private ContactViewModel contactViewModel;
     private FragmentContactBinding binding;
-    List<Person> lstPerson;
+    List<ContactResponse.Datum> lstPerson;
     RecyclerView rcv;
 
     RecyclerView recyclerView;
@@ -83,15 +94,18 @@ public class ContactFragment extends Fragment  {
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_contact,container,false);
-//        button = (Button) view.findViewById(R.id.add_new_btn);
-//        button.setOnClickListener(new View.OnClickListener() {
+        lstPerson = new ArrayList<>();
+        contactViewModel= new ViewModelProvider(this).get(ContactViewModel.class);
+        MyPreferences myPreferences = new MyPreferences(getContext());
+        getAllContact(myPreferences.getString(Constants.userId));
+//        contactViewModel.getContactList().observe(getViewLifecycleOwner(), new Observer<ContactResponse>() {
 //            @Override
-//            public void onClick(View v) {
-//                Log.e("Onclick","Onclick");
-//                showToast("Button Clicked");
+//            public void onChanged(ContactResponse contactResponse) {
+//               if(contactResponse != null){
+//
+//               }
 //            }
 //        });
-
 
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.add_contact_fab_btn);
         floatingActionButton.bringToFront();
@@ -140,40 +154,7 @@ public class ContactFragment extends Fragment  {
         recyclerView =view.findViewById(R.id.recview);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        lstPerson = new ArrayList<>();
-        Person ob1 = new Person(R.drawable.profile,"Pradeep Kumar","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob1);
 
-        Person ob2 = new Person(R.drawable.profile,"Brijesh Sharma","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob2);
-        Person ob3 = new Person(R.drawable.profile,"Amit Pareek","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob3);
-        Person ob4 = new Person(R.drawable.profile,"Gaurav Jain","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob4);
-        Person ob5 = new Person(R.drawable.profile,"PraRahul Shardeep","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob5);
-        Person ob6 = new Person(R.drawable.profile,"Saadeep Kumar","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob6);
-        Person ob7 = new Person(R.drawable.profile,"Pradeep","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob7);
-        Person ob8 = new Person(R.drawable.profile,"Pradeep","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob8);
-        Person ob11 = new Person(R.drawable.profile,"Pradeep Kumar","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob11);
-        Person ob21 = new Person(R.drawable.profile,"Brijesh Sharma","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob21);
-        Person ob31 = new Person(R.drawable.profile,"Amit Pareek","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob31);
-        Person ob41 = new Person(R.drawable.profile,"Gaurav Jain","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob41);
-        Person ob51 = new Person(R.drawable.profile,"PraRahul Shardeep","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob51);
-        Person ob61 = new Person(R.drawable.profile,"Saadeep Kumar","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob61);
-        Person ob71 = new Person(R.drawable.profile,"Pradeep","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob71);
-        Person ob81 = new Person(R.drawable.profile,"Pradeep","9015446567","pradeep3300@gmail.com");
-        lstPerson.add(ob81);
 
         cadapter = new ContactViewAdapter(lstPerson,getActivity().getApplicationContext());
         recyclerView.setAdapter(cadapter);
@@ -191,6 +172,28 @@ public class ContactFragment extends Fragment  {
     }
 
 
+    public void getAllContact(String userId) {
 
+        Call<ContactResponse> call = RetrofitClient.getInstance().getMyApi().getAllContact(userId);
+        call.enqueue(new Callback<ContactResponse>() {
+            @Override
+            public void onResponse(Call<ContactResponse> call, Response<ContactResponse> response) {
+                ContactResponse temp = response.body();
+                if(temp!= null){
+                    if(temp.success){
+                        lstPerson.clear();
+                        lstPerson.addAll(temp.data);
+                        cadapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ContactResponse> call, Throwable t) {
+                //contactResponse.setValue(null);
+            }
+
+        });
+    }
 
 }

@@ -31,6 +31,8 @@ import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
 import com.example.payertrustdemo.ui.contact.ContactFragment;
+import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.navigation.NavigationView;
 
 import java.sql.Statement;
@@ -71,8 +73,15 @@ public class MainActivity extends AppCompatActivity  {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
+                MyPreferences myPreferences = new MyPreferences(MainActivity.this);
+                if(myPreferences.getBoolean(Constants.loginStatus)) {
+                    Intent intent = new Intent(MainActivity.this, LeftNavigation.class);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(MainActivity.this, Login.class);
+                    startActivity(intent);
+                }
                 finish();
             }
         }, SPLASH_SCREEN);

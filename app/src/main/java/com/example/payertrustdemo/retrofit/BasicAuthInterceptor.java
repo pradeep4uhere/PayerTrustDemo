@@ -15,11 +15,17 @@ public class BasicAuthInterceptor implements Interceptor {
     }
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(Chain chain)  {
+        try {
         Request request = chain.request();
         Request authenticatedRequest = request.newBuilder()
                 .header("Authorization", credentials).build();
-        return chain.proceed(authenticatedRequest);
+
+            return chain.proceed(authenticatedRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
