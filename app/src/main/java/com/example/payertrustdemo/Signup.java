@@ -1,26 +1,90 @@
 package com.example.payertrustdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.example.payertrustdemo.databinding.ActivitySignupBinding;
+import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.model.RegistrationResponse;
+import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.MyPreferences;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Signup extends AppCompatActivity {
     Button callLogin;
+    ActivitySignupBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        callLogin = findViewById(R.id.login_screen);
-
-        callLogin.setOnClickListener(new View.OnClickListener() {
+        //setContentView(R.layout.activity_signup);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+        binding.loginScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Signup.this, Login.class);
-                startActivity(intent);
+                String mobile = binding.phoneNumber.getEditText().getText().toString();
+                String firstName = binding.firstName.getEditText().getText().toString();
+                String lastName = binding.lastName.getEditText().getText().toString();
+                String email = binding.emailAddress.getEditText().getText().toString();
+                String password = binding.password.getEditText().getText().toString();
+                if(TextUtils.isEmpty(mobile) || mobile.length()<1){
+                    Toast.makeText(Signup.this,"Enter Mobile Number",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(TextUtils.isEmpty(firstName)){
+                    Toast.makeText(Signup.this,"Enter First Name",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(TextUtils.isEmpty(lastName)){
+                    Toast.makeText(Signup.this,"Enter Last Name",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(TextUtils.isEmpty(email)){
+                    Toast.makeText(Signup.this,"Enter Email",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(TextUtils.isEmpty(password)){
+                    Toast.makeText(Signup.this,"Enter Password",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else{
+                    signupApi(mobile,firstName,lastName,email,password);
+                }
             }
         });
     }
+
+    private void signupApi(String mobile, String firstName, String lastName, String email, String password) {
+
+        Call<RegistrationResponse> call = RetrofitClient.getInstance().getMyApi().signup(mobile,firstName,lastName,email,password,password);
+        call.enqueue(new Callback<RegistrationResponse>() {
+            @Override
+            public void onResponse(Call<RegistrationResponse> call, Response<RegistrationResponse> response) {
+                RegistrationResponse registrationResponse = response.body();
+                if(registrationResponse!= null){
+                    if(registrationResponse.success){
+                        Intent intent = new Intent(Signup.this, Login.class);
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegistrationResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+            }
+
+        });
+    }
+
 }

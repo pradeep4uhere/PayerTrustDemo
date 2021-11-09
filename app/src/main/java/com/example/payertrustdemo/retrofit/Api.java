@@ -2,6 +2,7 @@ package com.example.payertrustdemo.retrofit;
 
 import com.example.payertrustdemo.model.LoginRequest;
 import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.model.RegistrationResponse;
 import com.example.payertrustdemo.util.Constants;
 
 import retrofit2.Call;
@@ -17,10 +18,18 @@ public interface Api {
 
     String BASE_URL = "https://api.payertrust.in/public/index.php/";
 
-    @Headers({"Content-Type: application/json",
-            "Authorization: Basic cnpwX2xpdmVfbGhEamtOdzBNNHE1MHU6bXk4Z0kxS3RiNjltV2RaMU1JZkZuMUFK"})
+//    @Headers({"Content-Type: application/json",
+//            "Authorization: Basic cnpwX2xpdmVfbGhEamtOdzBNNHE1MHU6bXk4Z0kxS3RiNjltV2RaMU1JZkZuMUFK"})
     @POST("api/v1/login")
-    Call<LoginResponse> login(@Body String loginRequest);
+    @FormUrlEncoded
+    Call<LoginResponse> login(@Field("mobile") String mobile, @Field("password") String password);
+
+    @POST("api/v1/singup")
+    @FormUrlEncoded
+    Call<RegistrationResponse> signup(@Field("mobile") String mobile, @Field("first_name") String firstName,
+                                      @Field("last_name") String lastName, @Field("email") String email,
+                                      @Field("password") String password, @Field("confirm_password") String confirmPassword);
+
 //
 //    @POST("/api/users")
 //    Call<User> createUser(@Body User user);

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -29,8 +31,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,8 +77,8 @@ public class Login extends AppCompatActivity {
                     return;
                 }
                 else {
-                    new HTTPReqTask().execute();
-                    //loginApi(number,password);
+                   // new HTTPReqTask().execute();
+                    loginApi(number,password);
                 }
             }
         });
@@ -91,14 +96,7 @@ public class Login extends AppCompatActivity {
 
     private void loginApi(String mobile, String password) {
 
-        JSONObject object = new JSONObject();
-        try {
-            object.put("mobile","9876543210");
-            object.put("password","pradeep");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Call<LoginResponse> call = RetrofitClient.getInstance().getMyApi().login(object.toString());
+        Call<LoginResponse> call = RetrofitClient.getInstance().getMyApi().login(mobile,password);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -109,7 +107,7 @@ public class Login extends AppCompatActivity {
                         myPreferences.saveBoolean(Constants.loginStatus,true);
                         myPreferences.saveBoolean(Constants.otpVerification,false);
                         myPreferences.saveString(Constants.mobileNumber,loginResponse.data.mobileNumber);
-                        myPreferences.saveString(Constants.mobileNumber,loginResponse.data.emailAddress);
+                        myPreferences.saveString(Constants.email,loginResponse.data.emailAddress);
                         myPreferences.saveString(Constants.agentCode,loginResponse.data.agentCode);
                         myPreferences.saveString(Constants.userId,String.valueOf(loginResponse.data.id));
                         Intent intent = new Intent(Login.this, login_otp.class);
@@ -130,55 +128,70 @@ public class Login extends AppCompatActivity {
      class HTTPReqTask extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
-            HttpURLConnection urlConnection = null;
-            String line = null;
+            HttpURLConnection urlConnection;
+            String url;
+            //   String data = json;
+            String result = null;
             try {
-                JSONObject object = new JSONObject();
-                try {
-                    object.put("mobile","9876543210");
-                    object.put("password","pradeep");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                String username ="rzp_live_lhDjkNw0M4q50u";
+                String password = "my8gI1Ktb69mWdZ1MIfFn1AJ";
 
-                URL url = new URL("https://api.payertrust.in/public/api/v1/login");
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestProperty("Content-Type", "application/json");
-                urlConnection.setRequestProperty("Authorization", "Basic cnpwX2xpdmVfbGhEamtOdzBNNHE1MHU6bXk4Z0kxS3RiNjltV2RaMU1JZkZuMUFK");
-                urlConnection.setRequestProperty("Accept", "application/json");
-
-                urlConnection.setRequestMethod("POST");
+                String auth =new String(username + ":" + password);
+                byte[] data1 = auth.getBytes("UTF-8");
+                String base64 = Base64.encodeToString(data1, Base64.NO_WRAP);
+                //Connect
+                urlConnection = (HttpURLConnection) ((new URL("https://api.payertrust.in/public/api/v1/login").openConnection()));
                 urlConnection.setDoOutput(true);
-                //urlConnection.setDoInput(true);
-                urlConnection.setChunkedStreamingMode(0);
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                urlConnection.setRequestProperty("Authorization", "Basic "+base64);
+                //urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("Connection","close");
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setConnectTimeout(10000);
+                urlConnection.connect();
+                JSONObject obj = new JSONObject();
 
-                OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
-                        out, "UTF-8"));
-                writer.write(object.toString());
+                obj.put("mobile", "9015901590");
+                obj.put("password", "pradeep");
+
+                String data = obj.toString();
+                //Write
+                OutputStream outputStream = urlConnection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                writer.write(data);
                 writer.close();
-                out.close();
+                outputStream.close();
+                int responseCode=urlConnection.getResponseCode();
+                String urlMessage=urlConnection.getResponseMessage();
+                String metthod=urlConnection.getRequestMethod();
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
+                    //Read
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
 
-                int code = urlConnection.getResponseCode();
-                if (code !=  201) {
-                    throw new IOException("Invalid response from server: " + code);
+                    String line = null;
+                    StringBuilder sb = new StringBuilder();
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        sb.append(line);
+                    }
+
+                    bufferedReader.close();
+                    result = sb.toString();
+
+                }else {
+                    //    return new String("false : "+responseCode);
+                    new String("false : "+responseCode);
                 }
 
-                BufferedReader rd = new BufferedReader(new InputStreamReader(
-                        urlConnection.getInputStream()));
-
-                while ((line = rd.readLine()) != null) {
-                    Log.i("data", line);
-                }
-            } catch (Exception e) {
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-            } finally {
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-            return line;
+            return result;
         }
 
         @Override
