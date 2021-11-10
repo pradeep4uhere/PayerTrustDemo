@@ -76,7 +76,12 @@ public class Signup extends AppCompatActivity {
                     if(registrationResponse.success){
                         Intent intent = new Intent(Signup.this, Login.class);
                         startActivity(intent);
+                        Toast.makeText(getApplicationContext(), registrationResponse.message, Toast.LENGTH_LONG).show();
                     }
+                   else {
+                        Toast.makeText(getApplicationContext(), registrationResponse.message, Toast.LENGTH_LONG).show();
+                    }
+
                 }
             }
 

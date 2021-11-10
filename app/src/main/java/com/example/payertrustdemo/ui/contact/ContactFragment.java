@@ -9,7 +9,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,14 +44,17 @@ import com.example.payertrustdemo.Login;
 import com.example.payertrustdemo.Person;
 import com.example.payertrustdemo.R;
 
+import com.example.payertrustdemo.Signup;
 import com.example.payertrustdemo.databinding.FragmentContactBinding;
 import com.example.payertrustdemo.model.ContactResponse;
+import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +85,7 @@ public class ContactFragment extends Fragment  {
     NavigationView navigationView;
     Button button;
     Dialog dialog;
+    MyPreferences myPreferences;
 
     public  ContactFragment(){
 
@@ -96,7 +102,7 @@ public class ContactFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_contact,container,false);
         lstPerson = new ArrayList<>();
         contactViewModel= new ViewModelProvider(this).get(ContactViewModel.class);
-        MyPreferences myPreferences = new MyPreferences(getContext());
+        myPreferences = new MyPreferences(getContext());
         getAllContact(myPreferences.getString(Constants.userId));
 //        contactViewModel.getContactList().observe(getViewLifecycleOwner(), new Observer<ContactResponse>() {
 //            @Override
@@ -129,11 +135,40 @@ public class ContactFragment extends Fragment  {
                                     alert.setView(R.layout.add_new_contact_popup);
                                 }
                                 final AlertDialog dialog = alert.create();
-                                //dialog.findViewById()
                                 //this line removed app bar from dialog and make it transperent and you see the image is like floating outside dialog box.
                                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                 //finally show the dialog box in android all
                                 dialog.show();
+                                Button btnSubmit = dialog.findViewById(R.id.btnSubmit);
+                                btnSubmit.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        EditText etName = dialog.findViewById(R.id.first_name);
+                                        String name = etName.getText().toString().trim();
+                                        EditText etMobile = dialog.findViewById(R.id.phone_number);
+                                        String mobile = etMobile.getText().toString().trim();
+                                        EditText etEmail = dialog.findViewById(R.id.email_address);
+                                        String email = etEmail.getText().toString().trim();
+                                        if(TextUtils.isEmpty(name)){
+                                            Toast.makeText(getActivity(),"Enter Name",Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                        else if(TextUtils.isEmpty(mobile) || mobile.length()<1){
+                                            Toast.makeText(getActivity(),"Enter Mobile Number",Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+
+                                        else if(TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                                            Toast.makeText(getActivity(),"Enter Valid Email",Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                        else{
+                                            dialog.dismiss();
+                                            createContact(name,mobile,email);
+                                        }
+                                    }
+                                });
+
                             }
                         });
 
@@ -192,6 +227,30 @@ public class ContactFragment extends Fragment  {
             @Override
             public void onFailure(Call<ContactResponse> call, Throwable t) {
                 //contactResponse.setValue(null);
+            }
+
+        });
+    }
+
+    public void createContact(String name,String mobile,String email) {
+
+        Call<CreateContactResponse> call = RetrofitClient.getInstance().getMyApi().createContact(myPreferences.getString(Constants.userId)
+                ,name,mobile,email);
+        call.enqueue(new Callback<CreateContactResponse>() {
+            @Override
+            public void onResponse(Call<CreateContactResponse> call, Response<CreateContactResponse> response) {
+                CreateContactResponse temp = response.body();
+                if(temp!= null){
+                    if(temp.success){
+                        getAllContact(myPreferences.getString(Constants.userId));
+                    }
+                    showToast(temp.message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CreateContactResponse> call, Throwable t) {
+                showToast("Error, Try again");
             }
 
         });

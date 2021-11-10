@@ -1,6 +1,7 @@
 package com.example.payertrustdemo.retrofit;
 
 import com.example.payertrustdemo.model.ContactResponse;
+import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.model.LoginRequest;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
@@ -34,6 +35,12 @@ public interface Api {
     @POST("api/v1/contactlist")
     @FormUrlEncoded
     Call<ContactResponse> getAllContact(@Field("user_id") String userId);
+
+    @POST("api/v1/createcontact")
+    @FormUrlEncoded
+    Call<CreateContactResponse> createContact(@Field("user_id") String userId,
+                                              @Field("name") String name,
+                                              @Field("mobile_number") String mobile, @Field("email_address") String email);
 
 //
 //    @POST("/api/users")
