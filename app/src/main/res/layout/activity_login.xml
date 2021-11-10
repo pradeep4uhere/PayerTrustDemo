@@ -49,36 +49,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="746dp"
-            android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+            android:layout_margin="20dp"
+
         android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Username"
-            android:transitionName="username_trans">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNumber"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:inputType="number" />
+                android:hint="Username"
+                android:transitionName="username_trans">>
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etNumber"
+                    android:inputType="number"
+                    android:maxLength="10" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
             android:hint="Pasword"
             app:passwordToggleEnabled="true"
             android:transitionName="password_trans">
@@ -87,9 +83,6 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -114,8 +107,7 @@
             android:id="@+id/reset_btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:background="@color/black"
             android:text="Login"
@@ -126,10 +118,10 @@
 
         <Button
             android:id="@+id/login_back_from_success"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
             android:background="#FF6A3B"
             android:elevation="0dp"
             android:text="New User SignUp"
