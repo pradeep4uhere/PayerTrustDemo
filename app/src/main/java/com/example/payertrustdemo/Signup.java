@@ -30,7 +30,7 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_signup);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
-        binding.loginScreen.setOnClickListener(new View.OnClickListener() {
+        binding.register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mobile = binding.phoneNumber.getEditText().getText().toString();

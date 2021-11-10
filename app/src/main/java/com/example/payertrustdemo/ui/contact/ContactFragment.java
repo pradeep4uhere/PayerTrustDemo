@@ -129,6 +129,7 @@ public class ContactFragment extends Fragment  {
                                     alert.setView(R.layout.add_new_contact_popup);
                                 }
                                 final AlertDialog dialog = alert.create();
+                                //dialog.findViewById()
                                 //this line removed app bar from dialog and make it transperent and you see the image is like floating outside dialog box.
                                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                 //finally show the dialog box in android all

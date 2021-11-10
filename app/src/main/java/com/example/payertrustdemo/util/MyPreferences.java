@@ -25,6 +25,12 @@ public class MyPreferences {
         editor.apply();
     }
 
+    public void clearData() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
     public String getString(String key){
         return sharedPreferences.getString(key,"");
     }

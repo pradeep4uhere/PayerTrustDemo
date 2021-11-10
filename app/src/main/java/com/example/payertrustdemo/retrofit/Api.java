@@ -25,7 +25,7 @@ public interface Api {
     @FormUrlEncoded
     Call<LoginResponse> login(@Field("mobile") String mobile, @Field("password") String password);
 
-    @POST("api/v1/singup")
+    @POST("api/v1/signup")
     @FormUrlEncoded
     Call<RegistrationResponse> signup(@Field("mobile") String mobile, @Field("first_name") String firstName,
                                       @Field("last_name") String lastName, @Field("email") String email,
