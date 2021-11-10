@@ -13,6 +13,9 @@
         <entry key="app/src/main/res/drawable/bg_menu.xml" value="0.17393162393162392" />
         <entry key="app/src/main/res/drawable/ic_baseline_contact_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_house_24.xml" value="0.18611111111111112" />
+        <entry key="app/src/main/res/drawable/ic_edit_24.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/right_24.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/SpringFabMenu.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/activity_add_contact.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_cardview_item_contact.xml" value="0.1606837606837607" />
