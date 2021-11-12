@@ -80,6 +80,7 @@ public class LeftNavigation extends AppCompatActivity {
                     logout();
                 }
                 else{
+                    // for other than logout
                     NavigationUI.onNavDestinationSelected(item, navController);
                 }
                 drawer.closeDrawer(GravityCompat.START);
