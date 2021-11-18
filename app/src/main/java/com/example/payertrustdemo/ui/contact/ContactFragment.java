@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -209,12 +210,13 @@ public class ContactFragment extends Fragment  {
 
 
     public void getAllContact(String userId) {
-
+        showPopupProgressSpinner(true,getActivity());
         Call<ContactResponse> call = RetrofitClient.getInstance().getMyApi().getAllContact(userId);
         call.enqueue(new Callback<ContactResponse>() {
             @Override
             public void onResponse(Call<ContactResponse> call, Response<ContactResponse> response) {
                 ContactResponse temp = response.body();
+                showPopupProgressSpinner(false,getActivity());
                 if(temp!= null){
                     if(temp.success){
                         lstPerson.clear();
@@ -227,6 +229,7 @@ public class ContactFragment extends Fragment  {
             @Override
             public void onFailure(Call<ContactResponse> call, Throwable t) {
                 //contactResponse.setValue(null);
+                showPopupProgressSpinner(true,getActivity());
             }
 
         });
@@ -254,6 +257,26 @@ public class ContactFragment extends Fragment  {
             }
 
         });
+    }
+
+    private Dialog progressDialog = null;
+    private ProgressBar progressBar;
+
+    public void showPopupProgressSpinner(Boolean isShowing,Context context) {
+        if (isShowing == true) {
+            progressDialog = new Dialog(context);
+            progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            progressDialog.setContentView(R.layout.popup_progressbar);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(Color.TRANSPARENT));
+
+            progressBar = (ProgressBar) progressDialog
+                    .findViewById(R.id.progressBar);
+            progressDialog.show();
+        } else if (isShowing == false) {
+            progressDialog.dismiss();
+        }
     }
 
 }
