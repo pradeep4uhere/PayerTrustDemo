@@ -114,12 +114,12 @@ public class Login extends AppCompatActivity {
 //                        startActivity(intent);
                         Intent intent = new Intent(Login.this, LeftNavigation.class);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_SHORT).show();
                         finish();
 
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -1,5 +1,7 @@
 package com.example.payertrustdemo.retrofit;
 
+import com.example.payertrustdemo.model.AccountListresponse;
+import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.model.LoginRequest;
@@ -41,6 +43,20 @@ public interface Api {
     Call<CreateContactResponse> createContact(@Field("user_id") String userId,
                                               @Field("name") String name,
                                               @Field("mobile_number") String mobile, @Field("email_address") String email);
+
+    @POST("api/v1/allbanklist")
+    Call<BankListResponse> getAllBank();
+
+    @POST("api/v1/addaccount")
+    @FormUrlEncoded
+    Call<ContactResponse> addBankAccount(@Field("user_id") String userId, @Field("contact_id") String contactId,
+                                         @Field("beneficiary_name") String beneficiaryName, @Field("account_type") String accountType,
+                                         @Field("account_number") String accountNumber, @Field("ifsc_code") String ifscCode,
+                                         @Field("master_bank_id") String masterBankId);
+
+    @POST("api/v1/accountlist")
+    @FormUrlEncoded
+    Call<AccountListresponse> getAccountList(@Field("contact_id") String contactId, @Field("user_id") String userId);
 
 //
 //    @POST("/api/users")

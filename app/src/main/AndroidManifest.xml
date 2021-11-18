@@ -43,6 +43,15 @@
             android:name=".Login"
             android:exported="true" />
         <activity
+            android:name=".ContactDetail"
+            android:exported="true" />
+        <activity
+            android:name=".AddAccount"
+            android:exported="true" />
+        <activity
+            android:name=".TransferMoney"
+            android:exported="true" />
+        <activity
             android:name=".Dashbaord"
             android:exported="true" />
         <activity

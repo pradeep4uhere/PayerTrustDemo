@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.ui.contact.ContactFragment;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.MyViewHolder> {
@@ -22,6 +23,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
     Context context;
     public ContactViewAdapter(List<ContactResponse.Datum> mData, Context context) {
         this.mData = mData;
+        this.context = context;
     }
 
     @Override
@@ -42,16 +44,16 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         holder.person_email.setText(mData.get(position).emailAddress);
         //holder.person_image.setImageResource(mData.get(position).getThumbnail());
 
-        holder.person_image.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,Dashbaord.class);
-//                intent.putExtra("Contact Details",temp.getTitle());
+                Intent intent = new Intent(context,ContactDetail.class);
+                intent.putExtra("contactDetails", (Serializable) mData.get(position));
 //                intent.putExtra("Contact Email",temp.getEmail());
 //                intent.putExtra("Contact Email",temp.getMobile());
 //                intent.putExtra("Contact Email",temp.getThumbnail());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivities(new Intent[]{intent});
+                context.startActivity(intent);
 
             }
         });

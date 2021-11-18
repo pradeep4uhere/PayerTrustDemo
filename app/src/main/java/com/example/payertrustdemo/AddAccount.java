@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +18,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.payertrustdemo.model.BankListResponse;
+import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.MyPreferences;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddAccount extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
     private Spinner spinner;
@@ -25,19 +37,19 @@ public class AddAccount extends AppCompatActivity  implements AdapterView.OnItem
     ImageView imageView;
     Button button;
     Dialog dialog;
+    BankListResponse bankListResponse;
+    ArrayAdapter<BankListResponse.Datum> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
-        initUI();
+        getAllBank();
         ImageView imageView = (ImageView) findViewById(R.id.back_to_contact_details_btn);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("Contact Details List");
-                Intent intent = new Intent(AddAccount.this, ContactDetail.class);
-                startActivity(intent);
+                finish();
             }
         });
 
@@ -56,96 +68,58 @@ public class AddAccount extends AppCompatActivity  implements AdapterView.OnItem
     }
 
 
-    private void initUI()
+    private void initBankNameAutoList()
     {
         //UI reference of textView
         final AutoCompleteTextView customerAutoTV = findViewById(R.id.customerTextView);
-
-        // create list of customer
-        ArrayList<String> customerList = getCustomerList();
-
         //Create adapter
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(AddAccount.this, android.R.layout.simple_spinner_item, customerList);
+        adapter = new ArrayAdapter<BankListResponse.Datum>(AddAccount.this, android.R.layout.simple_spinner_item, bankListResponse.data);
 
         //Set adapter
         customerAutoTV.setAdapter(adapter);
-    }
+        customerAutoTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-    private ArrayList<String> getCustomerList()
-    {
-        ArrayList<String> customers = new ArrayList<>();
-        customers.add("HDFC Bank");
-        customers.add("ICIC BANK");
-        customers.add("Kotak bank");
-        customers.add("Michael");
-        customers.add("William");
-        customers.add("Daniel");
-        customers.add("Thomas");
-        customers.add("Sarah");
-        customers.add("HDFC Bank");
-        customers.add("ICIC BANK");
-        customers.add("Kotak bank");
-        customers.add("Michael");
-        customers.add("William");
-        customers.add("Daniel");
-        customers.add("Thomas");
-        customers.add("Sarah");
-        customers.add("HDFC Bank");
-        customers.add("ICIC BANK");
-        customers.add("Kotak bank");
-        customers.add("Michael");
-        customers.add("William");
-        customers.add("Daniel");
-        customers.add("Thomas");
-        customers.add("Sarah");
-        customers.add("HDFC Bank");
-        customers.add("ICIC BANK");
-        customers.add("Kotak bank");
-        customers.add("Michael");
-        customers.add("William");
-        customers.add("Daniel");
-        customers.add("Thomas");
-        customers.add("Sarah");
-        customers.add("HDFC Bank");
-        customers.add("ICIC BANK");
-        customers.add("Kotak bank");
-        customers.add("Michael");
-        customers.add("William");
-        customers.add("Daniel");
-        customers.add("Thomas");
-        customers.add("Sarah");
-        customers.add("Sophia");
-        return customers;
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+                                    long id) {
+                showToast(String.valueOf(adapter.getItem(pos).id));
+
+            }
+        });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
-        switch (position) {
-            case 0:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 1:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 2:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
-            case 4:
-                // Whatever you want to happen when the first item gets selected
-                break;
-            case 5:
-                // Whatever you want to happen when the second item gets selected
-                break;
-            case 6:
-                // Whatever you want to happen when the thrid item gets selected
-                break;
-        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // TODO Auto-generated method stub
+    }
+
+    private void getAllBank() {
+
+        Call<BankListResponse> call = RetrofitClient.getInstance().getMyApi().getAllBank();
+        call.enqueue(new Callback<BankListResponse>() {
+            @Override
+            public void onResponse(Call<BankListResponse> call, Response<BankListResponse> response) {
+                bankListResponse = response.body();
+                if(bankListResponse!= null){
+                    if(bankListResponse.success){
+                        initBankNameAutoList();
+                    }
+                    else{
+                        showToast(bankListResponse.message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BankListResponse> call, Throwable t) {
+                showToast("An error has occured");
+            }
+
+        });
     }
 
     private void showToast(String message)
