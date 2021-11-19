@@ -215,6 +215,12 @@
                             android:gravity="center"
                             android:text="Enter valid account details, validation [optional]" />
 
+                        <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            style="@style/spinner_style"/>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/customerSpinnerLayout"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -231,13 +237,13 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/account_number"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Account Number">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/account_number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
@@ -246,7 +252,6 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/wallet_pay_amount"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -257,13 +262,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
-
+                                android:id="@+id/ifsc_code"
                                 android:maxLength="7" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/benifeciery_name"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -271,6 +275,7 @@
                             android:hint="@string/benifeciery_name">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/benifeciery_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
@@ -288,7 +293,7 @@
                             app:backgroundTint="@android:color/holo_blue_dark" />
 
                         <Button
-                            android:id="@+id/wallet_pay_submit_btn"
+                            android:id="@+id/btnAddAccount"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:layout_marginTop="5dp"

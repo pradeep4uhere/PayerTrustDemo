@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.payertrustdemo.ContactDetail;
 import com.example.payertrustdemo.FundTransferConfirmation;
 import com.example.payertrustdemo.R;
@@ -50,7 +51,9 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             holder.txtValidated.setText("Not Validated");
         }
         holder.txtName.setText(accountList.get(position).beneficiary_name);
-        //holder.imageView.setImageResource(accountList.get(position).bankIcon);
+        Glide.with(context)
+                .load(accountList.get(position).bankIcon)
+                .into(holder.imageView);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

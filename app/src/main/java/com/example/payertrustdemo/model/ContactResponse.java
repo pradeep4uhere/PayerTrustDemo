@@ -10,8 +10,8 @@ public class ContactResponse implements Serializable {
     public String message;
     public List<Datum> data;
 
-
     public class Datum implements Serializable{
+        public int id;
         @SerializedName("Name")
         public String name;
         @SerializedName("MobileNumber")

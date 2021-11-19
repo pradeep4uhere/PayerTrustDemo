@@ -32,6 +32,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +81,7 @@ public class ContactDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ContactDetail.this, AddAccount.class);
+                intent.putExtra("contactDetails", contactDetails);
                 startActivity(intent);
             }
         });
@@ -115,8 +117,7 @@ public class ContactDetail extends AppCompatActivity {
     public void getAccountList() {
 
         String userId = myPreferences.getString(Constants.userId);
-        userId = "3";
-        String contactId = "74";
+        String contactId = String.valueOf(contactDetails.id);
         Call<AccountListresponse> call = RetrofitClient.getInstance().getMyApi().getAccountList(contactId,userId);
         call.enqueue(new Callback<AccountListresponse>() {
             @Override

@@ -1,21 +1,18 @@
 package com.example.payertrustdemo.retrofit;
 
 import com.example.payertrustdemo.model.AccountListresponse;
+import com.example.payertrustdemo.model.AddAccountResponse;
+import com.example.payertrustdemo.model.AddFundAccountResponse;
+import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
-import com.example.payertrustdemo.model.LoginRequest;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
-import com.example.payertrustdemo.util.Constants;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -49,14 +46,24 @@ public interface Api {
 
     @POST("api/v1/addaccount")
     @FormUrlEncoded
-    Call<ContactResponse> addBankAccount(@Field("user_id") String userId, @Field("contact_id") String contactId,
-                                         @Field("beneficiary_name") String beneficiaryName, @Field("account_type") String accountType,
-                                         @Field("account_number") String accountNumber, @Field("ifsc_code") String ifscCode,
-                                         @Field("master_bank_id") String masterBankId);
+    Call<AddAccountResponse> addBankAccount(@Field("user_id") String userId, @Field("contact_id") String contactId,
+                                            @Field("beneficiary_name") String beneficiaryName, @Field("account_type") String accountType,
+                                            @Field("account_number") String accountNumber, @Field("ifsc_code") String ifscCode,
+                                            @Field("master_bank_id") String masterBankId);
 
     @POST("api/v1/accountlist")
     @FormUrlEncoded
     Call<AccountListresponse> getAccountList(@Field("contact_id") String contactId, @Field("user_id") String userId);
+
+    @POST("api/v1/addfundcontact")
+    @FormUrlEncoded
+    Call<AddFundContactResponse> addFundContact(@Field("user_id") String userId, @Field("payout_contact_id") String contactId,
+                                                @Field("payout_bank_id") String bankid);
+
+    @POST("api/v1/addfundaccount")
+    @FormUrlEncoded
+    Call<AddFundAccountResponse> addFundAccount(@Field("user_id") String userId, @Field("payout_bank_contact_id") String bankContactId,
+                                                @Field("payout_account_id") String accountId, @Field("payout_user_contact_id") String userContactId);
 
 //
 //    @POST("/api/users")
