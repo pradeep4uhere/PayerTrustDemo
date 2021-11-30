@@ -8,13 +8,13 @@
     >
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:elevation="8dp"
+        android:layout_height="85dp"
+        android:elevation="6dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:weightSum="4"
             android:orientation="horizontal">
             <LinearLayout
@@ -35,17 +35,26 @@
                     android:layout_weight="1"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="180dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:padding="10dp">
                 <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRADEEP KUMAR"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/ubuntu_bold"/>
+
+                <TextView
                     android:id="@+id/txtBankName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="11dp"
-                    android:text="Himachal Pradesh Gramin Bank"/>
+                    android:text="Himachal Pradesh Gramin Bank"
+                    android:textSize="10dp" />
+
                 <TextView
                     android:id="@+id/txtAccountNo"
                     android:layout_width="wrap_content"
@@ -63,7 +72,7 @@
 
             </LinearLayout>
             <LinearLayout
-                android:layout_width="110dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -72,33 +81,30 @@
                     android:id="@+id/txtValidated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Not Validated"
+                    android:text="Validated"
                     android:textColor="@color/payertrust"
                     android:fontFamily="@font/ubuntu_bold"
                     android:textSize="12dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/button_transfer_money"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Registred Name"
-                    android:textSize="10dp"/>
-                <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PRADEEP KUMAR"
-                    android:textSize="10dp"
-                    android:fontFamily="@font/ubuntu_bold"/>
-
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="Transfer"
+                    android:textSize="8dp"
+                    app:backgroundTint="#4CAF50" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="end"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/popup_menu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/right_24">
+                    android:src="@drawable/ic_baseline_more_vert_24">
 
                 </ImageView>
             </LinearLayout>
