@@ -14,10 +14,13 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.payertrustdemo.model.AccountListresponse;
 import com.example.payertrustdemo.model.AddAccountResponse;
 import com.example.payertrustdemo.model.ContactResponse;
@@ -36,11 +39,13 @@ public class TransferMoney extends AppCompatActivity {
 
     AccountListresponse.AccountList accountList;
     Button transferMoney;
-    TextInputEditText edtName,edtBank,edtAccount,edtIfscCode,edtAmount,edtRemarks;
+    TextInputEditText edtAmount,edtRemarks;
+    TextView edtName,edtBank,edtAccount,edtIfscCode;
     MyPreferences myPreferences;
     String[] spinnerItems = { "NEFT", "IMPS"};
     private Spinner spinner;
     String selectedSpinnerValue;
+    ImageView bankImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,7 @@ public class TransferMoney extends AppCompatActivity {
         edtIfscCode = findViewById(R.id.edtIfsc);
         edtAmount = findViewById(R.id.transfer_amount);
         edtRemarks = findViewById(R.id.edtRemarks);
+        bankImage = findViewById(R.id.bankimage);
         initView();
 
         //Move to Transfer Money Confirmation Screen
@@ -116,6 +122,10 @@ public class TransferMoney extends AppCompatActivity {
         edtBank.setText(accountList.bankName);
         edtAccount.setText(accountList.account_number);
         edtIfscCode.setText(accountList.ifsc_code);
+
+        Glide.with(TransferMoney.this)
+                .load(accountList.bankIcon)
+                .into(bankImage);
     }
 
     private void showToast(String message)
