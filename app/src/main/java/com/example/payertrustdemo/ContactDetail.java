@@ -140,6 +140,7 @@ public class ContactDetail extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AccountListresponse> call, Throwable t) {
+                showPopupProgressSpinner(false,ContactDetail.this);
                 showToast(t.getMessage());
             }
 

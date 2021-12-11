@@ -93,19 +93,6 @@
                 app:layout_constraintEnd_toStartOf="parent">
 
 
-                <TextView
-                    android:id="@+id/textRecharge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Money Transfer Confirmation"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,50 +124,6 @@
                                 android:layout_marginTop="30dp"
                                 android:layout_marginBottom="20dp"
                                 android:src="@drawable/green_ok" />
-
-                            <TextView
-                                android:id="@+id/txtName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/aref_ruqaa_bold"
-                                android:text="Sachin Kumar"
-                                android:textSize="30dp" />
-
-                            <TextView
-                                android:id="@+id/txtBankName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="Himachal Pradesh Gramin Bank"
-                                android:textSize="11dp" />
-
-                            <TextView
-                                android:id="@+id/txtAccountNo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/ubuntu_medium"
-                                android:text="A/C: 4859015841021"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/txtIFSC"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="IFSC: PNBUH000982"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/txtAmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/baloo_bhai"
-                                android:text="Rs. 25,000.00"
-                                android:textSize="28dp" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -240,6 +183,50 @@
                                     android:textSize="12dp" />
                             </LinearLayout>
 
+                            <TextView
+                                android:id="@+id/txtName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/aref_ruqaa_bold"
+                                android:text="Sachin Kumar"
+                                android:textSize="30dp" />
+
+                            <TextView
+                                android:id="@+id/txtBankName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Himachal Pradesh Gramin Bank"
+                                android:textSize="11dp" />
+
+                            <TextView
+                                android:id="@+id/txtAccountNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/ubuntu_medium"
+                                android:text="A/C: 4859015841021"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/txtIFSC"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="IFSC: PNBUH000982"
+                                android:textSize="10dp" />
+
+                            <TextView
+                                android:id="@+id/txtAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/baloo_bhai"
+                                android:text="Rs. 25,000.00"
+                                android:textSize="28dp" />
+
 
                             <TextView
                                 android:id="@+id/txtDate"
@@ -263,6 +250,19 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/textRecharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Money Transfer Confirmation"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
