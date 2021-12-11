@@ -152,6 +152,9 @@
                     app:cardCornerRadius="10dp"
                     >
 
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,7 +168,6 @@
                             android:gravity="center"
                             android:text="Benifeciry account details" />
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/benifeciery_name"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -173,46 +175,49 @@
                             android:hint="@string/benifeciery_name">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/benifeciery_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
+                                android:enabled="false"
                                 android:text="PRADEEP  KUMAR"
                                 android:maxLength="50" />
 
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/customerSpinnerLayout"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="HDFC BANK">
+                            android:hint="BANK NAME">
 
-                            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                                android:id="@+id/customerTextView"
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtBankName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:clickable="true"
-                                tools:ignore="KeyboardInaccessibleWidget" />
+                                android:inputType="none"
+                                android:enabled="false"
+                                android:text="HDFC BANK"
+                                android:maxLength="50" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/account_number"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Account Number">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/account_number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
+                                android:enabled="false"
                                 android:maxLength="20"
                                 android:text="0485001231688"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/wallet_pay_amount"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -220,9 +225,11 @@
                             android:hint="IFSC Code">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtIfsc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
+                                android:enabled="false"
                                 android:text="HDFC0000485"
                                 android:maxLength="11" />
 
@@ -231,7 +238,6 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/transfer_amount"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -239,14 +245,34 @@
                             android:hint="Amount">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/transfer_amount"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="number"
-                                android:text="0.00"
-                                android:maxLength="6" />
+                                android:inputType="numberDecimal"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:hint="Remarks">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edtRemarks"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <Spinner
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            style="@style/spinner_style"/>
 
                         <Button
                             android:id="@+id/transfer_money_submit_btn"
@@ -258,6 +284,9 @@
                             app:backgroundTint="#F44336" />
 
                     </LinearLayout>
+
+
+                    </ScrollView>
                 </androidx.cardview.widget.CardView>
 
 

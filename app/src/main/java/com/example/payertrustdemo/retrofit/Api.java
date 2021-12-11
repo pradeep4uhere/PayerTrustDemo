@@ -7,6 +7,7 @@ import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
+import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
@@ -70,6 +71,20 @@ public interface Api {
     @FormUrlEncoded
     Call<GetNameResponse> getName(@Field("user_id") String userId, @Field("account_number") String accountNo,
                                   @Field("ifsc_code") String ifscCode);
+
+    @POST("api/v1/fundtransfer")
+    @FormUrlEncoded
+    Call<FundTransferResponse> transferMoney(@Field("user_id") String userId,
+                                             @Field("payout_bank_user_contact_api_id") String payoutBankUserContactApiId,
+                                             @Field("payout_bank_id") String payoutBankId,
+                                             @Field("fund_api_id") String fundApiId,
+                                             @Field("contact_id") String contactId,
+                                             @Field("account_number") String accountNo,
+                                             @Field("ifsc_code") String ifscCode,
+                                             @Field("amount") String amount,
+                                             @Field("remarks") String remarks,
+                                             @Field("payment_mode") String paymentMode);
+
 
 //
 //    @POST("/api/users")

@@ -1,5 +1,6 @@
 package com.example.payertrustdemo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import com.example.payertrustdemo.TransferMoney;
 import com.example.payertrustdemo.model.AccountListresponse;
 import com.example.payertrustdemo.model.ContactResponse;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.MyViewHolder> {
@@ -44,7 +46,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtBankName.setText(accountList.get(position).bankName);
         holder.txtAccountNo.setText( accountList.get(position).account_number);
         holder.txtIfsc.setText(accountList.get(position).ifsc_code);
@@ -71,6 +73,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
                }
                else {
                    Intent intent = new Intent(context, TransferMoney.class);
+                   intent.putExtra("accountList", (Serializable) accountList.get(position));
                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                    context.startActivity(intent);
                }
@@ -78,19 +81,15 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             }
         });
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, TransferMoney.class);
-//                intent.putExtra("Contact Details",temp.getTitle());
-//                intent.putExtra("Contact Email",temp.getEmail());
-//                intent.putExtra("Contact Email",temp.getMobile());
-//                intent.putExtra("Contact Email",temp.getThumbnail());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, TransferMoney.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(intent);
+//
+//            }
+//        });
 
     }
 

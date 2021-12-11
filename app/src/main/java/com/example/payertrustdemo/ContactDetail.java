@@ -242,5 +242,4 @@ public class ContactDetail extends AppCompatActivity {
 
         });
     }
-
 }

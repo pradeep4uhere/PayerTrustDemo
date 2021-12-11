@@ -52,6 +52,12 @@
             android:name=".TransferMoney"
             android:exported="true" />
         <activity
+            android:name=".FundTransferConfirmation"
+            android:exported="true" />
+        <activity
+            android:name=".MoneyTransferSuccess"
+            android:exported="true" />
+        <activity
             android:name=".Dashbaord"
             android:exported="true" />
         <activity

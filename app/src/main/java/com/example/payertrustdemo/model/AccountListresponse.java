@@ -33,12 +33,21 @@ public class AccountListresponse implements Serializable {
         public int isCreditCard;
         public int transfer_type;
         public int is_validated;
-        public Object payout_bank_user_contact_bank_account_api;
+        public PayoutBankAccountApi payout_bank_account_api;
     }
 
     public class Data implements Serializable{
         public ContactDetails contactDetails;
         public List<AccountList> accountList;
+    }
+
+    public class PayoutBankAccountApi implements Serializable{
+        public int id;
+        public int payout_bank_contact_id;
+        public int payout_user_contact_id;
+        public int payout_account_id;
+        public String fund_api_id;
+        public String contact_id;
     }
 
 }
