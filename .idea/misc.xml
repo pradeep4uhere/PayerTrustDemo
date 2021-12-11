@@ -61,7 +61,7 @@
         <entry key="app/src/main/res/layout/fragment_datafragment.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.17175925925925925" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1606837606837607" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.29130434782608694" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_mobile_pin.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/fragment_payment_report.xml" value="0.28013029315960913" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1606837606837607" />

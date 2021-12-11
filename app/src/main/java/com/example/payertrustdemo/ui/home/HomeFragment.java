@@ -68,18 +68,18 @@ public class HomeFragment extends Fragment  {
             }
         });
 
-        card2 = (CardView) view.findViewById(R.id.card8);
-        card2.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-                Fragment fragment = new PaymentReportFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.home_fragment, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+//        card2 = (CardView) view.findViewById(R.id.card8);
+//        card2.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//                Fragment fragment = new PaymentReportFragment();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.home_fragment, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//            }
+//        });
 
 
         return view;
