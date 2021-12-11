@@ -2,9 +2,11 @@ package com.example.payertrustdemo.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,10 +27,12 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
     private List<AccountListresponse.AccountList> accountList;
     Context context;
-    public AccountListAdapter(List<AccountListresponse.AccountList> accountList, Context context) {
+    ContactDetail contactDetail;
+    public AccountListAdapter(List<AccountListresponse.AccountList> accountList, Context context,ContactDetail contactDetail) {
         List<AccountListresponse.AccountList> accountList1;
         this.accountList = accountList;
         this.context = context;
+        this.contactDetail = contactDetail;
     }
 
     @Override
@@ -46,14 +50,33 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         holder.txtIfsc.setText(accountList.get(position).ifsc_code);
         if(accountList.get(position).is_validated==1) {
             holder.txtValidated.setText("Validated");
+            holder.transferMoney.setText("Transfer");
+            holder.transferMoney.setBackgroundColor(Color.parseColor("#4CAF50"));
         }
         else{
             holder.txtValidated.setText("Not Validated");
+            holder.transferMoney.setText("Validate");
+            holder.transferMoney.setBackgroundColor(Color.parseColor("#BB86FC"));
         }
         holder.txtName.setText(accountList.get(position).beneficiary_name);
         Glide.with(context)
                 .load(accountList.get(position).bankIcon)
                 .into(holder.imageView);
+
+        holder.transferMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if( holder.transferMoney.getText().toString().equalsIgnoreCase("Validate")){
+                   contactDetail.addFundContact(String.valueOf(accountList.get(position).id));
+               }
+               else {
+                   Intent intent = new Intent(context, TransferMoney.class);
+                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   context.startActivity(intent);
+               }
+
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +117,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         TextView txtAccountNo;
         TextView txtIfsc;
         TextView txtValidated;
+        Button transferMoney;
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -103,6 +127,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             txtIfsc = itemView.findViewById(R.id.txtIfsc);
             txtValidated = itemView.findViewById(R.id.txtValidated);
             txtName = itemView.findViewById(R.id.txtName);
+            transferMoney = itemView.findViewById(R.id.button_transfer_money);
 
         }
     }

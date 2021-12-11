@@ -27,6 +27,7 @@ import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
+import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
@@ -126,14 +127,22 @@ public class AddAccount extends AppCompatActivity  implements AdapterView.OnItem
         });
 
         //Check If Registered Name is validated
-        Button more = (Button) findViewById(R.id.get_benifeciery_name);
-        more.setOnClickListener(new View.OnClickListener() {
+        Button btnGetBeneficiary = (Button) findViewById(R.id.get_benifeciery_name);
+        btnGetBeneficiary.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                AlertDialog alertDialog = new AlertDialog.Builder(AddAccount.this).create(); //Read Update
-                alertDialog.setTitle("Name Validation");
-                alertDialog.setMessage("PRADEEP KUMAR");
-                //alertDialog.setView(R.layout.name_validation_dialog_layout);
-                alertDialog.show();  //<-- See This!
+                String accNO = edtAccountNo.getText().toString().trim();
+                String ifsc = edtIfsc.getText().toString().trim();
+                if(TextUtils.isEmpty(accNO)){
+                    showToast("Enter account number");
+                    return;
+                }
+                else if(TextUtils.isEmpty(ifsc)){
+                    showToast("Enter IFSC code");
+                    return;
+                }
+                else{
+                    getBeneficiaryName(accNO,ifsc);
+                }
             }
         });
 
@@ -199,7 +208,15 @@ public class AddAccount extends AppCompatActivity  implements AdapterView.OnItem
         showPopupProgressSpinner(true,this);
         String userId = myPreferences.getString(Constants.userId);
         String contactId = String.valueOf(contactDetails.id);
-        Call<AddAccountResponse> call = RetrofitClient.getInstance().getMyApi().addBankAccount(userId,contactId,name,selectedSpinnerValue,accNo,ifsc,bankId);
+        //"Saving", "Credit Card"
+        String accountType = "";
+        if(selectedSpinnerValue.equalsIgnoreCase("Saving")){
+            accountType = "1";
+        }
+        else{
+            accountType = "2";
+        }
+        Call<AddAccountResponse> call = RetrofitClient.getInstance().getMyApi().addBankAccount(userId,contactId,name,accountType,accNo,ifsc,bankId);
         call.enqueue(new Callback<AddAccountResponse>() {
             @Override
             public void onResponse(Call<AddAccountResponse> call, Response<AddAccountResponse> response) {
@@ -207,8 +224,9 @@ public class AddAccount extends AppCompatActivity  implements AdapterView.OnItem
                 showPopupProgressSpinner(false,AddAccount.this);
                 if(addAccountResponse!= null){
                     if(addAccountResponse.success){
-                        //showToast(addAccountResponse.message);
-                        addFundContact(String.valueOf(addAccountResponse.data.contactId));
+                        showToast(addAccountResponse.message);
+                        AddAccount.this.finish();
+                        //addFundContact(String.valueOf(addAccountResponse.data.contactId));
                     }
                     else{
                         showToast(addAccountResponse.message);
@@ -220,6 +238,35 @@ public class AddAccount extends AppCompatActivity  implements AdapterView.OnItem
             public void onFailure(Call<AddAccountResponse> call, Throwable t) {
                 showToast("An error has occured");
                 showPopupProgressSpinner(true,AddAccount.this);
+            }
+
+        });
+    }
+
+    private void getBeneficiaryName(String accountId,String ifscCode) {
+        showPopupProgressSpinner(true,this);
+        String userId = myPreferences.getString(Constants.userId);
+        Call<GetNameResponse> call = RetrofitClient.getInstance().getMyApi().getName(userId,accountId,ifscCode);
+        call.enqueue(new Callback<GetNameResponse>() {
+            @Override
+            public void onResponse(Call<GetNameResponse> call, Response<GetNameResponse> response) {
+                GetNameResponse getNameResponse = response.body();
+                showPopupProgressSpinner(false,AddAccount.this);
+                if(getNameResponse!= null){
+                    if(getNameResponse.status){
+                        showToast(getNameResponse.message);
+                        edtBenifeciaryName.setText(getNameResponse.data.registredName);
+                    }
+                    else{
+                        showToast(addAccountResponse.message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetNameResponse> call, Throwable t) {
+                showToast("An error has occured");
+                showPopupProgressSpinner(false,AddAccount.this);
             }
 
         });

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,14 +16,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.payertrustdemo.adapter.AccountListAdapter;
 import com.example.payertrustdemo.model.AccountListresponse;
+import com.example.payertrustdemo.model.AddFundAccountResponse;
+import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.ui.contact.ContactFragment;
@@ -89,7 +94,7 @@ public class ContactDetail extends AppCompatActivity {
         accountLists = new ArrayList<>();
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AccountListAdapter(accountLists,this);
+        adapter = new AccountListAdapter(accountLists,this,this);
         recyclerView.setAdapter(adapter);
 
         // getting search view of our item.
@@ -115,7 +120,7 @@ public class ContactDetail extends AppCompatActivity {
     }
 
     public void getAccountList() {
-
+        showPopupProgressSpinner(true,this);
         String userId = myPreferences.getString(Constants.userId);
         String contactId = String.valueOf(contactDetails.id);
         Call<AccountListresponse> call = RetrofitClient.getInstance().getMyApi().getAccountList(contactId,userId);
@@ -123,6 +128,7 @@ public class ContactDetail extends AppCompatActivity {
             @Override
             public void onResponse(Call<AccountListresponse> call, Response<AccountListresponse> response) {
                 accountListresponse = response.body();
+                showPopupProgressSpinner(false,ContactDetail.this);
                 if(accountListresponse!= null){
                     if(accountListresponse.status){
                         accountLists.clear();
@@ -158,4 +164,83 @@ public class ContactDetail extends AppCompatActivity {
     {
         Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    private Dialog progressDialog = null;
+    private ProgressBar progressBar;
+    public void showPopupProgressSpinner(Boolean isShowing, Context context) {
+        if (isShowing == true) {
+            progressDialog = new Dialog(context);
+            progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            progressDialog.setContentView(R.layout.popup_progressbar);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(Color.TRANSPARENT));
+
+            progressBar = (ProgressBar) progressDialog
+                    .findViewById(R.id.progressBar);
+            progressDialog.show();
+        } else if (isShowing == false) {
+            progressDialog.dismiss();
+        }
+    }
+
+    public void addFundContact(String accountId) {
+        showPopupProgressSpinner(true,this);
+        String contactId = String.valueOf(contactDetails.id);
+        String userId = myPreferences.getString(Constants.userId);
+        Call<AddFundContactResponse> call = RetrofitClient.getInstance().getMyApi().addFundContact(userId,contactId,"1");
+        call.enqueue(new Callback<AddFundContactResponse>() {
+            @Override
+            public void onResponse(Call<AddFundContactResponse> call, Response<AddFundContactResponse> response) {
+                AddFundContactResponse addFundContactResponse = response.body();
+                showPopupProgressSpinner(false,ContactDetail.this);
+                if(addFundContactResponse!= null){
+                    if(addFundContactResponse.status){
+                        addFundAccount(""+addFundContactResponse.data.payoutBankUserContactApi.payout_bank_contact_id,
+                                ""+accountId,""+addFundContactResponse.data.payoutBankUserContactApi.payout_user_contact_id);
+                    }
+                    else{
+                        showToast(addFundContactResponse.message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddFundContactResponse> call, Throwable t) {
+                showToast("An error has occured");
+                showPopupProgressSpinner(false,ContactDetail.this);
+            }
+
+        });
+    }
+
+    private void addFundAccount(String bankContactId,String accountId,String userContactId) {
+        showPopupProgressSpinner(true,this);
+        String userId = myPreferences.getString(Constants.userId);
+        Call<AddFundAccountResponse> call = RetrofitClient.getInstance().getMyApi().addFundAccount(userId,bankContactId,accountId,userContactId);
+        call.enqueue(new Callback<AddFundAccountResponse>() {
+            @Override
+            public void onResponse(Call<AddFundAccountResponse> call, Response<AddFundAccountResponse> response) {
+                AddFundAccountResponse addAccountResponse = response.body();
+                showPopupProgressSpinner(false,ContactDetail.this);
+                if(addAccountResponse!= null){
+                    if(addAccountResponse.status){
+                        showToast(addAccountResponse.message);
+                        getAccountList();
+                    }
+                    else{
+                        showToast(addAccountResponse.message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddFundAccountResponse> call, Throwable t) {
+                showToast("An error has occured");
+                showPopupProgressSpinner(false,ContactDetail.this);
+            }
+
+        });
+    }
+
 }
