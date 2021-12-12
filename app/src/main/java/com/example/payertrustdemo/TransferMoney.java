@@ -120,8 +120,8 @@ public class TransferMoney extends AppCompatActivity {
 
         edtName.setText(accountList.beneficiary_name);
         edtBank.setText(accountList.bankName);
-        edtAccount.setText(accountList.account_number);
-        edtIfscCode.setText(accountList.ifsc_code);
+        edtAccount.setText("A/C: "+accountList.account_number);
+        edtIfscCode.setText("IFSC: "+accountList.ifsc_code);
 
         Glide.with(TransferMoney.this)
                 .load(accountList.bankIcon)

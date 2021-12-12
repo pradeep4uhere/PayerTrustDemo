@@ -11,13 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.Wallet;
 import com.example.payertrustdemo.WalletViewAdapter;
+import com.example.payertrustdemo.databinding.FragmentMobilePinBinding;
 import com.example.payertrustdemo.databinding.FragmentWalletReportBinding;
+import com.example.payertrustdemo.ui.mpin.MobilePinViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +33,6 @@ public class WalletReportFragment extends Fragment {
     private WalletReportViewModel walletReportViewModel;
     private FragmentWalletReportBinding binding;
 
-    private String mParam1;
-    private String mParam2;
-
-    List<Wallet> lstPerson;
-    RecyclerView rcv;
-
-    RecyclerView recyclerView;
-    WalletViewAdapter cadapter;
 
     public  WalletReportFragment(){
 
@@ -50,32 +45,21 @@ public class WalletReportFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_wallet_report,container,false);
-        recyclerView =view.findViewById(R.id.walletrecview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        lstPerson = new ArrayList<>();
-        Wallet ob1 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob1);
-        Wallet ob2 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob2);
-        Wallet ob3 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob3);
-        Wallet ob4 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob4);
-        Wallet ob5 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob5);
-        Wallet ob6 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob6);
-        Wallet ob7 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob7);
-        Wallet ob8 = new Wallet("23rd Oct 2021 10:30 am","Wallet Recharge","201201VDXV23","Success", 2500,2000, R.drawable.ic_baseline_arrow_upward_24);
-        lstPerson.add(ob8);
-        cadapter = new WalletViewAdapter(lstPerson,getActivity().getApplicationContext());
-        recyclerView.setAdapter(cadapter);
-        return  view;
+        walletReportViewModel =
+                new ViewModelProvider(this).get(WalletReportViewModel.class);
 
+        binding = FragmentWalletReportBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+//        final TextView textView = binding.textMobilePassword;
+//        mobilePinViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+        return root;
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
