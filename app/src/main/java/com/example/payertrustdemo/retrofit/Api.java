@@ -11,6 +11,7 @@ import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
+import com.example.payertrustdemo.model.WalletReportResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -84,7 +85,10 @@ public interface Api {
                                              @Field("amount") String amount,
                                              @Field("remarks") String remarks,
                                              @Field("payment_mode") String paymentMode);
-
+    @POST("api/v1/walletreport")
+    @FormUrlEncoded
+    Call<WalletReportResponse> walletReport(@Field("user_id") String userId,
+                                            @Field("offset") String offset);
 
 //
 //    @POST("/api/users")

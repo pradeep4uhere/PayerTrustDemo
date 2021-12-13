@@ -40,7 +40,7 @@ public class TransferMoney extends AppCompatActivity {
     AccountListresponse.AccountList accountList;
     Button transferMoney;
     TextInputEditText edtAmount,edtRemarks;
-    TextView edtName,edtBank,edtAccount,edtIfscCode;
+    TextView edtName,edtBank,edtAccount,edtIfscCode,txtAccountType;
     MyPreferences myPreferences;
     String[] spinnerItems = { "NEFT", "IMPS"};
     private Spinner spinner;
@@ -62,6 +62,7 @@ public class TransferMoney extends AppCompatActivity {
         edtAmount = findViewById(R.id.transfer_amount);
         edtRemarks = findViewById(R.id.edtRemarks);
         bankImage = findViewById(R.id.bankimage);
+        txtAccountType = findViewById(R.id.txtAccountType);
         initView();
 
         //Move to Transfer Money Confirmation Screen
@@ -122,6 +123,12 @@ public class TransferMoney extends AppCompatActivity {
         edtBank.setText(accountList.bankName);
         edtAccount.setText("A/C: "+accountList.account_number);
         edtIfscCode.setText("IFSC: "+accountList.ifsc_code);
+        if(accountList.account_type==1){
+            txtAccountType.setText("Saving");
+        }
+        else{
+            txtAccountType.setText("Credit");
+        }
 
         Glide.with(TransferMoney.this)
                 .load(accountList.bankIcon)

@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.payertrustdemo.model.AccountListresponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
@@ -31,6 +32,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
 
     TextView txtBankName,txtAccount,txtIfsc,txtAccountType,txtName;
     TextView txtAmount,txtCharge,txtTotAmount;
+    ImageView bankImage;
     MyPreferences myPreferences;
     AccountListresponse.AccountList accountList;
     String amount,remarks,paymentMode;
@@ -53,6 +55,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
         txtAmount = findViewById(R.id.txtAmount);
         txtCharge = findViewById(R.id.txtCharge);
         txtTotAmount = findViewById(R.id.txtTotAmount);
+        bankImage = findViewById(R.id.bankimage);
 
         //initializeView
         initView();
@@ -88,6 +91,9 @@ public class FundTransferConfirmation extends AppCompatActivity {
         txtAmount.setText("Rs. "+ amount);
         txtCharge.setText("Rs. "+charge );
         txtTotAmount.setText("Rs. "+ (Double.valueOf(amount) + charge));
+        Glide.with(FundTransferConfirmation.this)
+                .load(accountList.bankIcon)
+                .into(bankImage);
     }
 
         private void fundTransfer() {
