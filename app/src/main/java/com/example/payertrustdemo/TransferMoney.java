@@ -64,6 +64,13 @@ public class TransferMoney extends AppCompatActivity {
         bankImage = findViewById(R.id.bankimage);
         txtAccountType = findViewById(R.id.txtAccountType);
         initView();
+        ImageView imageView = (ImageView) findViewById(R.id.back_to_contact_details_btn);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         //Move to Transfer Money Confirmation Screen
         transferMoney = (Button) findViewById(R.id.transfer_money_submit_btn);

@@ -109,6 +109,8 @@ public class Login extends AppCompatActivity {
                         myPreferences.saveString(Constants.mobileNumber,loginResponse.data.mobileNumber);
                         myPreferences.saveString(Constants.email,loginResponse.data.emailAddress);
                         myPreferences.saveString(Constants.agentCode,loginResponse.data.agentCode);
+                        myPreferences.saveString(Constants.firstName,loginResponse.data.firstName);
+                        myPreferences.saveString(Constants.lastName,loginResponse.data.lastName);
                         myPreferences.saveString(Constants.userId,String.valueOf(loginResponse.data.id));
 //                        Intent intent = new Intent(Login.this, login_otp.class);
 //                        startActivity(intent);

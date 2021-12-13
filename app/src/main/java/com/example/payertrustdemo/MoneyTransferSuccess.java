@@ -1,14 +1,29 @@
 package com.example.payertrustdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.payertrustdemo.model.AccountListresponse;
+import com.example.payertrustdemo.model.CheckPayoutResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
+import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.util.Constants;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MoneyTransferSuccess extends AppCompatActivity {
 
@@ -37,12 +52,32 @@ public class MoneyTransferSuccess extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MoneyTransferSuccess.this, LeftNavigation.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 finish();
             }
         });
+        ImageView imgRefresh = (ImageView) findViewById(R.id.imgRefresh);
+        imgRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
+
 
         initView();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MoneyTransferSuccess.this, LeftNavigation.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 
     public void initView(){
@@ -55,6 +90,55 @@ public class MoneyTransferSuccess extends AppCompatActivity {
         txtPaymentStatus.setText(fundTransferResponse.dataSet.status);
         txtRefNo.setText("Ref No "+fundTransferResponse.dataSet.RefNo);
         txtDate.setText(fundTransferResponse.dataSet.PaymentDate);
+    }
+
+    private void refresh() {
+        showPopupProgressSpinner(true,this);
+
+        Call<CheckPayoutResponse> call = RetrofitClient.getInstance().getMyApi().checkpayout(fundTransferResponse.dataSet.id);
+        call.enqueue(new Callback<CheckPayoutResponse>() {
+            @Override
+            public void onResponse(Call<CheckPayoutResponse> call, Response<CheckPayoutResponse> response) {
+                CheckPayoutResponse checkPayoutResponse = response.body();
+                showPopupProgressSpinner(false,MoneyTransferSuccess.this);
+                if(checkPayoutResponse!= null){
+                    if(checkPayoutResponse.status){
+                        txtPaymentStatus.setText(checkPayoutResponse.message);
+                    }
+                    else{
+                        showToast(checkPayoutResponse.message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CheckPayoutResponse> call, Throwable t) {
+                showToast("An error has occured");
+                showPopupProgressSpinner(true,MoneyTransferSuccess.this);
+            }
+
+        });
+    }
+
+
+    private Dialog progressDialog = null;
+    private ProgressBar progressBar;
+
+    public void showPopupProgressSpinner(Boolean isShowing, Context context) {
+        if (isShowing == true) {
+            progressDialog = new Dialog(context);
+            progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            progressDialog.setContentView(R.layout.popup_progressbar);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(Color.TRANSPARENT));
+
+            progressBar = (ProgressBar) progressDialog
+                    .findViewById(R.id.progressBar);
+            progressDialog.show();
+        } else if (isShowing == false) {
+            progressDialog.dismiss();
+        }
     }
 
     private void showToast(String message)

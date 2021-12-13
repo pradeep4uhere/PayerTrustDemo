@@ -18,38 +18,30 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.payertrustdemo.Login;
+import com.example.payertrustdemo.MoneyTransferSuccess;
 import com.example.payertrustdemo.PrepaidRecharge;
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
+import com.example.payertrustdemo.model.CheckPayoutResponse;
+import com.example.payertrustdemo.model.UserUpdateresponse;
+import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.ui.payment.PaymentReportFragment;
+import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment  {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     Button prepaidRechargeBtn;
+    MyPreferences myPreferences;
     CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9;
-
-//    card1 = findViewById(R.id.card1);
-//    card2 = findViewById(R.id.card2);
-//    card3 = findViewById(R.id.card3);
-//    card4 = findViewById(R.id.card4);
-//    card5 = findViewById(R.id.card5);
-//    card6 = findViewById(R.id.card6);
-//    card7 = findViewById(R.id.card7);
-//    card8 = findViewById(R.id.card8);
-//    card9 = findViewById(R.id.card9);
-//
-//    card1.setOnClickListener(this);
-//    card2.setOnClickListener(this);
-//    card3.setOnClickListener(this);
-//    card4.setOnClickListener(this);
-//    card5.setOnClickListener(this);
-//    card6.setOnClickListener(this);
-//    card7.setOnClickListener(this);
-//    card8.setOnClickListener(this);
-//    card9.setOnClickListener(this);
+    TextView txtBalance,txtName;
     public  HomeFragment(){
 
     }
@@ -57,8 +49,13 @@ public class HomeFragment extends Fragment  {
                              ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home,container,false);
-
+        myPreferences = new MyPreferences(getActivity());
         card1 = (CardView) view.findViewById(R.id.card1);
+        txtBalance = view.findViewById(R.id.balance);
+        txtName = view.findViewById(R.id.name_title);
+        txtBalance.setText(myPreferences.getString(Constants.walletBalance));
+        txtName.setText("Hi "+myPreferences.getString(Constants.firstName) + " "
+                + myPreferences.getString(Constants.lastName));
         card1.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -68,39 +65,16 @@ public class HomeFragment extends Fragment  {
             }
         });
 
-//        card2 = (CardView) view.findViewById(R.id.card8);
-//        card2.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//                Fragment fragment = new PaymentReportFragment();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.home_fragment, fragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
-//            }
-//        });
-
 
         return view;
-//        homeViewModel =
-//                new ViewModelProvider(this).get(HomeViewModel.class);
-//
-//        binding = FragmentHomeBinding.inflate(inflater, container, false);
-//        View root = binding.getRoot();
-//
-//        final TextView textView = binding.balance;
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-//        return root;
     }
 
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUserUpdate();
+    }
 
     @Override
     public void onDestroyView() {
@@ -108,6 +82,30 @@ public class HomeFragment extends Fragment  {
         binding = null;
     }
 
+
+    private void getUserUpdate() {
+        String userId = myPreferences.getString(Constants.userId);
+        Call<UserUpdateresponse> call = RetrofitClient.getInstance().getMyApi().getUserUpdate(userId);
+        call.enqueue(new Callback<UserUpdateresponse>() {
+            @Override
+            public void onResponse(Call<UserUpdateresponse> call, Response<UserUpdateresponse> response) {
+                UserUpdateresponse userUpdateresponse = response.body();
+
+                if(userUpdateresponse!= null){
+                    if(userUpdateresponse.success){
+                        txtBalance.setText(userUpdateresponse.data.walletBalance);
+                        myPreferences.saveString(Constants.walletBalance,userUpdateresponse.data.walletBalance);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserUpdateresponse> call, Throwable t) {
+
+            }
+
+        });
+    }
 
 }
 

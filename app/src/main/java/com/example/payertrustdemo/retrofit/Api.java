@@ -5,12 +5,14 @@ import com.example.payertrustdemo.model.AddAccountResponse;
 import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.BankListResponse;
+import com.example.payertrustdemo.model.CheckPayoutResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
+import com.example.payertrustdemo.model.UserUpdateresponse;
 import com.example.payertrustdemo.model.WalletReportResponse;
 
 import retrofit2.Call;
@@ -89,6 +91,13 @@ public interface Api {
     @FormUrlEncoded
     Call<WalletReportResponse> walletReport(@Field("user_id") String userId,
                                             @Field("offset") String offset);
+    @POST("api/v1/checkpayout")
+    @FormUrlEncoded
+    Call<CheckPayoutResponse> checkpayout(@Field("payout_id") String userId);
+
+    @POST("api/v1/getusersupdate")
+    @FormUrlEncoded
+    Call<UserUpdateresponse> getUserUpdate(@Field("user_id") String userId);
 
 //
 //    @POST("/api/users")
