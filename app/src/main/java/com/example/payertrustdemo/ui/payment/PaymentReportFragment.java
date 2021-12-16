@@ -74,6 +74,16 @@ public class PaymentReportFragment extends Fragment {
         binding.recyclerview.setLayoutManager(linearLayoutManager);
         binding.recyclerview.setAdapter(paginationAdapter);
 
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentPage = 1;
+                dataList.clear();
+                paginationAdapter.setDataList(dataList);
+                loadFirstPage();
+            }
+        });
+
         binding.recyclerview.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
             protected void loadMoreItems() {
@@ -117,6 +127,7 @@ public class PaymentReportFragment extends Fragment {
                     }
                     //showToast(temp.message);
                 }
+                paginationAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -146,6 +157,7 @@ public class PaymentReportFragment extends Fragment {
                     }
                     //showToast(temp.message);
                 }
+                paginationAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -165,7 +177,7 @@ public class PaymentReportFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                         binding.edtFromDate.setText(dayOfMonth + " / "+ (monthOfYear+1) + " / " + year);
-                        fromDate = year+"-"+(monthOfYear+1)+""+dayOfMonth;
+                        fromDate = year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
                     }
                 },year,month,day).show();
             }
@@ -181,7 +193,7 @@ public class PaymentReportFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
                         binding.edtToDate.setText(dayOfMonth + " / "+ (monthOfYear+1) + " / " + year);
-                        toDate = year+"-"+(monthOfYear+1)+""+dayOfMonth;
+                        toDate = year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
                     }
                 },year,month,day).show();
             }

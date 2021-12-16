@@ -112,6 +112,7 @@ public class WalletReportFragment extends Fragment {
                     }
                     //showToast(temp.message);
                 }
+                paginationAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -141,6 +142,7 @@ public class WalletReportFragment extends Fragment {
                     }
                     //showToast(temp.message);
                 }
+                paginationAdapter.notifyDataSetChanged();
             }
 
             @Override
