@@ -11,6 +11,7 @@ import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.model.PaymentReportResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
 import com.example.payertrustdemo.model.UserUpdateresponse;
 import com.example.payertrustdemo.model.WalletReportResponse;
@@ -91,6 +92,13 @@ public interface Api {
     @FormUrlEncoded
     Call<WalletReportResponse> walletReport(@Field("user_id") String userId,
                                             @Field("offset") String offset);
+    @POST("api/v1/paymentreport")
+    @FormUrlEncoded
+    Call<PaymentReportResponse> paymentReport(@Field("user_id") String userId,
+                                             @Field("offset") String offset,
+                                              @Field("from_date") String fromDate,
+                                              @Field("to_date") String toDate);
+
     @POST("api/v1/checkpayout")
     @FormUrlEncoded
     Call<CheckPayoutResponse> checkpayout(@Field("payout_id") String userId);
