@@ -6,15 +6,17 @@ import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.CheckPayoutResponse;
+import com.example.payertrustdemo.model.CityListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetAgentNameResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
+import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.PaymentReportResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
-import com.example.payertrustdemo.model.UserUpdateresponse;
+import com.example.payertrustdemo.model.StateListResponse;
 import com.example.payertrustdemo.model.WalletReportResponse;
 import com.example.payertrustdemo.model.WalletTransferResponse;
 
@@ -107,7 +109,7 @@ public interface Api {
 
     @POST("api/v1/getusersupdate")
     @FormUrlEncoded
-    Call<UserUpdateresponse> getUserUpdate(@Field("user_id") String userId);
+    Call<GetUserUpdateResponse> getUserUpdate(@Field("user_id") String userId);
 
     @POST("api/v1/getagentdetail")
     @FormUrlEncoded
@@ -119,6 +121,26 @@ public interface Api {
                                                 @Field("mobile_number") String mobileNo,
                                                 @Field("amount") String amount,
                                                 @Field("remarks") String remark);
+
+    @POST("api/v1/allstatelist")
+    Call<StateListResponse> getStateList();
+
+    @POST("api/v1/allcitylist")
+    @FormUrlEncoded
+    Call<CityListResponse> getCityList(@Field("state_id") String state_id);
+
+    @POST("api/v1/userdetailsupdate")
+    @FormUrlEncoded
+    Call<GetUserUpdateResponse> userDetailsUpdate(@Field("user_id") String userId,
+                                                  @Field("address_1") String address_1,
+                                                  @Field("address_2") String address_2,
+                                                  @Field("state_id") String state_id,
+                                                  @Field("city_id") String city_id,
+                                                  @Field("pincode") String pincode,
+                                                  @Field("date_of_birth") String date_of_birth,
+                                                  @Field("pan_card_number") String pan_card_number,
+                                                  @Field("aadhar_card_number") String aadhar_card_number,
+                                                  @Field("gst_number") String gst_number);
 
 //
 //    @POST("/api/users")

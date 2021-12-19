@@ -9,26 +9,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.payertrustdemo.Login;
-import com.example.payertrustdemo.MoneyTransferSuccess;
 import com.example.payertrustdemo.PrepaidRecharge;
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
-import com.example.payertrustdemo.model.CheckPayoutResponse;
-import com.example.payertrustdemo.model.UserUpdateresponse;
+import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
-import com.example.payertrustdemo.ui.payment.PaymentReportFragment;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,11 +75,11 @@ public class HomeFragment extends Fragment  {
 
     private void getUserUpdate() {
         String userId = myPreferences.getString(Constants.userId);
-        Call<UserUpdateresponse> call = RetrofitClient.getInstance().getMyApi().getUserUpdate(userId);
-        call.enqueue(new Callback<UserUpdateresponse>() {
+        Call<GetUserUpdateResponse> call = RetrofitClient.getInstance().getMyApi().getUserUpdate(userId);
+        call.enqueue(new Callback<GetUserUpdateResponse>() {
             @Override
-            public void onResponse(Call<UserUpdateresponse> call, Response<UserUpdateresponse> response) {
-                UserUpdateresponse userUpdateresponse = response.body();
+            public void onResponse(Call<GetUserUpdateResponse> call, Response<GetUserUpdateResponse> response) {
+                GetUserUpdateResponse userUpdateresponse = response.body();
 
                 if(userUpdateresponse!= null){
                     if(userUpdateresponse.success){
@@ -100,7 +90,7 @@ public class HomeFragment extends Fragment  {
             }
 
             @Override
-            public void onFailure(Call<UserUpdateresponse> call, Throwable t) {
+            public void onFailure(Call<GetUserUpdateResponse> call, Throwable t) {
 
             }
 
