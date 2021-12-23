@@ -1,12 +1,20 @@
 package com.example.payertrustdemo.ui.profile;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +27,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,10 +53,17 @@ import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Field;
+
+import static android.app.Activity.RESULT_OK;
 
 public class ProfileFragment extends Fragment {
 
@@ -51,6 +73,7 @@ public class ProfileFragment extends Fragment {
     GetUserUpdateResponse getUserUpdateResponse;
     String selectedState,stateId;
     String selectedCity,cityId;
+    int clickedImage = 0;// 1 for profile, 2 for pan, 3 for adhar, 4 for gst
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +83,34 @@ public class ProfileFragment extends Fragment {
 
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        binding.pofileImgUploadBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedImage = 1;
+                chooseImage(getContext());
+            }
+        });
+        binding.panCardUploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedImage = 2;
+                chooseImage(getContext());
+            }
+        });
+        binding.aadharUploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedImage = 3;
+                chooseImage(getContext());
+            }
+        });
+        binding.gstUploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedImage = 4;
+                chooseImage(getContext());
+            }
+        });
         binding.saveKycBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,6 +164,8 @@ public class ProfileFragment extends Fragment {
         });
         getUserUpdate();
         getState();
+
+
         return root;
     }
 
@@ -242,7 +295,7 @@ public class ProfileFragment extends Fragment {
 
             binding.txtAddress1.setText(getUserUpdateResponse.data.kYC.address1);
             binding.txtAddress2.setText(getUserUpdateResponse.data.kYC.address2);
-            binding.txtPinCode.setText(getUserUpdateResponse.data.kYC.district+", "+
+            binding.txtPinCode.setText(getUserUpdateResponse.data.kYC.city+", "+
                     getUserUpdateResponse.data.kYC.pincode);
 
             binding.txtDOB.setText(getUserUpdateResponse.data.kYC.dateOfbirth);
@@ -328,5 +381,118 @@ public class ProfileFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    // function to let's the user to choose image from camera or gallery
+    private void chooseImage(Context context){
+        final CharSequence[] optionsMenu = {"Take Photo", "Choose from Gallery", "Exit" }; // create a menuOption Array
+        // create a dialog for showing the optionsMenu
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // set the items in builder
+        builder.setItems(optionsMenu, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(optionsMenu[i].equals("Take Photo")){
+                    try {
+                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            permission.launch(new String[]{Manifest.permission.CAMERA});
+                        }
+                        else
+                        takePicture.launch(getTempUri());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if(optionsMenu[i].equals("Choose from Gallery")){
+                    // choose from  external storage
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    //startActivityForResult(pickPhoto , 1);
+                    mGetContent.launch("image/*");
+                }
+                else if (optionsMenu[i].equals("Exit")) {
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    System.out.println(uri);
+                    if(clickedImage==1) {
+                        binding.imgProfileImage.setImageURI(uri);
+                    }
+                    if(clickedImage==2) {
+                        binding.imgPanCard.setImageURI(uri);
+                    }
+                    if(clickedImage==3) {
+                        binding.imgAdhar.setImageURI(uri);
+                    }
+                    if(clickedImage==4) {
+                        binding.imgGST.setImageURI(uri);
+                    }
+                }
+            });
+
+    ActivityResultLauncher<Uri> takePicture = registerForActivityResult(
+            new ActivityResultContracts.TakePicture(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(clickedImage==1) {
+                        binding.imgProfileImage.setImageURI(tempUri);
+                    }
+                    if(clickedImage==2) {
+                        binding.imgPanCard.setImageURI(tempUri);
+                    }
+                    if(clickedImage==3) {
+                        binding.imgAdhar.setImageURI(tempUri);
+                    }
+                    if(clickedImage==4) {
+                        binding.imgGST.setImageURI(tempUri);
+                    }
+                }
+            });
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            new ActivityResultCallback<Map<String,Boolean>>() {
+                @Override
+                public void onActivityResult(Map<String,Boolean> permissions) {
+                    if(permissions.get(Manifest.permission.CAMERA) != null){
+                        if(permissions.get(Manifest.permission.CAMERA) == true){
+                            try {
+                                takePicture.launch(getTempUri());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+
+    Uri tempUri;
+    public Uri getTempUri() throws IOException {
+        File storageDir  = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File temp = File.createTempFile("temp_image",".png",storageDir);
+        tempUri = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".provider", temp);
+        return tempUri;
+    }
+
+    public void uploadImage(Uri uri){
+        try {
+            Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
+            ByteArrayOutputStream stream=new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+            byte[] bytes=stream.toByteArray();
+            String sImage= Base64.encodeToString(bytes,Base64.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

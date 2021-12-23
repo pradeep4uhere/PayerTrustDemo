@@ -649,7 +649,6 @@
                         android:padding="10dp">
 
                         <TextView
-                            android:id="@+id/txtGSTNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
@@ -657,6 +656,7 @@
                             android:text="GST Number" />
 
                         <TextView
+                            android:id="@+id/txtGSTNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="2"
@@ -710,6 +710,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="10dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -717,8 +718,11 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:id="@+id/profile_image2"
                     android:text="Uplaod Profile Image" />
+                <ImageView
+                    android:id="@+id/imgProfileImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
 
                 <Button
                     android:id="@+id/pofile_img_upload_btn2"
@@ -738,6 +742,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="10dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -747,6 +752,10 @@
                     android:layout_weight="1"
                     android:id="@+id/pan_card_image"
                     android:text="Upload Pan Card" />
+                <ImageView
+                    android:id="@+id/imgPanCard"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
 
                 <Button
                     android:id="@+id/pan_card_upload_btn"
@@ -766,6 +775,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="10dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -775,6 +785,10 @@
                     android:layout_weight="1"
                     android:id="@+id/aadhar_card_image"
                     android:text="Upload Aadhar Card" />
+                <ImageView
+                    android:id="@+id/imgAdhar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
 
                 <Button
                     android:id="@+id/aadhar_upload_btn"
@@ -796,6 +810,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:padding="10dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -805,6 +820,10 @@
                     android:layout_weight="1"
                     android:text="Uplaod GST [Optional]" />
 
+                <ImageView
+                    android:id="@+id/imgGST"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
                 <Button
                     android:id="@+id/gst_upload_btn"
                     android:layout_width="wrap_content"

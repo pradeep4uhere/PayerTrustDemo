@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -16,6 +17,10 @@ import android.widget.Toast;
 import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -38,6 +43,7 @@ public class LeftNavigation extends AppCompatActivity {
 
         binding = ActivityLeftNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         setSupportActionBar(binding.appBarLeftNavigation.toolbar);
 //        binding.appBarLeftNavigation.fab.setOnClickListener(new View.OnClickListener() {
@@ -134,4 +140,6 @@ public class LeftNavigation extends AppCompatActivity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
+
 }
