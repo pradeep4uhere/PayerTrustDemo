@@ -253,17 +253,20 @@
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/textRecharge"
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/btnGoBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Money Transfer Confirmation"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_margin="30dp"
+                    app:icon="@drawable/ic_white_add"
+                    android:textColor="#FFF"
+                    android:textColorHighlight="#fff"
+                    android:textColorHint="#000FFF"
+                    android:textColorLink="#fff"
+                    android:scrollbarFadeDuration="200"
+                    android:layout_gravity="end|bottom"
+                    android:text="Transfer Again"
+                    app:backgroundTint="#2196F3" />
 
             </LinearLayout>
 

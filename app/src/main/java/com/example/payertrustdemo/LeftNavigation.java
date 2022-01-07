@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,6 +38,7 @@ public class LeftNavigation extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityLeftNavigationBinding binding;
+    MyPreferences myPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,12 @@ public class LeftNavigation extends AppCompatActivity {
 
         binding = ActivityLeftNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        myPreferences = new MyPreferences(this);
 
+       TextView txtName =  binding.navView.getHeaderView(0).findViewById(R.id.txtName);
+       TextView txtMobile =  binding.navView.getHeaderView(0).findViewById(R.id.txtMobile);
+       txtName.setText(myPreferences.getString(Constants.firstName) +" "+ myPreferences.getString(Constants.lastName));
+       txtMobile.setText("Mobile: "+myPreferences.getString(Constants.mobileNumber));
 
         setSupportActionBar(binding.appBarLeftNavigation.toolbar);
 //        binding.appBarLeftNavigation.fab.setOnClickListener(new View.OnClickListener() {

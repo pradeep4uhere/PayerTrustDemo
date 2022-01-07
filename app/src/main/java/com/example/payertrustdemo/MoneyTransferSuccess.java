@@ -20,6 +20,7 @@ import com.example.payertrustdemo.model.CheckPayoutResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +32,7 @@ public class MoneyTransferSuccess extends AppCompatActivity {
     txtAmount,txtDate;
     FundTransferResponse fundTransferResponse;
     String bankName;
+    ExtendedFloatingActionButton btnGoBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +49,18 @@ public class MoneyTransferSuccess extends AppCompatActivity {
         txtPaymentStatus = findViewById(R.id.txtPaymentStatus);
         txtAmount = findViewById(R.id.txtAmount);
         txtDate = findViewById(R.id.txtDate);
+        btnGoBack = findViewById(R.id.btnGoBack);
         //Get Back To Contact List Screen
         ImageView imageView = (ImageView) findViewById(R.id.back_to_fund_transfer_btn);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MoneyTransferSuccess.this, LeftNavigation.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                finish();
+            }
+        });
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
@@ -71,14 +77,6 @@ public class MoneyTransferSuccess extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(MoneyTransferSuccess.this, LeftNavigation.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
-        super.onBackPressed();
-    }
 
     public void initView(){
         txtBankName.setText(bankName);

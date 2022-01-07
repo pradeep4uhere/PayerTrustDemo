@@ -40,7 +40,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.payertrustdemo.AddAccount;
+import com.example.payertrustdemo.FundTransferConfirmation;
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.WalletPaySuccess;
 import com.example.payertrustdemo.databinding.FragmentProfileBinding;
@@ -282,6 +285,12 @@ public class ProfileFragment extends Fragment {
     }
 
     public void updateUI(){
+        RequestOptions options = new RequestOptions();
+        Glide.with(getActivity())
+                .load(getUserUpdateResponse.data.kYC.profile_image)
+                .apply(options.circleCropTransform())
+                .placeholder(new ColorDrawable(Color.LTGRAY))
+                .into(binding.imgProfile);
         binding.txtNmae.setText(getUserUpdateResponse.data.userProfile.name);
         binding.txtMobile.setText("Mobile: "+getUserUpdateResponse.data.userProfile.mobile);
         binding.txtEmail.setText("Email: "+getUserUpdateResponse.data.userProfile.emailAddress);
@@ -303,6 +312,26 @@ public class ProfileFragment extends Fragment {
             binding.txtAdharCard.setText(getUserUpdateResponse.data.kYC.aadhar_card);
             binding.txtPanCard.setText(getUserUpdateResponse.data.kYC.pancard);
             binding.txtGSTNo.setText(getUserUpdateResponse.data.kYC.gST_number);
+
+            binding.pofileImgUploadBtn2.setVisibility(View.GONE);
+            binding.panCardUploadBtn.setVisibility(View.GONE);
+            binding.gstUploadBtn.setVisibility(View.GONE);
+            binding.aadharUploadBtn.setVisibility(View.GONE);
+
+            Glide.with(getActivity())
+                    .load(getUserUpdateResponse.data.kYC.profile_image)
+                    .into(binding.imgProfileImage);
+            Glide.with(getActivity())
+                    .load(getUserUpdateResponse.data.kYC.pancard_url)
+                    .into(binding.imgPanCard);
+            Glide.with(getActivity())
+                    .load(getUserUpdateResponse.data.kYC.aadhar_url)
+                    .into(binding.imgAdhar);
+
+            Glide.with(getActivity())
+                    .load(getUserUpdateResponse.data.kYC.gST_url)
+                    .into(binding.imgGST);
+
         }
         else{
             binding.linLayAddress.setVisibility(View.GONE);

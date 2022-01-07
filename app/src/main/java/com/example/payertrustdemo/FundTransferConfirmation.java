@@ -118,6 +118,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
                         intent.putExtra("transferResponse", fundTransferResponse);
                         intent.putExtra("bankName", accountList.bankName);
                         startActivity(intent);
+                        finish();
                     }
                     else{
                         showToast(fundTransferResponse.message);

@@ -150,7 +150,8 @@ public class ContactDetail extends AppCompatActivity {
     private void filter(String text) {
         ArrayList<AccountListresponse.AccountList> filteredlist = new ArrayList<>();
         for (AccountListresponse.AccountList item : accountLists) {
-            if (item.account_number.toLowerCase().contains(text.toLowerCase())) {
+            if (item.account_number.toLowerCase().contains(text.toLowerCase()) ||
+                    item.beneficiary_name.toLowerCase().contains(text.toLowerCase())) {
                 filteredlist.add(item);
             }
         }
