@@ -47,6 +47,7 @@ import com.example.payertrustdemo.databinding.FragmentProfileBinding;
 import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.CityListResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
+import com.example.payertrustdemo.model.ImageUploadResponse;
 import com.example.payertrustdemo.model.StateListResponse;
 import com.example.payertrustdemo.model.WalletTransferResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
@@ -436,6 +437,7 @@ public class ProfileFragment extends Fragment {
                     if(clickedImage==4) {
                         binding.imgGST.setImageURI(uri);
                     }
+                    uploadImage(getBase64FromURI(uri));
                 }
             });
 
@@ -444,17 +446,20 @@ public class ProfileFragment extends Fragment {
             new ActivityResultCallback<Boolean>() {
                 @Override
                 public void onActivityResult(Boolean result) {
-                    if(clickedImage==1) {
-                        binding.imgProfileImage.setImageURI(tempUri);
-                    }
-                    if(clickedImage==2) {
-                        binding.imgPanCard.setImageURI(tempUri);
-                    }
-                    if(clickedImage==3) {
-                        binding.imgAdhar.setImageURI(tempUri);
-                    }
-                    if(clickedImage==4) {
-                        binding.imgGST.setImageURI(tempUri);
+                    if(result) {
+                        if (clickedImage == 1) {
+                            binding.imgProfileImage.setImageURI(tempUri);
+                        }
+                        if (clickedImage == 2) {
+                            binding.imgPanCard.setImageURI(tempUri);
+                        }
+                        if (clickedImage == 3) {
+                            binding.imgAdhar.setImageURI(tempUri);
+                        }
+                        if (clickedImage == 4) {
+                            binding.imgGST.setImageURI(tempUri);
+                        }
+                        uploadImage(getBase64FromURI(tempUri));
                     }
                 }
             });
@@ -484,15 +489,47 @@ public class ProfileFragment extends Fragment {
         return tempUri;
     }
 
-    public void uploadImage(Uri uri){
+    public String getBase64FromURI(Uri uri){
+        String sImage = "";
         try {
             Bitmap bitmap= MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
             ByteArrayOutputStream stream=new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,80,stream);
             byte[] bytes=stream.toByteArray();
-            String sImage= Base64.encodeToString(bytes,Base64.DEFAULT);
+             sImage= Base64.encodeToString(bytes,Base64.DEFAULT);
+            return sImage;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return sImage;
+    }
+
+    private void uploadImage(String base64Image) {
+        showPopupProgressSpinner(true,getContext());
+        String userId = myPreferences.getString(Constants.userId);
+        Call<ImageUploadResponse> call = RetrofitClient.getInstance().getMyApi().uploadImage(userId,clickedImage,base64Image);
+        call.enqueue(new Callback<ImageUploadResponse>() {
+            @Override
+            public void onResponse(Call<ImageUploadResponse> call, Response<ImageUploadResponse> response) {
+                showPopupProgressSpinner(false,getContext());
+                ImageUploadResponse imageUploadResponse = response.body();
+
+                if(imageUploadResponse!= null){
+                    if(imageUploadResponse.success){
+                       if(clickedImage==1){
+                           System.out.println("Image URL:"+imageUploadResponse.data);
+                       }
+                    }
+                    showToast(imageUploadResponse.message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ImageUploadResponse> call, Throwable t) {
+                System.out.println("image_exception"+t.toString());
+                showPopupProgressSpinner(false,getContext());
+            }
+
+        });
     }
 }

@@ -5,6 +5,7 @@ import com.example.payertrustdemo.model.AddAccountResponse;
 import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.BankListResponse;
+import com.example.payertrustdemo.model.ChangePasswordResponse;
 import com.example.payertrustdemo.model.CheckPayoutResponse;
 import com.example.payertrustdemo.model.CityListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
@@ -13,6 +14,7 @@ import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetAgentNameResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
+import com.example.payertrustdemo.model.ImageUploadResponse;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.PaymentReportResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
@@ -141,6 +143,16 @@ public interface Api {
                                                   @Field("pan_card_number") String pan_card_number,
                                                   @Field("aadhar_card_number") String aadhar_card_number,
                                                   @Field("gst_number") String gst_number);
+
+    @POST("api/v1/uploadfile")
+    @FormUrlEncoded
+    Call<ImageUploadResponse> uploadImage(@Field("user_id") String userId, @Field("type") int type, @Field("image_name") String image_name);
+
+    @POST("api/v1/changepassword")
+    @FormUrlEncoded
+    Call<ChangePasswordResponse> changePassword(@Field("user_id") String userId, @Field("current_password") String current_password,
+                                                @Field("password") String password, @Field("confirm_password") String confirm_password);
+
 
 //
 //    @POST("/api/users")
