@@ -191,8 +191,6 @@ public class ContactFragment extends Fragment  {
         recyclerView =view.findViewById(R.id.recview);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
         cadapter = new ContactViewAdapter(lstPerson,getActivity().getApplicationContext());
         recyclerView.setAdapter(cadapter);
         return  view;

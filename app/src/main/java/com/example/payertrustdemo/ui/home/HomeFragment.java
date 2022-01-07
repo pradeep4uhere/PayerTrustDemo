@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment  {
     Button prepaidRechargeBtn;
     MyPreferences myPreferences;
     CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9;
-    TextView txtBalance,txtName;
+    TextView txtBalance,txtName, textbtn;
     public  HomeFragment(){
 
     }
@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment  {
             startActivity(i);
             }
         });
+
 
 
         return view;

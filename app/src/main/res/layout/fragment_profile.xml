@@ -731,6 +731,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="Choose"
+                    android:shadowRadius="@integer/material_motion_duration_long_1"
                     app:backgroundTint="#FF5722" />
             </LinearLayout>
             <com.google.android.material.divider.MaterialDivider
@@ -837,9 +838,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </com.google.android.material.divider.MaterialDivider>
-
-
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

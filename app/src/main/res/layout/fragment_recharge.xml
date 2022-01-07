@@ -26,302 +26,266 @@ android:id="@+id/recharge_screen">
             android:layout_height="300dp"
             android:layout_marginTop="-70dp"
             android:contentDescription="img"
-            android:src="@drawable/contact_banner"
+            android:src="@drawable/payment_screen"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="15dp" />
 
 
-        <LinearLayout
+        <androidx.constraintlayout.helper.widget.Carousel
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/bg_menu"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="parent">
+            android:layout_height="wrap_content">
 
+        </androidx.constraintlayout.helper.widget.Carousel>
 
-            <TextView
-                android:id="@+id/textRecharge"
-                android:layout_width="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="All Payment Links"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold">
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/bg_menu"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent">
 
-            </TextView>
-            <GridLayout
-                android:id="@+id/mainGrid"
-                android:layout_width="400dp"
-                android:layout_height="3000dp"
-                android:layout_weight="1"
-                android:alignmentMode="alignMargins"
-                android:columnCount="3"
-                android:columnOrderPreserved="false"
-                android:padding="20dp"
-                android:rowCount="2">
 
-                <!-- Row 1 -->
+                <TextView
+                    android:id="@+id/textRecharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="All Payment Links"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold">
 
-                <!-- Column 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:id="@+id/card1"
-                    >
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                       <Button
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="PG-1"
-                           android:id="@+id/pg1"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:layout_marginTop="5sp"
+                            android:layout_weight="1"
                             android:text="Master/Visa"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Use this Payment Gateway for all Visa, Master Card"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <Button
+                        android:id="@+id/payment_link_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:text="Add Money PG-1"
+                        app:backgroundTint="#FF5722" />
+                </LinearLayout>
 
-                <!-- Column 2 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:id="@+id/card2">
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.divider.MaterialDivider>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PG-2"
-                            android:id="@+id/pg2"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:layout_marginTop="5sp"
-                            android:text="Master/Visa"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
+                            android:layout_weight="1"
+                            android:text="Master, Visa and Rupay "
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Use this Payment Gateway for all Visa, Master Card"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:id="@+id/card3">
+                    <Button
+                        android:id="@+id/payment_link_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:text="Add Money PG-2"
+                        app:backgroundTint="#FF5722" />
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.divider.MaterialDivider>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PG-3"
-                            android:id="@+id/pg3"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:layout_marginTop="5sp"
-                            android:text="Master/Visa"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
+                            android:layout_weight="1"
+                            android:text="American Express Card"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Use this Payment Gateway for all Visa, Master Card"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <Button
+                        android:id="@+id/payment_link_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:text="Add Money PG-3"
+                        app:backgroundTint="#FF5722" />
+                </LinearLayout>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.divider.MaterialDivider>
 
-                <!-- Row 2 -->
-
-                <!-- Column 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:id="@+id/card4">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PG-5"
-                            android:id="@+id/pg5"/>
-
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="Dinner Card"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
+                            android:layout_weight="1"
+                            android:text="All Dinners Card"
                             android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="10dp"/>
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Use this Payment Gateway for all Visa, Master Card"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <Button
+                        android:id="@+id/payment_link_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:text="Add Money PG-4"
+                        app:backgroundTint="#FF5722" />
+                </LinearLayout>
 
-                <!-- Column 2 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:id="@+id/card5">
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.divider.MaterialDivider>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PG-4"
-                            android:id="@+id/pg4"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="Business Card"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
+                            android:layout_weight="1"
+                            android:text="Pay Rent [Recived Next Day]"
                             android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="10dp"/>
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Use this Payment Gateway for paying rent, "
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
-
-
-                <!-- Row 2 -->
-
-                <!-- Column 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_rowWeight="1"
-                    android:layout_columnWeight="1"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
-                    android:id="@+id/card6">
-
-                    <LinearLayout
+                    <Button
+                        android:id="@+id/payment_link_5"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical">
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PG-6"
-                            android:id="@+id/pg6"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="American Exp"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/black"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            android:layout_marginTop="10dp"/>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <!-- Row 2 -->
-                <!-- Column 1 -->
-            </GridLayout>
-        </LinearLayout>
+                        android:layout_height="45dp"
+                        android:text="Add Money PG-5"
+                        app:backgroundTint="#FF5722" />
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></com.google.android.material.divider.MaterialDivider>
+
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 </LinearLayout>
 <com.google.android.material.floatingactionbutton.FloatingActionButton
