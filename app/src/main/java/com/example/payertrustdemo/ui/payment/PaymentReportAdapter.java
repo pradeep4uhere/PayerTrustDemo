@@ -7,13 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.model.PaymentReportData;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,7 +39,7 @@ public class PaymentReportAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         switch (viewType) {
             case ITEM:
-                View viewItem = inflater.inflate(R.layout.wallet_report_item, parent, false);
+                View viewItem = inflater.inflate(R.layout.payment_report_item, parent, false);
                 viewHolder = new MovieViewHolder(viewItem);
                 break;
             case LOADING:

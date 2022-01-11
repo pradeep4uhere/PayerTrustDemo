@@ -17,6 +17,7 @@ import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.ui.wallet.WalletReportFragment;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
 
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
         myPreferences = new MyPreferences(getActivity());
         card1 = (CardView) view.findViewById(R.id.card1);
+        card8 = (CardView) view.findViewById(R.id.card8);
         txtBalance = view.findViewById(R.id.balance);
         txtName = view.findViewById(R.id.name_title);
         txtBalance.setText(myPreferences.getString(Constants.walletBalance));
@@ -52,6 +54,17 @@ public class HomeFragment extends Fragment  {
             Intent i;
             i = new Intent(getContext(),PrepaidRecharge.class);
             startActivity(i);
+            }
+        });
+
+        card8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* WalletReportFragment nextFrag= new WalletReportFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();*/
             }
         });
 
