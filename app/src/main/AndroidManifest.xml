@@ -16,6 +16,9 @@
         android:theme="@style/Theme.PayerTrustDemo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HelpActivity"
+            android:exported="true" />
+        <activity
             android:name=".PaymentDetailsActivity"
             android:exported="true" />
         <activity

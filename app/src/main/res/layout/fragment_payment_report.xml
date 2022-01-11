@@ -48,7 +48,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/text_wallet_report"
-                    android:text="All Wallet Transactions"
+                    android:text="All Transactions"
                     android:gravity="center"
                     android:layout_gravity="center_horizontal"
                     android:textSize="16dp"
