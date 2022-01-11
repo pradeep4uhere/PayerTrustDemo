@@ -17,6 +17,7 @@ import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.model.ImageUploadResponse;
 import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.model.NotificationListResponse;
 import com.example.payertrustdemo.model.PaymentDetailsResponse;
 import com.example.payertrustdemo.model.PaymentLinkResponse;
 import com.example.payertrustdemo.model.PaymentReportResponse;
@@ -164,6 +165,10 @@ public interface Api {
     @POST("api/v1/allpaymentlinks")
     @FormUrlEncoded
     Call<PaymentLinkResponse> getPaymentLink(@Field("user_id") String userId);
+
+    @POST("api/v1/allnotification")
+    @FormUrlEncoded
+    Call<NotificationListResponse> getAllNotification(@Field("user_id") String userId);
 
 //
 //    @POST("/api/users")

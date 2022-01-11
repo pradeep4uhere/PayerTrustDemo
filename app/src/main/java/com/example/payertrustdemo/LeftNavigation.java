@@ -110,7 +110,18 @@ public class LeftNavigation extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.left_navigation, menu);
         return true;
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_noti:
+                Intent in = new Intent(this,NotificationList.class);
+                startActivity(in);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
