@@ -1,5 +1,6 @@
 package com.example.payertrustdemo.retrofit;
 
+import com.example.payertrustdemo.PaymentDetailsActivity;
 import com.example.payertrustdemo.model.AccountListresponse;
 import com.example.payertrustdemo.model.AddAccountResponse;
 import com.example.payertrustdemo.model.AddFundAccountResponse;
@@ -16,6 +17,7 @@ import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.model.ImageUploadResponse;
 import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.model.PaymentDetailsResponse;
 import com.example.payertrustdemo.model.PaymentReportResponse;
 import com.example.payertrustdemo.model.RegistrationResponse;
 import com.example.payertrustdemo.model.StateListResponse;
@@ -153,6 +155,10 @@ public interface Api {
     Call<ChangePasswordResponse> changePassword(@Field("user_id") String userId, @Field("current_password") String current_password,
                                                 @Field("password") String password, @Field("confirm_password") String confirm_password);
 
+
+    @POST("api/v1/paymentdetails")
+    @FormUrlEncoded
+    Call<PaymentDetailsResponse> paymentDetails(@Field("payment_id") String payment_id);
 
 //
 //    @POST("/api/users")

@@ -1,7 +1,7 @@
 package com.example.payertrustdemo.ui.payment;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.payertrustdemo.PaymentDetailsActivity;
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.model.PaymentReportData;
 import java.util.LinkedList;
@@ -64,6 +65,16 @@ public class PaymentReportAdapter extends RecyclerView.Adapter<RecyclerView.View
                 movieViewHolder.txtWalletBalance.setText("Wallet Balance: Rs. "+ movie.updated_wallet);
                 movieViewHolder.txtStatus.setText(movie.status);
                 movieViewHolder.txtDate.setText(movie.payment_date);
+
+                movieViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, PaymentDetailsActivity.class);
+                        intent.putExtra("id", movie.id);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
+                    }
+                });
                // Glide.with(context).load(movie.getImageUrl()).apply(RequestOptions.centerCropTransform()).into(movieViewHolder.movieImage);
                 break;
 
