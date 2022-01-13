@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_inr_black_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/right_24.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/font/roboto_medium.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/SpringFabMenu.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/account_list_item.xml" value="0.31666666666666665" />
         <entry key="app/src/main/res/layout/activity_add_account.xml" value="0.19583333333333333" />
@@ -32,13 +33,17 @@
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_fund_transfer_confirmation.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_help.xml" value="0.39166666666666666" />
         <entry key="app/src/main/res/layout/activity_left_navigation.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_login_otp.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_money_transfer_success.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_notification_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_on_boarding_screen.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_payment_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_prepaid_recharge.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_profile_kyc.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_rest_password_success.xml" value="0.22821576763485477" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_transfer_money.xml" value="0.19583333333333333" />
@@ -49,8 +54,8 @@
         <entry key="app/src/main/res/layout/add_new_contact_popup.xml" value="0.33" />
         <entry key="app/src/main/res/layout/app_bar_left_navigation.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_sheet_dialog_add_new_contact_layout.xml" value="0.17175925925925925" />
-        <entry key="app/src/main/res/layout/cardview_item_contact.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/cardview_item_wallet.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/cardview_item_contact.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/cardview_item_wallet.xml" value="0.33" />
         <entry key="app/src/main/res/layout/contact_list_item.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/contact_list_item_template.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/content_left_navigation.xml" value="0.1606837606837607" />
@@ -64,18 +69,22 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_mobile_pin.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/fragment_payment_report.xml" value="0.28013029315960913" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1606837606837607" />
-        <entry key="app/src/main/res/layout/fragment_recharge.xml" value="0.3989247311827957" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_recharge.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/fragment_upload_document.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/fragment_wallet_pay.xml" value="0.31805929919137466" />
         <entry key="app/src/main/res/layout/fragment_wallet_pay_success.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_wallet_report.xml" value="0.1606837606837607" />
+        <entry key="app/src/main/res/layout/item_progress.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/nav_header_left_navigation.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/payment_report_item.xml" value="0.4666666666666667" />
+        <entry key="app/src/main/res/layout/popup_progressbar.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/profile_fragment.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/profile_fragment2.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/side_bar_wallet_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.17175925925925925" />
+        <entry key="app/src/main/res/layout/wallet_report_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/welcome_side1.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/welcome_slide1.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/welcome_slide2.xml" value="0.1606837606837607" />
