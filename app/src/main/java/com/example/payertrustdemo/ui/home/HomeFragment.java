@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.payertrustdemo.HelpActivity;
 import com.example.payertrustdemo.PrepaidRecharge;
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
@@ -31,7 +32,7 @@ public class HomeFragment extends Fragment  {
     private FragmentHomeBinding binding;
     Button prepaidRechargeBtn;
     MyPreferences myPreferences;
-    CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9;
+    CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9,card10,card12;
     TextView txtBalance,txtName, textbtn;
     public  HomeFragment(){
 
@@ -43,6 +44,8 @@ public class HomeFragment extends Fragment  {
         myPreferences = new MyPreferences(getActivity());
         card1 = (CardView) view.findViewById(R.id.card1);
         card8 = (CardView) view.findViewById(R.id.card8);
+        card10 = (CardView) view.findViewById(R.id.card10);
+        card12 = (CardView) view.findViewById(R.id.card12);
         txtBalance = view.findViewById(R.id.balance);
         txtName = view.findViewById(R.id.name_title);
         txtBalance.setText(myPreferences.getString(Constants.walletBalance));
@@ -67,7 +70,22 @@ public class HomeFragment extends Fragment  {
                         .commit();*/
             }
         });
+        card10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+                i = new Intent(getContext(), HelpActivity.class);
+                startActivity(i);
+            }
+        });
 
+        card12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), HelpActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         return view;

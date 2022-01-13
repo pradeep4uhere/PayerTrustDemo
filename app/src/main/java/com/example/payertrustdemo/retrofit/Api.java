@@ -15,6 +15,7 @@ import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetAgentNameResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
+import com.example.payertrustdemo.model.HelpResponse;
 import com.example.payertrustdemo.model.ImageUploadResponse;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.model.NotificationListResponse;
@@ -169,6 +170,10 @@ public interface Api {
     @POST("api/v1/allnotification")
     @FormUrlEncoded
     Call<NotificationListResponse> getAllNotification(@Field("user_id") String userId);
+
+    @POST("api/v1/contactus")
+    @FormUrlEncoded
+    Call<HelpResponse> contactUs(@Field("user_id") String userId,@Field("message") String message,@Field("image_name") String image_name);
 
 //
 //    @POST("/api/users")

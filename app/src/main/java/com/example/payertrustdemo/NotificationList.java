@@ -49,7 +49,7 @@ public class NotificationList extends AppCompatActivity {
 
         datumList = new ArrayList<>();
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new NotificationListAdapter(datumList,this.getApplicationContext());
+        adapter = new NotificationListAdapter(datumList,this);
         binding.recyclerView.addItemDecoration(
                 new DividerItemDecoration(
                         this,

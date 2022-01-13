@@ -104,10 +104,10 @@ tools:context=".HelpActivity">
                         android:hint="Enter Name">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtOldPass"
+                            android:id="@+id/edtName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword"
+                            android:inputType="text"
                             android:maxLength="50"
                             android:text="" />
 
@@ -120,7 +120,7 @@ tools:context=".HelpActivity">
                         android:hint="Enter Email Address">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtNewPass"
+                            android:id="@+id/edtEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
@@ -136,7 +136,7 @@ tools:context=".HelpActivity">
                         android:hint="Mobile Number">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edtCnfPass"
+                            android:id="@+id/edtMobile"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
