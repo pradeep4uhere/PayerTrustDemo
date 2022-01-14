@@ -215,4 +215,21 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rounded_corner"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        android:elevation="8dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_margin="30dp"
+        app:itemIconSize="25dp"
+        app:menu="@menu/bottom_menu"
+        android:id="@+id/bottom_navigation_money_success"
+        />
 </FrameLayout>

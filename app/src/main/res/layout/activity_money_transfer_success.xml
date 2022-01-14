@@ -107,7 +107,7 @@
                         android:layout_height="370dp"
                         android:elevation="10dp"
                         android:padding="20dp"
-                        app:cardCornerRadius="1dp">
+                        app:cardCornerRadius="10dp">
                         >
 
 
@@ -125,6 +125,51 @@
                                 android:layout_marginTop="30dp"
                                 android:layout_marginBottom="20dp"
                                 android:src="@drawable/green_ok" />
+
+
+                            <TextView
+                                android:id="@+id/txtName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Sachin Kumar"
+                                android:textSize="30dp" />
+
+                            <TextView
+                                android:id="@+id/txtBankName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Himachal Pradesh Gramin Bank"
+                                android:textSize="11dp" />
+
+                            <TextView
+                                android:id="@+id/txtAccountNo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/ubuntu_medium"
+                                android:text="A/C: 4859015841021"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/txtIFSC"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="IFSC: PNBUH000982"
+                                android:textSize="10dp" />
+
+                            <TextView
+                                android:id="@+id/txtAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Rs. 25,000.00"
+                                android:textSize="28dp" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -149,7 +194,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
                                     android:layout_weight="1"
-                                    android:fontFamily="@font/ubuntu_medium"
+                                    android:fontFamily="@font/roboto_medium"
                                     android:text="IMPS"
                                     android:textColor="#ff0000"
                                     android:textSize="12dp" />
@@ -185,57 +230,12 @@
                             </LinearLayout>
 
                             <TextView
-                                android:id="@+id/txtName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/aref_ruqaa_bold"
-                                android:text="Sachin Kumar"
-                                android:textSize="30dp" />
-
-                            <TextView
-                                android:id="@+id/txtBankName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="Himachal Pradesh Gramin Bank"
-                                android:textSize="11dp" />
-
-                            <TextView
-                                android:id="@+id/txtAccountNo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/ubuntu_medium"
-                                android:text="A/C: 4859015841021"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:id="@+id/txtIFSC"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="IFSC: PNBUH000982"
-                                android:textSize="10dp" />
-
-                            <TextView
-                                android:id="@+id/txtAmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/baloo_bhai"
-                                android:text="Rs. 25,000.00"
-                                android:textSize="28dp" />
-
-
-                            <TextView
                                 android:id="@+id/txtDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="20dp"
-                                android:fontFamily="@font/baloo_bhai"
+                                android:fontFamily="@font/ubuntu_bold"
                                 android:text="25th Oct 2021 10:30:43AM"
                                 android:textColor="@android:color/holo_blue_light"
                                 android:textSize="12dp" />
@@ -249,6 +249,7 @@
                                 android:text="Ref No: 231020210001"
                                 android:textSize="12dp" />
                         </LinearLayout>
+
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
@@ -257,16 +258,16 @@
                     android:id="@+id/btnGoBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
                     android:layout_margin="30dp"
-                    app:icon="@drawable/ic_white_add"
+                    android:scrollbarFadeDuration="200"
+                    android:text="Transfer Again"
                     android:textColor="#FFF"
                     android:textColorHighlight="#fff"
                     android:textColorHint="#000FFF"
                     android:textColorLink="#fff"
-                    android:scrollbarFadeDuration="200"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Transfer Again"
-                    app:backgroundTint="#2196F3" />
+                    app:backgroundTint="#2196F3"
+                    app:icon="@drawable/ic_white_add" />
 
 
             </LinearLayout>
@@ -276,33 +277,21 @@
     </LinearLayout>
 
 
-<!--    <com.etebarian.meowbottomnavigation.MeowBottomNavigation-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/bottom_navigation_money_success"-->
-<!--        app:mbn_circleColor="@color/white"-->
-<!--        app:mbn_selectedIconColor="#ff0000"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        app:mbn_countTextColor="@color/white"-->
-<!--        app:mbn_countBackgroundColor="#ff6f00"-->
-<!--        app:mbn_defaultIconColor="@color/white"-->
-<!--        app:mbn_backgroundBottomColor="@android:color/holo_blue_dark"/>-->
-
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="55dp"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:background="@drawable/rounded_corner"-->
-<!--        app:itemIconTint="@color/white"-->
-<!--        app:itemRippleColor="#FFFFFF"-->
-<!--        app:itemTextColor="#FFFFFF"-->
-<!--        android:elevation="8dp"-->
-<!--        android:paddingRight="20dp"-->
-<!--        android:paddingLeft="20dp"-->
-<!--        android:layout_margin="30dp"-->
-<!--        app:itemIconSize="25dp"-->
-<!--        app:menu="@menu/left_navigation"-->
-<!--        android:id="@+id/bottom_navigation_money_success"-->
-<!--        />-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rounded_corner"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        android:elevation="8dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_margin="30dp"
+        app:itemIconSize="25dp"
+        app:menu="@menu/bottom_menu"
+        android:id="@+id/bottom_navigation_money_success"
+        />
 </FrameLayout>
 
