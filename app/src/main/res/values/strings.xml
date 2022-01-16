@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PayerTrustDemo</string>
+    <string name="app_name">PayerTrust</string>
     <string name="payertrust">PayerTrust</string>
     <string name="safe_smart_and_easy">Safe Smart and Easy</string>
     <string name="todo">TODO</string>

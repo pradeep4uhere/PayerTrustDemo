@@ -35,23 +35,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/ubuntu_medium"
+                        android:fontFamily="@font/roboto_medium"
                         android:gravity="center_horizontal"
                         android:text="Available Balance"
                         android:textFontWeight="1"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/txtWalletBalance"
+                        android:textSize="12sp" />
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
-                        android:text="Rs. 2,75,043.00"
-                        android:textColor="@color/black"
-                        android:textFontWeight="2"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                    "/>
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtWalletBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rs. 2,75,043.00"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_medium"
+                            />
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -101,15 +105,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="24dp"
                             android:layout_marginBottom="20dp"
-                            android:fontFamily="@font/ubuntu_bold"
                             android:gravity="center"
                             android:text="Wallet Payment"
-                            android:textColor="#FF5722"
+                            android:fontFamily="@font/roboto_medium"
                             android:textSize="16sp" />
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Enter Recipient Mobile Number" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -122,11 +121,11 @@
                                 android:layout_height="wrap_content"
                                 android:hint="Mobile Number">
 
-
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edtMobile"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:inputType="phone"
                                     android:maxLength="10" />
 
@@ -138,15 +137,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
-                                android:layout_margin="8dp"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginEnd="5dp"
-                                android:layout_marginRight="5dp"
-                                android:layout_marginBottom="5dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginBottom="8dp"
                                 android:gravity="center_vertical"
                                 android:text="Get Name"
+                                android:fontFamily="@font/roboto_medium"
                                 app:backgroundTint="#4CAF50" />
                         </RelativeLayout>
 
@@ -162,6 +161,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text"
+                                android:fontFamily="@font/roboto"
                                 android:maxLength="20" />
 
                         </com.google.android.material.textfield.TextInputLayout>

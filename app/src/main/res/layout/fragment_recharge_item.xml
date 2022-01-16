@@ -26,22 +26,25 @@
                 android:layout_weight="1"
                 android:text="Master/Visa"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/roboto_medium"
+                 />
 
             <TextView
                 android:id="@+id/txtDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/roboto"
                 android:text="Use this Payment Gateway for all Visa, Master Card"
-                android:textSize="8sp"
-                android:textStyle="bold" />
+                android:textSize="8sp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btnLink"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
+            android:textSize="10dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="Add Money PG-1"
             app:backgroundTint="#FF5722" />
     </LinearLayout>

@@ -151,7 +151,7 @@ android:id="@+id/recharge_confirmation_layout">
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="right"
-                                android:src="@drawable/airtel"
+
                                 />
 
 

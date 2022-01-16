@@ -48,9 +48,9 @@ android:id="@+id/recharge_screen">
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="All Payment Links"
-                android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/roboto_medium"
+               />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recview"
                 android:layout_width="match_parent"
@@ -59,7 +59,8 @@ android:id="@+id/recharge_screen">
         </LinearLayout>
     </RelativeLayout>
 
-    <include layout="@layout/copyrights_footer"/>
+    <include
+        layout="@layout/copyrights_footer"/>
 </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

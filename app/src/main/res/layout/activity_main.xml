@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#FFF"
     tools:context=".MainActivity"
     android:id="@+id/maincontainer">
 
@@ -82,10 +82,10 @@
         android:id="@+id/TextView2"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:fontFamily="@font/antic"
+        android:fontFamily="@font/tauri"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/safe_smart_and_easy"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
