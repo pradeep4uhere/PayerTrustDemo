@@ -15,6 +15,7 @@ public class Constants {
     public static String userId = "ID";
     public static String agentCode = "AGENT_CODE";
     public static String walletBalance = "WALLET_BALANCE";
+    public static String fcmToken = "FCM_TOKEN";
 
     public static String getAuthToken() {
         byte[] data = new byte[0];

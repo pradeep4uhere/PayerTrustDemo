@@ -1,4 +1,5 @@
 package com.example.payertrustdemo;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,7 +20,12 @@ import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,7 +111,9 @@ public class Login extends AppCompatActivity {
                     if(loginResponse.success){
                         MyPreferences myPreferences = new MyPreferences(Login.this);
                         myPreferences.saveBoolean(Constants.loginStatus,true);
-                        myPreferences.saveBoolean(Constants.otpVerification,false);
+                        if(loginResponse.data.mobileVerified == 1) {
+                            myPreferences.saveBoolean(Constants.otpVerification, true);
+                        }
                         myPreferences.saveString(Constants.mobileNumber,loginResponse.data.mobileNumber);
                         myPreferences.saveString(Constants.email,loginResponse.data.emailAddress);
                         myPreferences.saveString(Constants.agentCode,loginResponse.data.agentCode);
@@ -114,10 +122,18 @@ public class Login extends AppCompatActivity {
                         myPreferences.saveString(Constants.userId,String.valueOf(loginResponse.data.id));
 //                        Intent intent = new Intent(Login.this, login_otp.class);
 //                        startActivity(intent);
-                        Intent intent = new Intent(Login.this, LeftNavigation.class);
-                        startActivity(intent);
-                        Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_SHORT).show();
-                        finish();
+                        if(loginResponse.data.mobileVerified == 1) {
+                            Intent intent = new Intent(Login.this, LeftNavigation.class);
+                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                        else{
+                            Intent intent = new Intent(Login.this, login_otp.class);
+                            intent.putExtra("userId",String.valueOf(loginResponse.data.id));
+                            startActivity(intent);
+                            finish();
+                        }
 
                     }
                     else{

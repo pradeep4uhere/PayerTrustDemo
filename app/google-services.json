@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "797488488214",
+    "project_id": "payertrust-6d093",
+    "storage_bucket": "payertrust-6d093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797488488214:android:15bf090f96a5e059cf7a37",
+        "android_client_info": {
+          "package_name": "com.payertrust.payertrust"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797488488214-b1ko3luej76nqngrlf8cbpqljpq8j0mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgRl11mNTBWwodcrRi0Ep8bt7ozmyAluw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797488488214-b1ko3luej76nqngrlf8cbpqljpq8j0mc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

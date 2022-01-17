@@ -28,7 +28,7 @@ android:id="@+id/recharge_confirmation_layout">
             android:layout_weight="1">
 
             <ImageView
-                android:id="@+id/back_to_fund_transfer_btn"
+                android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_marginLeft="20dp"
@@ -74,6 +74,7 @@ android:id="@+id/recharge_confirmation_layout">
             android:src="@drawable/pay"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="15dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -128,31 +129,32 @@ android:id="@+id/recharge_confirmation_layout">
                             android:layout_height="match_parent"
                             android:padding="10dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_column="1"
-                                android:layout_weight="1"
-                                android:text="Operator Name" />
-
-
-                            <TextView
-                                android:id="@+id/txtAmount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_column="2"
-                                android:layout_weight="1"
-                                android:layout_marginRight="5dp"
-                                android:fontFamily="@font/ubuntu_medium"
-                                android:gravity="right"
-                                android:text="AIRTEL" />
-                                <ImageView
+                            <ImageView
                                 android:id="@+id/icon"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="right"
 
                                 />
+
+
+                            <TextView
+                                android:id="@+id/txtOperator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/ubuntu_medium"
+                                android:gravity="right"
+                                android:text="AIRTEL" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_weight="1"
+                                android:text="Operator Name" />
 
 
                         </TableRow>
@@ -170,7 +172,7 @@ android:id="@+id/recharge_confirmation_layout">
                                 android:text="Mobile Number" />
 
                             <TextView
-                                android:id="@+id/txtCharge"
+                                android:id="@+id/txtMobile"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_column="2"
@@ -206,40 +208,22 @@ android:id="@+id/recharge_confirmation_layout">
                         </TableRow>
                     </TableLayout>
 
-                    <Button
-                        android:id="@+id/money_transfer_submit_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="5dp"
-                        android:text="CONFIRM &amp; PAY"
-                        android:textColor="#fff"
-                        app:backgroundTint="#F44336" />
-
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="20dp"
+                android:text="CONFIRM &amp; PAY"
+                android:textColor="#fff"
+                app:backgroundTint="#F44336" />
 
         </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/rounded_corner"
-        app:itemIconTint="@color/white"
-        app:itemRippleColor="#FFFFFF"
-        app:itemTextColor="#FFFFFF"
-        android:elevation="8dp"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:layout_margin="30dp"
-        app:itemIconSize="25dp"
-        app:menu="@menu/bottom_menu"
-        android:id="@+id/bottom_navigation_money_success"
-        />
 
 </FrameLayout>
 

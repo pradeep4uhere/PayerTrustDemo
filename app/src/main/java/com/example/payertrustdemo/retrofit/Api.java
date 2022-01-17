@@ -5,19 +5,23 @@ import com.example.payertrustdemo.model.AccountListresponse;
 import com.example.payertrustdemo.model.AddAccountResponse;
 import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
+import com.example.payertrustdemo.model.AllOperatorResponse;
 import com.example.payertrustdemo.model.BankListResponse;
 import com.example.payertrustdemo.model.ChangePasswordResponse;
 import com.example.payertrustdemo.model.CheckPayoutResponse;
 import com.example.payertrustdemo.model.CityListResponse;
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
+import com.example.payertrustdemo.model.FcmTokenResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
 import com.example.payertrustdemo.model.GetAgentNameResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.model.HelpResponse;
 import com.example.payertrustdemo.model.ImageUploadResponse;
+import com.example.payertrustdemo.model.LoginOtpResponse;
 import com.example.payertrustdemo.model.LoginResponse;
+import com.example.payertrustdemo.model.MobileRechargeResponse;
 import com.example.payertrustdemo.model.NotificationListResponse;
 import com.example.payertrustdemo.model.PaymentDetailsResponse;
 import com.example.payertrustdemo.model.PaymentLinkResponse;
@@ -171,9 +175,38 @@ public interface Api {
     @FormUrlEncoded
     Call<NotificationListResponse> getAllNotification(@Field("user_id") String userId);
 
+    @POST("api/v1/loginotp")
+    @FormUrlEncoded
+    Call<LoginOtpResponse> loginOtp(@Field("user_id") String userId);
+
+    @POST("api/v1/otpverification")
+    @FormUrlEncoded
+    Call<LoginOtpResponse> verifyOtp(@Field("user_id") String userId,@Field("otp") String otp);
+
     @POST("api/v1/contactus")
     @FormUrlEncoded
     Call<HelpResponse> contactUs(@Field("user_id") String userId,@Field("message") String message,@Field("image_name") String image_name);
+
+    @POST("api/v1/getservicelist")
+    Call<AllOperatorResponse> getAllOperator();
+
+    @POST("api/v1/mobilerecharge")
+    @FormUrlEncoded
+    Call<MobileRechargeResponse> mobileRecharge(@Field("rechargeBillpayment") int rechargeBillpayment,
+                                                @Field("mobileNumber") String mobileNumber,
+                                                @Field("operator") String operator,
+                                                @Field("amount") String amount);
+
+    @POST("api/v1/ptmrfwrecharge")
+    @FormUrlEncoded
+    Call<LoginOtpResponse> paytmRecharge(@Field("lastidEncyptStr") String lastidEncyptStr,
+                                                @Field("mobile") String mobile,
+                                                @Field("request_amount") String amount,
+                                                @Field("user_id") String userid);
+
+    @POST("api/v1/otpverification")
+    @FormUrlEncoded
+    Call<FcmTokenResponse> saveFCMToken(@Field("user_id") String userId, @Field("token") String token);
 
 //
 //    @POST("/api/users")

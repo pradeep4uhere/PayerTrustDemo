@@ -129,6 +129,7 @@
         android:textColorHint="#E91E63"
         android:textColorLink="#E91E63"
         android:textSize="12dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.456"
         app:layout_constraintStart_toEndOf="@+id/didnt_recv_text"

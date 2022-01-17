@@ -75,8 +75,14 @@ public class MainActivity extends AppCompatActivity  {
             public void run() {
                 MyPreferences myPreferences = new MyPreferences(MainActivity.this);
                 if(myPreferences.getBoolean(Constants.loginStatus)) {
-                    Intent intent = new Intent(MainActivity.this, LeftNavigation.class);
-                    startActivity(intent);
+                    if(myPreferences.getBoolean(Constants.otpVerification)) {
+                        Intent intent = new Intent(MainActivity.this, LeftNavigation.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(MainActivity.this, login_otp.class);
+                        startActivity(intent);
+                    }
                 }
                 else{
                     Intent intent = new Intent(MainActivity.this, Login.class);

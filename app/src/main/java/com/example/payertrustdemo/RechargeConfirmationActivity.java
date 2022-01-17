@@ -2,13 +2,115 @@ package com.example.payertrustdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.example.payertrustdemo.databinding.ActivityRechargeConfirmationBinding;
+import com.example.payertrustdemo.databinding.ActivityWalletPaySuccess2Binding;
+import com.example.payertrustdemo.model.LoginOtpResponse;
+import com.example.payertrustdemo.model.MobileRechargeResponse;
+import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.MyPreferences;
+
+import java.io.Serializable;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RechargeConfirmationActivity extends AppCompatActivity {
 
+    private ActivityRechargeConfirmationBinding binding;
+    MobileRechargeResponse mobileRechargeResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recharge_confirmation);
+        //setContentView(R.layout.activity_recharge_confirmation);
+        mobileRechargeResponse = (MobileRechargeResponse) getIntent().getSerializableExtra("mobileRechargeResponse");
+        binding = ActivityRechargeConfirmationBinding.inflate(getLayoutInflater());
+        binding.txtOperator.setText(mobileRechargeResponse.data.postArr.operatorName);
+        binding.txtMobile.setText(mobileRechargeResponse.data.postArr.mobileNumber);
+        binding.txtTotAmount.setText(mobileRechargeResponse.data.postArr.amount);
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rechargeConfirm();
+            }
+        });
     }
+
+    private void rechargeConfirm() {
+        MyPreferences myPreferences = new MyPreferences(this);
+        String userid = myPreferences.getString(Constants.userId);
+        showPopupProgressSpinner(true,RechargeConfirmationActivity.this);
+        String lastidEncyptStr = mobileRechargeResponse.data.lastidEncyptStr;
+        String mobile = mobileRechargeResponse.data.postArr.mobileNumber;
+        String amount = mobileRechargeResponse.data.postArr.amount;
+        Call<LoginOtpResponse> call = RetrofitClient.getInstance().getMyApi().paytmRecharge(lastidEncyptStr,mobile,amount,userid);
+        call.enqueue(new Callback<LoginOtpResponse>() {
+            @Override
+            public void onResponse(Call<LoginOtpResponse> call, Response<LoginOtpResponse> response) {
+                showPopupProgressSpinner(false,RechargeConfirmationActivity.this);
+                LoginOtpResponse mobileRechargeResponse = response.body();
+                if(mobileRechargeResponse!= null){
+                    if(mobileRechargeResponse.success){
+                        showToast(mobileRechargeResponse.message);
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), mobileRechargeResponse.message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginOtpResponse> call, Throwable t) {
+                showPopupProgressSpinner(false,RechargeConfirmationActivity.this);
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+            }
+
+        });
+    }
+
+    private Dialog progressDialog = null;
+    private ProgressBar progressBar;
+
+    public void showPopupProgressSpinner(Boolean isShowing, Context context) {
+        if (isShowing == true) {
+            progressDialog = new Dialog(context);
+            progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            progressDialog.setContentView(R.layout.popup_progressbar);
+            progressDialog.setCancelable(false);
+            progressDialog.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(Color.TRANSPARENT));
+
+            progressBar = (ProgressBar) progressDialog
+                    .findViewById(R.id.progressBar);
+            progressDialog.show();
+        } else if (isShowing == false) {
+            progressDialog.dismiss();
+        }
+    }
+
+    private void showToast(String message)
+    {
+        Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
 }

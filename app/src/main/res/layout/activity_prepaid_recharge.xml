@@ -44,15 +44,18 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabPrepaid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Prepaid Mobile" />
 
                         <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tabPostpaid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Post Paid Mobile" />
@@ -131,32 +134,30 @@
                                     android:hint="e.g 9015446567">
 
                                     <com.google.android.material.textfield.TextInputEditText
+                                       android:id="@+id/edtMobile"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_margin="20dp"
-                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginLeft="20dp"
                                         android:layout_marginRight="20dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:inputType="text" />
+                                        android:inputType="phone" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/email_address"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                    android:id="@+id/customerSpinnerLayout"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="Choose Mobile Operetor">
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:hint="Select Operator">
 
-                                    <com.google.android.material.textfield.TextInputEditText
+                                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                        android:id="@+id/autoCompleteOperator"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_margin="20dp"
-                                        android:layout_marginEnd="10dp"
-                                        android:layout_marginRight="20dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:inputType="textEmailAddress" />
-
+                                        android:clickable="true"
+                                        tools:ignore="KeyboardInaccessibleWidget" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <com.google.android.material.textfield.TextInputLayout
@@ -167,19 +168,20 @@
                                     android:hint="Enter Amount">
 
                                     <com.google.android.material.textfield.TextInputEditText
+                                       android:id="@+id/edtAmount"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_margin="20dp"
-                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginTop="20dp"
+                                        android:layout_marginLeft="20dp"
                                         android:layout_marginRight="20dp"
-                                        android:layout_marginBottom="5dp"
-                                        android:inputType="phone"
+                                        android:inputType="number"
                                         android:maxLength="10" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
 
 
                                 <Button
+                                    android:id="@+id/btnSubmit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="20dp"
