@@ -204,7 +204,7 @@ public interface Api {
                                                 @Field("request_amount") String amount,
                                                 @Field("user_id") String userid);
 
-    @POST("api/v1/otpverification")
+    @POST("api/v1/savetoken")
     @FormUrlEncoded
     Call<FcmTokenResponse> saveFCMToken(@Field("user_id") String userId, @Field("token") String token);
 

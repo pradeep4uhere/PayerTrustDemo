@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.payertrustdemo.model.FcmTokenResponse;
 import com.example.payertrustdemo.model.LoginRequest;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
@@ -122,7 +123,9 @@ public class Login extends AppCompatActivity {
                         myPreferences.saveString(Constants.userId,String.valueOf(loginResponse.data.id));
 //                        Intent intent = new Intent(Login.this, login_otp.class);
 //                        startActivity(intent);
+                        saveToken(myPreferences.getString(Constants.fcmToken));
                         if(loginResponse.data.mobileVerified == 1) {
+
                             Intent intent = new Intent(Login.this, LeftNavigation.class);
                             startActivity(intent);
                             Toast.makeText(getApplicationContext(), loginResponse.message, Toast.LENGTH_SHORT).show();
@@ -145,6 +148,29 @@ public class Login extends AppCompatActivity {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+            }
+
+        });
+    }
+
+    private void saveToken(String token) {
+        MyPreferences myPreferences = new MyPreferences(this);
+        String userid = myPreferences.getString(Constants.userId);
+
+
+        Call<FcmTokenResponse> call = RetrofitClient.getInstance().getMyApi().saveFCMToken(userid,token);
+        call.enqueue(new Callback<FcmTokenResponse>() {
+            @Override
+            public void onResponse(Call<FcmTokenResponse> call, Response<FcmTokenResponse> response) {
+                FcmTokenResponse fcmTokenResponse = response.body();
+                if(fcmTokenResponse!= null){
+                    System.out.println("FCM RESPONSE "+ fcmTokenResponse.message);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FcmTokenResponse> call, Throwable t) {
+                System.out.println("FCM FAILURE "+ t.toString());
             }
 
         });
