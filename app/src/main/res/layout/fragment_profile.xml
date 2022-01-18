@@ -923,13 +923,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Refer and Earn"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#CCCCCC"
                         android:textSize="10dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Invite your friend and earn"/>
 
                 </LinearLayout>
@@ -978,13 +979,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="My Rewards"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#CCCCCC"
                         android:textSize="10dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Get reward on every transaction (TC apply)"/>
 
                 </LinearLayout>
@@ -1033,13 +1035,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="About Us"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#CCCCCC"
                         android:textSize="10dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Get to know more about PayerTrust"/>
 
                 </LinearLayout>
@@ -1088,13 +1091,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Privacy Policy"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#CCCCCC"
                         android:textSize="10dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Read our privacy and policy."/>
 
                 </LinearLayout>
@@ -1143,13 +1147,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Terms and Conditions"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#CCCCCC"
                         android:textSize="10dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Get to know more about Terms and Conditions"/>
 
                 </LinearLayout>

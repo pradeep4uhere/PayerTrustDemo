@@ -36,11 +36,12 @@
                     android:src="@drawable/ic_back" />
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="40dp"
                     android:gravity="center"
                     android:text="Confirmation"
+                    android:fontFamily="@font/roboto"
                     android:textColor="#FFF"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,7 +76,7 @@
                 android:layout_height="300dp"
                 android:layout_marginTop="-70dp"
                 android:contentDescription="img"
-                android:src="@drawable/transfer"
+                android:src="@drawable/confirmed"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="15dp" />
 
@@ -83,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="155dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/bg_menu"
@@ -104,9 +105,9 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="370dp"
+                        android:layout_height="350dp"
                         android:elevation="10dp"
-                        android:padding="20dp"
+                        android:padding="10dp"
                         app:cardCornerRadius="10dp">
                         >
 
@@ -116,17 +117,13 @@
                             android:layout_height="match_parent"
                             android:background="#E4FAE5"
                             android:orientation="vertical">
-
-
                             <ImageView
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="30dp"
-                                android:layout_marginBottom="20dp"
+                                android:layout_marginBottom="10dp"
                                 android:src="@drawable/green_ok" />
-
-
                             <TextView
                                 android:id="@+id/txtName"
                                 android:layout_width="wrap_content"
@@ -134,13 +131,14 @@
                                 android:layout_gravity="center_horizontal"
                                 android:fontFamily="@font/roboto_medium"
                                 android:text="Sachin Kumar"
-                                android:textSize="30dp" />
+                                android:textSize="25sp" />
 
                             <TextView
                                 android:id="@+id/txtBankName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/roboto"
                                 android:text="Himachal Pradesh Gramin Bank"
                                 android:textSize="11dp" />
 
@@ -149,7 +147,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/ubuntu_medium"
+                                android:fontFamily="@font/roboto"
                                 android:text="A/C: 4859015841021"
                                 android:textSize="14dp" />
 
@@ -159,6 +157,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:text="IFSC: PNBUH000982"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="10dp" />
 
                             <TextView
@@ -176,6 +175,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="5dp"
+
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -183,7 +183,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
                                     android:layout_weight="1"
-                                    android:fontFamily="@font/ubuntu_medium"
+                                    android:fontFamily="@font/roboto"
                                     android:paddingRight="5dp"
                                     android:text="Payment Mode:"
                                     android:textSize="12dp" />
@@ -191,7 +191,7 @@
                                 <TextView
                                     android:id="@+id/txtPaymentMode"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_gravity="start"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/roboto_medium"
@@ -211,7 +211,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="start"
                                     android:layout_weight="1"
-                                    android:fontFamily="@font/ubuntu_medium"
+                                    android:fontFamily="@font/roboto"
                                     android:paddingRight="5dp"
 
                                     android:text="Payment Status:"
@@ -220,10 +220,9 @@
                                 <TextView
                                     android:id="@+id/txtPaymentStatus"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_gravity="start"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/ubuntu_medium"
+                                    android:fontFamily="@font/roboto_medium"
                                     android:text="Processing"
                                     android:textColor="#ff0000"
                                     android:textSize="12dp" />
@@ -235,7 +234,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="20dp"
-                                android:fontFamily="@font/ubuntu_bold"
+                                android:fontFamily="@font/roboto_medium"
                                 android:text="25th Oct 2021 10:30:43AM"
                                 android:textColor="@android:color/holo_blue_light"
                                 android:textSize="12dp" />
@@ -247,6 +246,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="5dp"
                                 android:text="Ref No: 231020210001"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="12dp" />
                         </LinearLayout>
 
@@ -263,6 +263,7 @@
                     android:scrollbarFadeDuration="200"
                     android:text="Transfer Again"
                     android:textColor="#FFF"
+                    android:fontFamily="@font/roboto_medium"
                     android:textColorHighlight="#fff"
                     android:textColorHint="#000FFF"
                     android:textColorLink="#fff"

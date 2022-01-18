@@ -41,9 +41,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pradeep Kumar"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"
                 android:layout_marginBottom="2dp"
                 />
 
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+91-9015446567"
-                android:textColor="@android:color/black"
+                android:fontFamily="@font/roboto"
                 android:textSize="12sp"
                 android:layout_marginBottom="0dp"/>
 
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pradeep3300@gamil.com"
-                android:textColor="@android:color/black"
+                android:fontFamily="@font/roboto"
                 android:textSize="12sp"/>
         </LinearLayout>
         <androidx.appcompat.widget.LinearLayoutCompat

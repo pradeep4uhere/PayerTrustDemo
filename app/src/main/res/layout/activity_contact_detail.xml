@@ -32,9 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:gravity="center"
+                android:fontFamily="@font/roboto"
                 android:text="Contact Details"
                 android:textColor="#FFF"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,6 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="PRADEEP KUMAR"
+                            android:fontFamily="@font/roboto_medium"
                             android:textColor="@android:color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -121,8 +123,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="0dp"
                                 android:paddingTop="3dp"
+                                android:fontFamily="@font/roboto"
                                 android:text="+91-9015446567"
-                                android:textColor="@android:color/black"
                                 android:textSize="11sp" />
 
                             <TextView
@@ -131,7 +133,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingTop="1dp"
                                 android:text="Pradeep3300@gamil.com"
-                                android:textColor="@android:color/black"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="11sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -166,16 +168,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="All Account List (20)"
-                        android:paddingLeft="15dp"/>
+                        android:paddingLeft="16dp"/>
 
                 </LinearLayout>
 
                 <SearchView
                     android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:queryHint="Search Account Number"
                     android:layout_weight="1"
                     android:iconifiedByDefault="false"
@@ -215,6 +217,7 @@
         android:textColorLink="#fff"
         android:scrollbarFadeDuration="200"
         android:layout_gravity="end|bottom"
+        android:fontFamily="@font/roboto"
         android:text="Add New Account"
         app:backgroundTint="#2196F3" />
 

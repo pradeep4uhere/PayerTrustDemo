@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/ubuntu_bold"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center_vertical"
                     android:text="Payment Details"
                     android:layout_marginBottom="5dp"
@@ -78,6 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginRight="1dp"
+                        android:fontFamily="@font/roboto"
                         android:gravity="center_vertical"
                         android:text="Amount:"
                         android:textSize="14sp" />
@@ -88,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginRight="10dp"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:gravity="center_vertical"
                         android:text="Rs. 5,00,000.00"
                         android:textColor="#2196F3"
@@ -99,6 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
+                        android:fontFamily="@font/roboto"
                         android:text="Status:"
                         android:textSize="14sp" />
 
@@ -107,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/ubuntu_bold"
+                        android:fontFamily="@font/roboto_medium"
                         android:gravity="center_vertical"
                         android:text="Success"
                         android:textColor="#0A780E"
@@ -135,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/ubuntu_medium"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Payment Details"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
@@ -145,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/ubuntu_medium"
+                        android:fontFamily="@font/roboto"
                         android:text="13th Jan 2021 12:10:23 AM"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
@@ -172,6 +174,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:layout_column="1"
                                 android:layout_weight="1"
                                 android:text="Amount" />
@@ -182,7 +185,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_column="2"
                                 android:layout_weight="1"
-                                android:fontFamily="@font/ubuntu_bold"
+                                android:fontFamily="@font/roboto_medium"
                                 android:gravity="right"
                                 android:text="Rs. 5,00,000.00" />
 
@@ -196,6 +199,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:layout_column="1"
                                     android:layout_weight="1"
                                     android:text="Payment Ref Key" />
@@ -207,6 +211,7 @@
                                     android:layout_column="2"
                                     android:layout_weight="1"
                                     android:gravity="right"
+                                    android:fontFamily="@font/roboto"
                                     android:text="pay_IgTdXWTNkDQSRH" />
 
 
@@ -221,6 +226,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/roboto"
                                     android:text="Transaction ID" />
 
                                 <TextView
@@ -230,6 +236,7 @@
                                     android:layout_column="2"
                                     android:layout_weight="1"
                                     android:gravity="right"
+                                    android:fontFamily="@font/roboto"
                                     android:text="order_IgTcrWLD9qVMao" />
                             </TableRow>
                             <TableRow
@@ -242,6 +249,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/roboto"
                                     android:text="Payment Status" />
 
                                 <TextView
@@ -252,7 +260,7 @@
                                     android:layout_weight="1"
                                     android:gravity="right"
                                     android:textColor="#0A780E"
-                                    android:fontFamily="@font/ubuntu_bold"
+                                    android:fontFamily="@font/roboto_medium"
                                     android:text="SUCCESS" />
                             </TableRow>
                         </TableLayout>
@@ -426,7 +434,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/ubuntu_medium"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Customer  Details"
                         android:textColor="@color/white"
                         android:textSize="16dp" />
@@ -583,6 +591,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/roboto"
                                     android:text="Full Name" />
 
                                 <TextView
@@ -592,6 +601,7 @@
                                     android:layout_column="2"
                                     android:layout_weight="1"
                                     android:gravity="right"
+                                    android:fontFamily="@font/roboto"
                                     android:text="PRADEEP KUMAR" />
 
 
@@ -606,6 +616,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/roboto"
                                     android:text="Email Address" />
 
                                 <TextView
@@ -615,6 +626,7 @@
                                     android:layout_column="2"
                                     android:layout_weight="1"
                                     android:gravity="right"
+                                    android:fontFamily="@font/roboto"
                                     android:text="PRADEEP3300@gmail.com" />
 
 
@@ -629,6 +641,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/roboto"
                                     android:text="Mobile No" />
 
                                 <TextView
@@ -638,6 +651,7 @@
                                     android:layout_column="2"
                                     android:layout_weight="1"
                                     android:gravity="right"
+                                    android:fontFamily="@font/roboto"
                                     android:text="+917900021207" />
 
 
@@ -696,6 +710,7 @@
                             android:layout_height="wrap_content"
                             android:layout_column="1"
                             android:layout_weight="1"
+                            android:fontFamily="@font/roboto"
                             android:text="Card Details" />
 
 
@@ -706,6 +721,7 @@
                             android:layout_column="2"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:fontFamily="@font/roboto"
                             android:text="1234-XXXX-XXXX-1001" />
                     </LinearLayout>
                     <com.google.android.material.divider.MaterialDivider
@@ -726,6 +742,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
+                            android:fontFamily="@font/roboto"
                             android:layout_weight="1"
                             android:text="Issuing Bank / Card Type" />
 
@@ -737,6 +754,7 @@
                             android:layout_column="2"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:fontFamily="@font/roboto"
                             android:text="American Express- credit" />
                     </LinearLayout>
                     <com.google.android.material.divider.MaterialDivider
@@ -768,6 +786,7 @@
                             android:layout_column="2"
                             android:layout_weight="1"
                             android:gravity="right"
+                            android:fontFamily="@font/roboto"
                             android:text="American Express- credit" />
                     </LinearLayout>
                     <com.google.android.material.divider.MaterialDivider

@@ -53,9 +53,7 @@ android:id="@+id/wallet_list_layout">
                 android:layout_gravity="center_horizontal"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:fontFamily="@font/ubuntu_medium"
+                android:fontFamily="@font/roboto_medium"
                 >
 
             </TextView>

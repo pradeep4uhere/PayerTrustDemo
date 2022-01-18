@@ -98,11 +98,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_bold"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="Money Transfer Confirmation"
-                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
 
@@ -129,6 +128,7 @@
                             android:paddingLeft="10dp"
                             android:paddingTop="10dp"
                             android:paddingRight="5dp"
+                            android:layout_gravity="center_vertical"
                             android:paddingBottom="10dp">
 
                             <ImageView
@@ -141,9 +141,8 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="180dp"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:orientation="vertical"
                             android:padding="10dp">
 
@@ -158,7 +157,7 @@
                                 android:id="@+id/txtAccountNo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/ubuntu_medium"
+                                android:fontFamily="@font/roboto_medium"
                                 android:text="09876483622009"
                                 android:textSize="12dp" />
 
@@ -168,14 +167,16 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="PNBUH000982"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="10dp" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="110dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
+                            android:layout_weight="1"
                             android:padding="10dp">
 
                             <TextView
@@ -195,9 +196,9 @@
 
                             <TextView
                                 android:id="@+id/txtName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/ubuntu_bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/roboto_medium"
                                 android:text="PRADEEP KUMAR"
                                 android:textSize="10dp" />
 
@@ -229,7 +230,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/ubuntu_medium"
+                            android:fontFamily="@font/roboto_medium"
                             android:gravity="center"
                             android:text="Money Transfer Summery" />
 
@@ -247,6 +248,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
+                                    android:fontFamily="@font/roboto"
                                     android:text="Transfer Amount" />
 
                                 <TextView
@@ -255,7 +257,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="2"
                                     android:layout_weight="1"
-                                    android:fontFamily="@font/ubuntu_medium"
+                                    android:fontFamily="@font/roboto"
                                     android:gravity="right"
                                     android:text="Rs. 25,000.00" />
 
@@ -272,7 +274,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="1"
                                     android:layout_weight="1"
-                                    android:text="Transfer Charge" />
+                                    android:text="Transfer Charge"
+                                    android:fontFamily="@font/roboto"/>
 
                                 <TextView
                                     android:id="@+id/txtCharge"
@@ -280,7 +283,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_column="2"
                                     android:layout_weight="1"
-                                    android:fontFamily="@font/ubuntu_medium"
+                                    android:fontFamily="@font/roboto_medium"
                                     android:gravity="right"
                                     android:text="Rs. 15.00" />
 
@@ -318,6 +321,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/roboto_medium"
                             android:text="CONFIRM &amp; TRANSFER"
                             android:textColor="#fff"
                             app:backgroundTint="#F44336" />
@@ -331,19 +335,19 @@
         </RelativeLayout>
 
     </LinearLayout>
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/back_to_home_fab_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:icon="@drawable/ic_home"
-        android:textColor="#FFF"
-        android:textColorHighlight="#fff"
-        android:textColorHint="#000FFF"
-        android:textColorLink="#fff"
-        android:scrollbarFadeDuration="200"
-        android:layout_gravity="end|bottom"
-        app:backgroundTint="#2196F3" />
+<!--    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+<!--        android:id="@+id/back_to_home_fab_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="30dp"-->
+<!--        app:icon="@drawable/ic_home"-->
+<!--        android:textColor="#FFF"-->
+<!--        android:textColorHighlight="#fff"-->
+<!--        android:textColorHint="#000FFF"-->
+<!--        android:textColorLink="#fff"-->
+<!--        android:scrollbarFadeDuration="200"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        app:backgroundTint="#2196F3" />-->
 
 </FrameLayout>
 
