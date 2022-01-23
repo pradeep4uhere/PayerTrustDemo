@@ -16,6 +16,7 @@ public class PaymentLinkActivity extends AppCompatActivity {
 
     ActivityPaymentLinkBinding binding;
     String link;
+    MenuItem menuItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +30,9 @@ public class PaymentLinkActivity extends AppCompatActivity {
         binding.webView.getSettings().setJavaScriptEnabled(true);
         binding.webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         binding.webView.loadUrl(link);
-
         binding.webView.setWebViewClient(new MyBrowser());
+        //menuItem = (MenuItem) findViewById(R.id.bottom_home);
+        
     }
 
     @Override

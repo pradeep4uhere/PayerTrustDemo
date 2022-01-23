@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.payertrustdemo.HelpActivity;
 import com.example.payertrustdemo.PrepaidRecharge;
@@ -18,9 +19,10 @@ import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
-import com.example.payertrustdemo.ui.wallet.WalletReportFragment;
+import com.example.payertrustdemo.ui.recharge.RechargeFragment;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +35,7 @@ public class HomeFragment extends Fragment  {
     Button prepaidRechargeBtn;
     MyPreferences myPreferences;
     CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9,card10,card12;
-    TextView txtBalance,txtName, textbtn;
+    TextView txtBalance,txtName, textBtn, textBtneqquest;
     public  HomeFragment(){
 
     }
@@ -60,14 +62,44 @@ public class HomeFragment extends Fragment  {
             }
         });
 
+        //BottomSheet For Request Money
+        textBtneqquest = (TextView) view.findViewById(R.id.request_moneny);
+        textBtneqquest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
+                bottomSheetDialog.setContentView(R.layout.bottom_request_money);
+                bottomSheetDialog.setCanceledOnTouchOutside(true);
+                bottomSheetDialog.show();
+
+            }
+        });
+
+        textBtn = (TextView) view.findViewById(R.id.add_moneny_btn);
+        textBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RechargeFragment nextFrag= new RechargeFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.home_fragment, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+                //Intent intent = new Intent(getActivity(), RechargeFragment.class);
+                //startActivity(intent);
+//                Intent i;
+//                i = new Intent(getContext(), RechargeFragment.class);
+//                startActivity(i);
+            }
+        });
+
         card8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* WalletReportFragment nextFrag= new WalletReportFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container, nextFrag, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();*/
+                /*HomeFragment homeFragment= new HomeFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.wallet_list_layout, homeFragment ); // give your fragment container id in first parameter
+                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                transaction.commit();*/
             }
         });
         card10.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +118,6 @@ public class HomeFragment extends Fragment  {
                 startActivity(i);
             }
         });
-
-
         return view;
     }
 
@@ -130,23 +160,3 @@ public class HomeFragment extends Fragment  {
     }
 
 }
-
-// card1 = (CardView) view.findViewById(R.id.card1);
-//         card2 = (CardView) view.findViewById(R.id.card8);
-//         card1.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View v) {
-//        Intent i;
-//        switch (v.getId()){
-//        case R.id.card8:
-//        i = new Intent(getContext(),PrepaidRecharge.class);
-//        startActivity(i);
-//        break;
-//
-//        case R.id.card1:
-//        i = new Intent(getContext(), PaymentReportFragment.class);
-//        startActivity(i);
-//        break;
-//        }
-//        }
-//        });

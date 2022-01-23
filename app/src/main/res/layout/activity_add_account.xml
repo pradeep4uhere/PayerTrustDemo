@@ -177,134 +177,123 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent">
-
-
-                <TextView
-                    android:id="@+id/textRecharge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Add New Account"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/roboto_medium"/>
-
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:elevation="8dp"
-                    app:cardCornerRadius="10dp"
-                    >
-
-                    <LinearLayout
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
+                        android:layout_height="match_parent">
+                  <androidx.cardview.widget.CardView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginRight="20dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:elevation="8dp"
+                                        app:cardCornerRadius="10dp"
+                                        >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:gravity="center"
-                            android:fontFamily="@font/roboto"
-                            android:text="Enter valid account details, validation [optional]" />
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+                                            android:padding="20dp">
 
-                        <Spinner
-                            android:id="@+id/spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="52dp"
-                            style="@style/spinner_style"/>
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginBottom="10dp"
+                                                android:gravity="center"
+                                                android:textSize="10sp"
+                                                android:fontFamily="@font/roboto"
+                                                android:text="ADD Bank Account: Enter valid account details." />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/customerSpinnerLayout"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Type Bank Name">
+                                            <Spinner
+                                                android:id="@+id/spinner"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="52dp"
+                                                style="@style/spinner_style"/>
 
-                            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                                android:id="@+id/customerTextView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:clickable="true"
-                                tools:ignore="KeyboardInaccessibleWidget" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                android:id="@+id/customerSpinnerLayout"
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:hint="Type Bank Name">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Account Number">
+                                                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                                    android:id="@+id/customerTextView"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:clickable="true"
+                                                    tools:ignore="KeyboardInaccessibleWidget" />
+                                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/account_number"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLength="20" />
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:hint="Account Number">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/account_number"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:inputType="text"
+                                                    android:maxLength="20" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:hint="IFSC Code">
+                                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/ifsc_code"
-                                android:maxLength="11" />
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:hint="IFSC Code">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/ifsc_code"
+                                                    android:maxLength="11" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:hint="@string/benifeciery_name">
+                                            </com.google.android.material.textfield.TextInputLayout>
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/benifeciery_name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="text"
-                                android:maxLength="50" />
+                                            <com.google.android.material.textfield.TextInputLayout
+                                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:hint="@string/benifeciery_name">
 
-                        </com.google.android.material.textfield.TextInputLayout>
+                                                <com.google.android.material.textfield.TextInputEditText
+                                                    android:id="@+id/benifeciery_name"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:inputType="text" />
 
-                        <Button
-                            android:id="@+id/get_benifeciery_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/get_benifeciery_name"
-                            android:textColor="#fff"
-                            app:backgroundTint="@android:color/holo_blue_dark" />
+                                            </com.google.android.material.textfield.TextInputLayout>
 
-                        <Button
-                            android:id="@+id/btnAddAccount"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginTop="5dp"
-                            android:text="ADD ACCOUNT"
-                            android:fontFamily="@font/roboto_medium"
-                            android:textColor="#fff"
-                            app:backgroundTint="#F44336" />
+                                            <Button
+                                                android:id="@+id/get_benifeciery_name"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:text="@string/get_benifeciery_name"
+                                                android:textColor="#fff"
+                                                app:backgroundTint="@android:color/holo_blue_dark" />
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                                            <Button
+                                                android:id="@+id/btnAddAccount"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:text="ADD ACCOUNT"
+                                                android:fontFamily="@font/roboto_medium"
+                                                android:textColor="#fff"
+                                                app:backgroundTint="#F44336" />
 
+                                        </LinearLayout>
+                                    </androidx.cardview.widget.CardView>
 
+                    </ScrollView>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

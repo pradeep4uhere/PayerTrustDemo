@@ -9,9 +9,9 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_slideshow">Change Password</string>
     <string name="grid_layout">GRID LAYOUT</string>
-    <string name="prepaid_recharge_screen">Prepaid Recharge Screen</string>
+    <string name="prepaid_recharge_screen">Prepaid Recharge</string>
     <string name="welcome_back">Welcome Back !!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -29,8 +29,8 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="benifeciery_name">Benifeciery Name</string>
-    <string name="get_benifeciery_name">GET BENIFECIERY NAME</string>
+    <string name="benifeciery_name">Beneficiary Name</string>
+    <string name="get_benifeciery_name">GET BENEFICIARY NAME</string>
     <string name="title_activity_money_transfer_success">MoneyTransferSuccess</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
