@@ -1,6 +1,7 @@
 package com.example.payertrustdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,7 +11,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.payertrustdemo.databinding.ActivityRechargeConfirmationBinding;
@@ -31,23 +35,30 @@ public class RechargeConfirmationActivity extends AppCompatActivity {
 
     private ActivityRechargeConfirmationBinding binding;
     MobileRechargeResponse mobileRechargeResponse;
+    TextView txtOperator,txtMobile,txtAmount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_recharge_confirmation);
-        mobileRechargeResponse = (MobileRechargeResponse) getIntent().getSerializableExtra("mobileRechargeResponse");
+        setContentView(R.layout.activity_recharge_confirmation);
         binding = ActivityRechargeConfirmationBinding.inflate(getLayoutInflater());
-        binding.txtOperator.setText(mobileRechargeResponse.data.postArr.operatorName);
-        binding.txtMobile.setText(mobileRechargeResponse.data.postArr.mobileNumber);
-        binding.txtTotAmount.setText(mobileRechargeResponse.data.postArr.amount);
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+        mobileRechargeResponse = (MobileRechargeResponse) getIntent().getSerializableExtra("mobileRechargeResponse");
+
+        txtOperator = findViewById(R.id.txtOperator);
+        txtMobile = findViewById(R.id.txtMobile);
+        txtAmount = findViewById(R.id.txtTotAmount);
+        txtOperator.setText(mobileRechargeResponse.data.postArr.operatorName);
+        txtMobile.setText(mobileRechargeResponse.data.postArr.mobileNumber);
+        txtAmount.setText(mobileRechargeResponse.data.postArr.amount);
+        ImageView btnBack = findViewById(R.id.btnBack);
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rechargeConfirm();

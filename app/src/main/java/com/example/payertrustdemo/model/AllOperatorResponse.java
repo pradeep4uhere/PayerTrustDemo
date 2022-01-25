@@ -15,6 +15,11 @@ public class AllOperatorResponse implements Serializable {
         public String description;
         public String icon;
         public Object active;
+
+        @Override
+        public String toString() {
+            return provider_name;
+        }
     }
 
 }

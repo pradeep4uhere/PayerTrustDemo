@@ -1,14 +1,15 @@
 package com.example.payertrustdemo.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MobileRechargeResponse {
+public class MobileRechargeResponse implements Serializable {
 
     public boolean success;
     public String message;
     public Data data;
 
-    public class PostArr{
+    public class PostArr implements Serializable{
         public String customer_name;
         public String rechargeBillpayment;
         public String mobileNumber;
@@ -21,7 +22,7 @@ public class MobileRechargeResponse {
         public ArrayList<Object> optionalArr;
     }
 
-    public class Data{
+    public class Data implements Serializable{
         public PostArr postArr;
         public String serviceProviderIdEncyptStr;
         public String lastidEncyptStr;

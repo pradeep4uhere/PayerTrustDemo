@@ -129,7 +129,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
             @Override
             public void onFailure(Call<FundTransferResponse> call, Throwable t) {
                 showToast("An error has occured");
-                showPopupProgressSpinner(true,FundTransferConfirmation.this);
+                showPopupProgressSpinner(false,FundTransferConfirmation.this);
             }
 
         });

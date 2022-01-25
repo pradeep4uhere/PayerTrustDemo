@@ -14,6 +14,8 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +31,7 @@ import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.ui.home.HomeFragment;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.Serializable;
 
@@ -38,29 +41,36 @@ import retrofit2.Response;
 
 public class PrepaidRecharge extends AppCompatActivity {
 
-    private ActivityPrepaidRechargeBinding binding;
+    //private ActivityPrepaidRechargeBinding binding;
     ArrayAdapter<AllOperatorResponse.Datum> adapter;
     AllOperatorResponse allOperatorResponse;
     int selectedProviderId;
     String selectedProviderName;
+    ImageView imgBack;
+    EditText edtMobile,edtAmount;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prepaid_recharge);
-        binding = ActivityPrepaidRechargeBinding.inflate(getLayoutInflater());
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+        //binding = ActivityPrepaidRechargeBinding.inflate(getLayoutInflater());
+        imgBack = findViewById(R.id.back_btn);
+        edtMobile = findViewById(R.id.edtMobile);
+        edtAmount = findViewById(R.id.edtAmount);
+        tabLayout = findViewById(R.id.tabLayout);
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PrepaidRecharge.this.finish();
             }
         });
-
-        binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
+        Button btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mobile = binding.edtMobile.getText().toString().trim();
-                String amount = binding.edtMobile.getText().toString().trim();
+                String mobile = edtMobile.getText().toString().trim();
+                String amount = edtMobile.getText().toString().trim();
                 if(TextUtils.isEmpty(mobile)){
                    showToast("Please enter mobile number");
                    return;
@@ -74,10 +84,10 @@ public class PrepaidRecharge extends AppCompatActivity {
                     return;
                 }
                 else{
-                    int selectedTab = binding.tabLayout.getSelectedTabPosition() + 1;
+                    int selectedTab = tabLayout.getSelectedTabPosition() + 1;
                     mobileRecharge(selectedTab,mobile,String.valueOf(selectedProviderId),amount);
                 }
-                PrepaidRecharge.this.finish();
+
             }
         });
 
@@ -112,7 +122,7 @@ public class PrepaidRecharge extends AppCompatActivity {
     private void initOperatorAutoList()
     {
         //UI reference of textView
-        final AutoCompleteTextView customerAutoTV = findViewById(R.id.customerTextView);
+        final AutoCompleteTextView customerAutoTV = findViewById(R.id.autoCompleteOperator);
         //Create adapter
         adapter = new ArrayAdapter<AllOperatorResponse.Datum>(PrepaidRecharge.this, android.R.layout.simple_spinner_item, allOperatorResponse.data);
 

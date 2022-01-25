@@ -13,12 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
+
         <ImageView
+            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
             android:layout_margin="10dp"
-            android:id="@+id/back_btn"/>
+            android:src="@drawable/ic_back" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,13 +50,11 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.tabs.TabItem
-                            android:id="@+id/tabPrepaid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Prepaid Mobile" />
 
                         <com.google.android.material.tabs.TabItem
-                            android:id="@+id/tabPostpaid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Post Paid Mobile" />
