@@ -47,10 +47,10 @@
             android:icon="@drawable/ic_baseline_admin_panel_settings_24"
             android:title="Change Password" />
 
-        <item
-            android:id="@+id/nav_mpin_password"
-            android:icon="@drawable/ic_baseline_fiber_pin_24"
-            android:title="MPIN Setting" />
+<!--        <item-->
+<!--            android:id="@+id/nav_mpin_password"-->
+<!--            android:icon="@drawable/ic_baseline_fiber_pin_24"-->
+<!--            android:title="MPIN Setting" />-->
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_baseline_power_settings_new_24"
