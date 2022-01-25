@@ -45,10 +45,12 @@ public class RechargeConfirmationActivity extends AppCompatActivity {
 
         txtOperator = findViewById(R.id.txtOperator);
         txtMobile = findViewById(R.id.txtMobile);
-        txtAmount = findViewById(R.id.txtTotAmount);
+        txtAmount = findViewById(R.id.txtRechargeAmount);
+
         txtOperator.setText(mobileRechargeResponse.data.postArr.operatorName);
         txtMobile.setText(mobileRechargeResponse.data.postArr.mobileNumber);
         txtAmount.setText(mobileRechargeResponse.data.postArr.amount);
+
         ImageView btnBack = findViewById(R.id.btnBack);
         Button btnSubmit = findViewById(R.id.btnSubmit);
         btnBack.setOnClickListener(new View.OnClickListener() {

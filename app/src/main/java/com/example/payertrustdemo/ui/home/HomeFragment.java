@@ -16,10 +16,15 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.payertrustdemo.HelpActivity;
 import com.example.payertrustdemo.PrepaidRecharge;
 import com.example.payertrustdemo.R;
+import com.example.payertrustdemo.WebLinkActivity;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
+import com.example.payertrustdemo.ui.contact.ContactFragment;
+import com.example.payertrustdemo.ui.payment.PaymentReportFragment;
+import com.example.payertrustdemo.ui.recharge.PaymentLinkActivity;
 import com.example.payertrustdemo.ui.recharge.RechargeFragment;
+import com.example.payertrustdemo.ui.wallet.WalletReportFragment;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -34,7 +39,7 @@ public class HomeFragment extends Fragment  {
     private FragmentHomeBinding binding;
     Button prepaidRechargeBtn;
     MyPreferences myPreferences;
-    CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9,card10,card12;
+    CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9,card10,card11,card12;
     TextView txtBalance,txtName, textBtn, textBtneqquest;
     public  HomeFragment(){
 
@@ -45,8 +50,16 @@ public class HomeFragment extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
         myPreferences = new MyPreferences(getActivity());
         card1 = (CardView) view.findViewById(R.id.card1);
+        card2 = (CardView) view.findViewById(R.id.card2);
+        card3 = (CardView) view.findViewById(R.id.card3);
+        card4 = (CardView) view.findViewById(R.id.card4);
+        card5 = (CardView) view.findViewById(R.id.card5);
+        card6 = (CardView) view.findViewById(R.id.card6);
+        card7 = (CardView) view.findViewById(R.id.card7);
         card8 = (CardView) view.findViewById(R.id.card8);
+        card9 = (CardView) view.findViewById(R.id.card9);
         card10 = (CardView) view.findViewById(R.id.card10);
+        card11 = (CardView) view.findViewById(R.id.card11);
         card12 = (CardView) view.findViewById(R.id.card12);
         txtBalance = view.findViewById(R.id.balance);
         txtName = view.findViewById(R.id.name_title);
@@ -59,6 +72,94 @@ public class HomeFragment extends Fragment  {
             Intent i;
             i = new Intent(getContext(),PrepaidRecharge.class);
             startActivity(i);
+            }
+        });
+
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://www.payertrust.in/electricity");
+                intent.putExtra("title",  "Electricity");
+                getContext().startActivity(intent);
+            }
+        });
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://www.payertrust.in/gas");
+                intent.putExtra("title",  "Gas");
+                getContext().startActivity(intent);
+            }
+        });
+        card4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://payertrust.in/dth");
+                intent.putExtra("title",  "DTH");
+                getContext().startActivity(intent);
+            }
+        });
+        card5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://www.payertrust.in/water");
+                intent.putExtra("title",  "Water");
+                getContext().startActivity(intent);
+            }
+        });
+
+        card6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://www.payertrust.in/landline");
+                intent.putExtra("title",  "Card");
+                getContext().startActivity(intent);
+            }
+        });
+        card7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://www.payertrust.in/payrent");
+                intent.putExtra("title",  "Pay Rent");
+                getContext().startActivity(intent);
+            }
+        });
+
+        card11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WebLinkActivity.class);
+                intent.putExtra("link",  "https://www.payertrust.in/faqs");
+                intent.putExtra("title",  "FAQ");
+                getContext().startActivity(intent);
+            }
+        });
+
+        card8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentReportFragment nextFrag= new PaymentReportFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_left_navigation, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        card9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WalletReportFragment nextFrag= new WalletReportFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment_content_left_navigation, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -81,7 +182,7 @@ public class HomeFragment extends Fragment  {
             public void onClick(View v) {
                 RechargeFragment nextFrag= new RechargeFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.home_fragment, nextFrag, "findThisFragment")
+                        .replace(R.id.nav_host_fragment_content_left_navigation, nextFrag, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
                 //Intent intent = new Intent(getActivity(), RechargeFragment.class);
@@ -92,16 +193,6 @@ public class HomeFragment extends Fragment  {
             }
         });
 
-        card8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*HomeFragment homeFragment= new HomeFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.wallet_list_layout, homeFragment ); // give your fragment container id in first parameter
-                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-                transaction.commit();*/
-            }
-        });
         card10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

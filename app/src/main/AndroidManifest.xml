@@ -19,6 +19,9 @@
             android:name=".RechargeConfirmationActivity"
             android:exported="true" />
         <activity
+            android:name=".WebLinkActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.recharge.PaymentLinkActivity"
             android:exported="false" />
         <activity

@@ -191,7 +191,7 @@ android:id="@+id/recharge_confirmation_layout">
                                 android:text="Recharge Amount" />
 
                             <TextView
-                                android:id="@+id/txtTotAmount"
+                                android:id="@+id/txtRechargeAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_column="2"

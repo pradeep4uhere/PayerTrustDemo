@@ -70,7 +70,7 @@ public class PrepaidRecharge extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String mobile = edtMobile.getText().toString().trim();
-                String amount = edtMobile.getText().toString().trim();
+                String amount = edtAmount.getText().toString().trim();
                 if(TextUtils.isEmpty(mobile)){
                    showToast("Please enter mobile number");
                    return;
