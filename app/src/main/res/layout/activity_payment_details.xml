@@ -57,14 +57,15 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/txtNmae"
+                    android:id="@+id/txtAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center_vertical"
-                    android:text="Payment Details"
-                    android:layout_marginBottom="5dp"
+                    android:text="Rs. 5,00,000.00"
+                    android:textColor="#2196F3"
                     android:textSize="24sp" />
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -73,27 +74,17 @@
                     android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="1dp"
-                        android:fontFamily="@font/roboto"
-                        android:gravity="center_vertical"
-                        android:text="Amount:"
-                        android:textSize="14sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginRight="1dp"-->
+<!--                        android:fontFamily="@font/roboto"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:text="Amount:"-->
+<!--                        android:textSize="14sp" />-->
 
-                    <TextView
-                        android:id="@+id/txtAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:gravity="center_vertical"
-                        android:text="Rs. 5,00,000.00"
-                        android:textColor="#2196F3"
-                        android:textSize="14sp" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -101,7 +92,7 @@
                         android:layout_gravity="center"
                         android:gravity="center_vertical"
                         android:fontFamily="@font/roboto"
-                        android:text="Status:"
+                        android:text="Payment Status: "
                         android:textSize="14sp" />
 
                     <TextView
@@ -777,8 +768,6 @@
                             android:layout_column="1"
                             android:layout_weight="1"
                             android:text="Failed Reason" />
-
-
                         <TextView
                             android:id="@+id/failed_reason"
                             android:layout_width="wrap_content"
@@ -793,11 +782,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     </com.google.android.material.divider.MaterialDivider>
-
-
-                </LinearLayout>
+                    </LinearLayout>
+                <include layout="@layout/copyrights_footer" />
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
 </RelativeLayout>
