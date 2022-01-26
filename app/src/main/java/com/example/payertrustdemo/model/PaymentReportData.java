@@ -10,14 +10,14 @@ public class PaymentReportData implements Serializable {
     public String updated_wallet;
     public String email;
     public String payment_date;
-    public int net_amount_credit;
+    public double net_amount_credit;
     public String payment_source;
     public String error_Message;
     public String phone;
     public String payment_ref_key;
     public String status;
     public String txnid;
-    public int amount;
+    public double amount;
     public int payment_mode;
     public double charges;
 }

@@ -132,7 +132,8 @@ public class PaymentReportFragment extends Fragment {
 
             @Override
             public void onFailure(Call<PaymentReportResponse> call, Throwable t) {
-                //showToast("Error, Try again");
+                binding.progressbar.setVisibility(View.GONE);
+                t.printStackTrace();
             }
 
         });

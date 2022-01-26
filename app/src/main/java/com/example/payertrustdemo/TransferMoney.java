@@ -41,7 +41,7 @@ public class TransferMoney extends AppCompatActivity {
     Button transferMoney;
     TextInputEditText edtAmount,edtRemarks;
     TextView edtName,edtBank,edtAccount,edtIfscCode,txtAccountType;
-    TextView txtBalance;
+    TextView txtBalance,txtBenName;
     MyPreferences myPreferences;
     String[] spinnerItems = { "NEFT", "IMPS"};
     private Spinner spinner;
@@ -65,7 +65,9 @@ public class TransferMoney extends AppCompatActivity {
         bankImage = findViewById(R.id.bankimage);
         txtAccountType = findViewById(R.id.txtAccountType);
         txtBalance = findViewById(R.id.txtBalance);
+        txtBenName = findViewById(R.id.txtBenName);
         txtBalance.setText("Rs. "+myPreferences.getString(Constants.walletBalance));
+        txtBenName.setText("BENEFICIARY: " + accountList.beneficiary_name);
         initView();
         ImageView imageView = (ImageView) findViewById(R.id.back_to_contact_details_btn);
         imageView.setOnClickListener(new View.OnClickListener() {
