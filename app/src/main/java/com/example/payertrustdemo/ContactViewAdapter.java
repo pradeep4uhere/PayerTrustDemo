@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.ui.contact.ContactFragment;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,9 +23,11 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
 
     private final List<ContactResponse.Datum> mData;
     Context context;
-    public ContactViewAdapter(List<ContactResponse.Datum> mData, Context context) {
+    ContactFragment contactFragment;
+    public ContactViewAdapter(List<ContactResponse.Datum> mData, Context context,ContactFragment contactFragment) {
         this.mData = mData;
         this.context = context;
+        this.contactFragment = contactFragment;
     }
 
     @Override
@@ -43,6 +47,13 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         holder.person_mobile.setText( mData.get(position).mobileNumber);
         holder.person_email.setText(mData.get(position).emailAddress);
         //holder.person_image.setImageResource(mData.get(position).getThumbnail());
+
+        holder.popMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contactFragment.openBottomSheet(position);
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +83,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         ImageView person_image;
         TextView person_mobile;
         TextView person_email;
+        ImageView popMenu;
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -79,6 +91,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
             person_title = itemView.findViewById(R.id.contact_name_id);
             person_mobile= itemView.findViewById(R.id.contact_number_id);
             person_email = itemView.findViewById(R.id.contact_email_id);
+            popMenu = itemView.findViewById(R.id.popup_menu);
 
         }
     }

@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.payertrustdemo.ContactDetail;
 import com.example.payertrustdemo.ContactViewAdapter;
 import com.example.payertrustdemo.Dashbaord;
 import com.example.payertrustdemo.Login;
@@ -52,11 +53,13 @@ import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -191,7 +194,7 @@ public class ContactFragment extends Fragment  {
         recyclerView =view.findViewById(R.id.recview);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        cadapter = new ContactViewAdapter(lstPerson,getActivity().getApplicationContext());
+        cadapter = new ContactViewAdapter(lstPerson,getActivity().getApplicationContext(),this);
         recyclerView.setAdapter(cadapter);
         return  view;
 
@@ -275,6 +278,31 @@ public class ContactFragment extends Fragment  {
         } else if (isShowing == false) {
             progressDialog.dismiss();
         }
+    }
+
+    public void openBottomSheet(int position){
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext());
+        bottomSheetDialog.setContentView(R.layout.dmt_bottomsheet);
+        Button btnDmt1 = bottomSheetDialog.findViewById(R.id.btnDMT1);
+        btnDmt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), ContactDetail.class);
+                intent.putExtra("contactDetails", (Serializable) lstPerson.get(position));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        Button btnDmt2 = bottomSheetDialog.findViewById(R.id.btnDMT2);
+        btnDmt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        bottomSheetDialog.setCanceledOnTouchOutside(true);
+        bottomSheetDialog.show();
     }
 
 }
