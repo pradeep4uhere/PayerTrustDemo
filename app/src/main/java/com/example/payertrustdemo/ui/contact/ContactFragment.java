@@ -289,6 +289,7 @@ public class ContactFragment extends Fragment  {
             public void onClick(View view) {
                 Intent intent = new Intent(requireContext(), ContactDetail.class);
                 intent.putExtra("contactDetails", (Serializable) lstPerson.get(position));
+                intent.putExtra("accountType","dmt1");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
@@ -298,7 +299,11 @@ public class ContactFragment extends Fragment  {
         btnDmt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(requireContext(), ContactDetail.class);
+                intent.putExtra("contactDetails", (Serializable) lstPerson.get(position));
+                intent.putExtra("accountType","dmt2");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
         bottomSheetDialog.setCanceledOnTouchOutside(true);

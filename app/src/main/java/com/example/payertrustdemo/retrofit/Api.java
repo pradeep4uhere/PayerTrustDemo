@@ -76,9 +76,18 @@ public interface Api {
     @FormUrlEncoded
     Call<AccountListresponse> getAccountList(@Field("contact_id") String contactId, @Field("user_id") String userId);
 
+    @POST("api/v1/accountlistwithcf")
+    @FormUrlEncoded
+    Call<AccountListresponse> getAccountListDmt2(@Field("contact_id") String contactId, @Field("user_id") String userId);
+
     @POST("api/v1/addfundcontact")
     @FormUrlEncoded
     Call<AddFundContactResponse> addFundContact(@Field("user_id") String userId, @Field("payout_contact_id") String contactId,
+                                                @Field("payout_bank_id") String bankid);
+
+    @POST("api/v1/accountvalidationwithcf")
+    @FormUrlEncoded
+    Call<AddFundContactResponse> addFundContactDMT2(@Field("user_id") String userId, @Field("payout_contact_id") String contactId,
                                                 @Field("payout_bank_id") String bankid);
 
     @POST("api/v1/addfundaccount")

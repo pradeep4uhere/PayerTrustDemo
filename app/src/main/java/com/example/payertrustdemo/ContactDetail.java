@@ -58,11 +58,13 @@ public class ContactDetail extends AppCompatActivity {
     AccountListresponse accountListresponse;
     MyPreferences myPreferences;
     ContactResponse.Datum contactDetails;
+    String accountType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_detail);
         contactDetails = (ContactResponse.Datum) getIntent().getSerializableExtra("contactDetails");
+        accountType = getIntent().getStringExtra("accountType");
         txtContactName = findViewById(R.id.contact_name_id);
         getTxtContactNo = findViewById(R.id.contact_number_id);
         getTxtContactEmail = findViewById(R.id.contact_email_id);
@@ -115,15 +117,47 @@ public class ContactDetail extends AppCompatActivity {
         });
 
         //call api
-        getAccountList();
+        if(accountType.equalsIgnoreCase("dmt1")) {
+            getAccountListDMT1();
+        } else{
+            getAccountListDMT2();
+        }
 
     }
 
-    public void getAccountList() {
+    public void getAccountListDMT1() {
         showPopupProgressSpinner(true,this);
         String userId = myPreferences.getString(Constants.userId);
         String contactId = String.valueOf(contactDetails.id);
         Call<AccountListresponse> call = RetrofitClient.getInstance().getMyApi().getAccountList(contactId,userId);
+        call.enqueue(new Callback<AccountListresponse>() {
+            @Override
+            public void onResponse(Call<AccountListresponse> call, Response<AccountListresponse> response) {
+                accountListresponse = response.body();
+                showPopupProgressSpinner(false,ContactDetail.this);
+                if(accountListresponse!= null){
+                    if(accountListresponse.status){
+                        accountLists.clear();
+                        accountLists.addAll(accountListresponse.data.accountList);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AccountListresponse> call, Throwable t) {
+                showPopupProgressSpinner(false,ContactDetail.this);
+                showToast(t.getMessage());
+            }
+
+        });
+    }
+
+    public void getAccountListDMT2() {
+        showPopupProgressSpinner(true,this);
+        String userId = myPreferences.getString(Constants.userId);
+        String contactId = String.valueOf(contactDetails.id);
+        Call<AccountListresponse> call = RetrofitClient.getInstance().getMyApi().getAccountListDmt2(contactId,userId);
         call.enqueue(new Callback<AccountListresponse>() {
             @Override
             public void onResponse(Call<AccountListresponse> call, Response<AccountListresponse> response) {
@@ -190,7 +224,13 @@ public class ContactDetail extends AppCompatActivity {
         showPopupProgressSpinner(true,this);
         String contactId = String.valueOf(contactDetails.id);
         String userId = myPreferences.getString(Constants.userId);
-        Call<AddFundContactResponse> call = RetrofitClient.getInstance().getMyApi().addFundContact(userId,contactId,"1");
+        Call<AddFundContactResponse> call;
+        if(accountType.equalsIgnoreCase("dmt1")) {
+            call = RetrofitClient.getInstance().getMyApi().addFundContact(userId,contactId,"1");
+        } else{
+            call = RetrofitClient.getInstance().getMyApi().addFundContactDMT2(userId,contactId,"1");
+        }
+
         call.enqueue(new Callback<AddFundContactResponse>() {
             @Override
             public void onResponse(Call<AddFundContactResponse> call, Response<AddFundContactResponse> response) {
@@ -228,7 +268,11 @@ public class ContactDetail extends AppCompatActivity {
                 if(addAccountResponse!= null){
                     if(addAccountResponse.status){
                         showToast(addAccountResponse.message);
-                        getAccountList();
+                        if(accountType.equalsIgnoreCase("dmt1")) {
+                            getAccountListDMT1();
+                        } else{
+                            getAccountListDMT2();
+                        }
                     }
                     else{
                         showToast(addAccountResponse.message);
