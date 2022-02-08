@@ -37,12 +37,14 @@ public class FundTransferConfirmation extends AppCompatActivity {
     AccountListresponse.AccountList accountList;
     String amount,remarks,paymentMode;
     int charge = 15;
+    String accountType;// for dmt1 and dmt2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fund_transfer_confirmation);
         myPreferences = new MyPreferences(this);
         accountList = (AccountListresponse.AccountList) getIntent().getSerializableExtra("accountList");
+        accountType = getIntent().getStringExtra("accountType");
         amount = getIntent().getStringExtra("amount");
         remarks = getIntent().getStringExtra("remarks");
         paymentMode = getIntent().getStringExtra("paymentMode");
@@ -100,7 +102,14 @@ public class FundTransferConfirmation extends AppCompatActivity {
         showPopupProgressSpinner(true,this);
         String userId = myPreferences.getString(Constants.userId);
         String payoutBankUserContactApiId = String.valueOf(accountList.payout_bank_account_api.id);
-        String payoutBankId = "1";
+            String payoutBankId = "1";
+            if(accountType.equalsIgnoreCase("dmt1")) {
+                payoutBankId = "1";
+            }
+            else {
+                payoutBankId = "2";
+            }
+
         String fundApiId = String.valueOf(accountList.payout_bank_account_api.fund_api_id);
         String contactId = String.valueOf(accountList.payout_bank_account_api.contact_id);
         String accNo = String.valueOf(accountList.account_number);

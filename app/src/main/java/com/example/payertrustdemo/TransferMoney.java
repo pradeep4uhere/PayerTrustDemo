@@ -47,6 +47,7 @@ public class TransferMoney extends AppCompatActivity {
     private Spinner spinner;
     String selectedSpinnerValue;
     ImageView bankImage;
+    String accountType;// for dmt1 and dmt2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class TransferMoney extends AppCompatActivity {
         setContentView(R.layout.activity_transfer_money);
         myPreferences = new MyPreferences(this);
         accountList = (AccountListresponse.AccountList) getIntent().getSerializableExtra("accountList");
+        accountType = getIntent().getStringExtra("accountType");
 
         spinner = findViewById(R.id.spinner);
         edtName = findViewById(R.id.benifeciery_name);
@@ -103,6 +105,7 @@ public class TransferMoney extends AppCompatActivity {
                     intent.putExtra("amount",amount);
                     intent.putExtra("remarks",remarks);
                     intent.putExtra("paymentMode",selectedSpinnerValue);
+                    intent.putExtra("accountType",accountType);
                     startActivity(intent);
                 }
 

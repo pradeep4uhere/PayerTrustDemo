@@ -70,10 +70,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
                    contactDetail.addFundContactDMT1AndDMT2(String.valueOf(accountList.get(position).id));
                }
                else {
-                   Intent intent = new Intent(context, TransferMoney.class);
-                   intent.putExtra("accountList", (Serializable) accountList.get(position));
-                   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                   context.startActivity(intent);
+                   contactDetail.transferMoney(accountList.get(position));
                }
 
             }
