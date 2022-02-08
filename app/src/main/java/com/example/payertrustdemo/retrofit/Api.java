@@ -2,6 +2,7 @@ package com.example.payertrustdemo.retrofit;
 
 import com.example.payertrustdemo.PaymentDetailsActivity;
 import com.example.payertrustdemo.model.AccountListresponse;
+import com.example.payertrustdemo.model.AccountValidationDMT2;
 import com.example.payertrustdemo.model.AddAccountResponse;
 import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
@@ -87,8 +88,8 @@ public interface Api {
 
     @POST("api/v1/accountvalidationwithcf")
     @FormUrlEncoded
-    Call<AddFundContactResponse> addFundContactDMT2(@Field("user_id") String userId, @Field("payout_contact_id") String contactId,
-                                                @Field("payout_bank_id") String bankid);
+    Call<AccountValidationDMT2> addFundContactDMT2(@Field("user_id") String userId, @Field("payout_contact_id") String contactId,
+                                                   @Field("payout_bank_id") String bankid);
 
     @POST("api/v1/addfundaccount")
     @FormUrlEncoded

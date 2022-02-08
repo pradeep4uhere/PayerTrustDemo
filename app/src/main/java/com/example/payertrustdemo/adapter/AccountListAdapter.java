@@ -67,7 +67,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             @Override
             public void onClick(View v) {
                if( holder.transferMoney.getText().toString().equalsIgnoreCase("Validate")){
-                   contactDetail.addFundContact(String.valueOf(accountList.get(position).id));
+                   contactDetail.addFundContactDMT1AndDMT2(String.valueOf(accountList.get(position).id));
                }
                else {
                    Intent intent = new Intent(context, TransferMoney.class);

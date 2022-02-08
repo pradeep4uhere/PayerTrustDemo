@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.payertrustdemo.adapter.AccountListAdapter;
 import com.example.payertrustdemo.model.AccountListresponse;
+import com.example.payertrustdemo.model.AccountValidationDMT2;
 import com.example.payertrustdemo.model.AddFundAccountResponse;
 import com.example.payertrustdemo.model.AddFundContactResponse;
 import com.example.payertrustdemo.model.ContactResponse;
@@ -220,16 +221,19 @@ public class ContactDetail extends AppCompatActivity {
         }
     }
 
+    public void addFundContactDMT1AndDMT2(String accountId){
+        if(accountType.equalsIgnoreCase("dmt1")) {
+            addFundContact(accountId);
+        } else{
+            addFundContactDMT2(accountId);
+        }
+    }
+
     public void addFundContact(String accountId) {
         showPopupProgressSpinner(true,this);
         String contactId = String.valueOf(contactDetails.id);
         String userId = myPreferences.getString(Constants.userId);
-        Call<AddFundContactResponse> call;
-        if(accountType.equalsIgnoreCase("dmt1")) {
-            call = RetrofitClient.getInstance().getMyApi().addFundContact(userId,contactId,"1");
-        } else{
-            call = RetrofitClient.getInstance().getMyApi().addFundContactDMT2(userId,contactId,"1");
-        }
+        Call<AddFundContactResponse> call = RetrofitClient.getInstance().getMyApi().addFundContact(userId,contactId,"1");
 
         call.enqueue(new Callback<AddFundContactResponse>() {
             @Override
@@ -249,6 +253,38 @@ public class ContactDetail extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AddFundContactResponse> call, Throwable t) {
+                showToast("An error has occured");
+                showPopupProgressSpinner(false,ContactDetail.this);
+            }
+
+        });
+    }
+
+
+    public void addFundContactDMT2(String accountId) {
+        showPopupProgressSpinner(true,this);
+        String contactId = String.valueOf(contactDetails.id);
+        String userId = myPreferences.getString(Constants.userId);
+        Call<AccountValidationDMT2> call = RetrofitClient.getInstance().getMyApi().addFundContactDMT2(userId,contactId,accountId);
+
+        call.enqueue(new Callback<AccountValidationDMT2>() {
+            @Override
+            public void onResponse(Call<AccountValidationDMT2> call, Response<AccountValidationDMT2> response) {
+                AccountValidationDMT2 addFundContactResponse = response.body();
+                showPopupProgressSpinner(false,ContactDetail.this);
+                if(addFundContactResponse!= null){
+                    if(addFundContactResponse.status){
+                        getAccountListDMT2();
+                        showToast(addFundContactResponse.message);
+                    }
+                    else{
+                        showToast(addFundContactResponse.message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AccountValidationDMT2> call, Throwable t) {
                 showToast("An error has occured");
                 showPopupProgressSpinner(false,ContactDetail.this);
             }
