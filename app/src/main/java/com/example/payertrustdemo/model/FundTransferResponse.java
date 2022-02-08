@@ -40,5 +40,4 @@ public class FundTransferResponse implements Serializable {
         @SerializedName("Bank")
         public Bank bank;
     }
-
 }

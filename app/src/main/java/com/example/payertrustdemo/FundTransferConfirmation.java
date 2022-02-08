@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -19,30 +20,40 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.payertrustdemo.model.AccountListresponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
+import com.example.payertrustdemo.model.FundTransferResponseDMT2;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FundTransferConfirmation extends AppCompatActivity {
 
-    TextView txtBankName,txtAccount,txtIfsc,txtAccountType,txtName;
-    TextView txtAmount,txtCharge,txtTotAmount;
+    TextView txtBankName, txtAccount, txtIfsc, txtAccountType, txtName;
+    TextView txtAmount, txtCharge, txtTotAmount;
     ImageView bankImage;
     MyPreferences myPreferences;
     AccountListresponse.AccountList accountList;
-    String amount,remarks,paymentMode;
+    String amount, remarks, paymentMode;
     int charge = 15;
+    String accountType;// for dmt1 and dmt2
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fund_transfer_confirmation);
         myPreferences = new MyPreferences(this);
         accountList = (AccountListresponse.AccountList) getIntent().getSerializableExtra("accountList");
+        accountType = getIntent().getStringExtra("accountType");
         amount = getIntent().getStringExtra("amount");
         remarks = getIntent().getStringExtra("remarks");
         paymentMode = getIntent().getStringExtra("paymentMode");
@@ -60,11 +71,17 @@ public class FundTransferConfirmation extends AppCompatActivity {
         //initializeView
         initView();
 
-        Button button = (Button)findViewById(R.id.money_transfer_submit_btn);
+        Button button = (Button) findViewById(R.id.money_transfer_submit_btn);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fundTransfer();
+                Log.d("Gdshoifsdf", "onClick: "+accountType);
+                if (accountType.equalsIgnoreCase("dmt1")) {
+                    fundTransfer();
+                } else {
+                    fundTransferByDmtTwo();
+                }
             }
         });
 
@@ -78,49 +95,96 @@ public class FundTransferConfirmation extends AppCompatActivity {
         });
     }
 
-    public void initView(){
+    private void fundTransferByDmtTwo() {
+        showPopupProgressSpinner(true, this);
+        String userId = myPreferences.getString(Constants.userId);
+        String payoutBankUserContactApiId = String.valueOf(accountList.payout_bank_account_api.id);
+        String fundApiId = String.valueOf(accountList.payout_bank_account_api.fund_api_id);
+        String contactId = String.valueOf(accountList.payout_bank_account_api.contact_id);
+        String accNo = String.valueOf(accountList.account_number);
+        String ifsc = String.valueOf(accountList.ifsc_code);
+        Call<ResponseBody> call = RetrofitClient.getInstance().getMyApi().transferMoneyDmt2(userId, payoutBankUserContactApiId, "2"
+                , fundApiId, contactId, accNo, ifsc, String.valueOf(amount), remarks, paymentMode);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        String s = null;
+                        assert response.body() != null;
+                        s = response.body().string();
+                        JSONObject jsonObject = new JSONObject(s);
+                        Log.d("TransferByDMT2", "onResponse: " + jsonObject);
+                        if (jsonObject.getBoolean("status")) {
+                            showToast(jsonObject.getString("message"));
+                            JSONObject jsonDataSet = jsonObject.getJSONObject("dataSet");
+                            FundTransferResponseDMT2 responseData = new Gson().fromJson(jsonDataSet.toString()
+                                    , FundTransferResponseDMT2.class);
+                            MoneyTransferSuccessForDMTTwo.getFundTransferResponse=responseData;
+                            Intent intent = new Intent(FundTransferConfirmation.this, MoneyTransferSuccessForDMTTwo.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            showToast(jsonObject.getString("message"));
+                        }
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                        Log.d("TransferByDMT2", "onResponse: " + e.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_SHORT).show();
+                Log.d("TransferByDMT2", "onFailure: " + t.getMessage());
+                showPopupProgressSpinner(false, FundTransferConfirmation.this);
+            }
+        });
+    }
+
+
+    public void initView() {
         txtName.setText(accountList.beneficiary_name);
         txtBankName.setText(accountList.bankName);
         txtIfsc.setText(accountList.ifsc_code);
-        if(accountList.account_type==1){
+        if (accountList.account_type == 1) {
             txtAccountType.setText("Saving");
-        }
-        else{
+        } else {
             txtAccountType.setText("Credit");
         }
-        txtAmount.setText("Rs. "+ amount);
-        txtCharge.setText("Rs. "+charge );
-        txtTotAmount.setText("Rs. "+ (Double.valueOf(amount) + charge));
+        txtAmount.setText("Rs. " + amount);
+        txtCharge.setText("Rs. " + charge);
+        txtTotAmount.setText("Rs. " + (Double.valueOf(amount) + charge));
         Glide.with(FundTransferConfirmation.this)
                 .load(accountList.bankIcon)
                 .into(bankImage);
     }
 
-        private void fundTransfer() {
-        showPopupProgressSpinner(true,this);
+    private void fundTransfer() {
+        showPopupProgressSpinner(true, this);
         String userId = myPreferences.getString(Constants.userId);
         String payoutBankUserContactApiId = String.valueOf(accountList.payout_bank_account_api.id);
-        String payoutBankId = "1";
         String fundApiId = String.valueOf(accountList.payout_bank_account_api.fund_api_id);
         String contactId = String.valueOf(accountList.payout_bank_account_api.contact_id);
         String accNo = String.valueOf(accountList.account_number);
         String ifsc = String.valueOf(accountList.ifsc_code);
-        Call<FundTransferResponse> call = RetrofitClient.getInstance().getMyApi().transferMoney(userId,payoutBankUserContactApiId,payoutBankId,fundApiId,contactId,accNo,ifsc,String.valueOf(amount),remarks,paymentMode);
+        Call<FundTransferResponse> call = RetrofitClient.getInstance().getMyApi().transferMoney(userId, payoutBankUserContactApiId, "1", fundApiId, contactId, accNo, ifsc, String.valueOf(amount), remarks, paymentMode);
         call.enqueue(new Callback<FundTransferResponse>() {
             @Override
             public void onResponse(Call<FundTransferResponse> call, Response<FundTransferResponse> response) {
                 FundTransferResponse fundTransferResponse = response.body();
-                showPopupProgressSpinner(false,FundTransferConfirmation.this);
-                if(fundTransferResponse!= null){
-                    if(fundTransferResponse.status){
+                showPopupProgressSpinner(false, FundTransferConfirmation.this);
+                if (fundTransferResponse != null) {
+                    if (fundTransferResponse.status) {
                         showToast(fundTransferResponse.message);
                         Intent intent = new Intent(FundTransferConfirmation.this, MoneyTransferSuccess.class);
                         intent.putExtra("transferResponse", fundTransferResponse);
                         intent.putExtra("bankName", accountList.bankName);
                         startActivity(intent);
                         finish();
-                    }
-                    else{
+                    } else {
                         showToast(fundTransferResponse.message);
                     }
                 }
@@ -129,7 +193,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
             @Override
             public void onFailure(Call<FundTransferResponse> call, Throwable t) {
                 showToast("An error has occured");
-                showPopupProgressSpinner(false,FundTransferConfirmation.this);
+                showPopupProgressSpinner(false, FundTransferConfirmation.this);
             }
 
         });
@@ -156,8 +220,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
         }
     }
 
-    private void showToast(String message)
-    {
+    private void showToast(String message) {
         Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

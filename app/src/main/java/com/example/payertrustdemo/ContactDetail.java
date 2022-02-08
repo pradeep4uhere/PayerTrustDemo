@@ -229,6 +229,19 @@ public class ContactDetail extends AppCompatActivity {
         }
     }
 
+    public void transferMoney(AccountListresponse.AccountList accountList){
+        String accountType = "";
+        if(accountType.equalsIgnoreCase("dmt1")) {
+            accountType = "dmt1";
+        }
+        else {accountType = "dmt2";}
+        Intent intent = new Intent(this, TransferMoney.class);
+        intent.putExtra("accountList", (Serializable) accountList);
+        intent.putExtra("accountType",accountType);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     public void addFundContact(String accountId) {
         showPopupProgressSpinner(true,this);
         String contactId = String.valueOf(contactDetails.id);
