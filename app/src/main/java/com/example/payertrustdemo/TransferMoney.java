@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -47,6 +48,7 @@ public class TransferMoney extends AppCompatActivity {
     private Spinner spinner;
     String selectedSpinnerValue;
     ImageView bankImage;
+    String accountType;// for dmt1 and dmt2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,8 @@ public class TransferMoney extends AppCompatActivity {
         setContentView(R.layout.activity_transfer_money);
         myPreferences = new MyPreferences(this);
         accountList = (AccountListresponse.AccountList) getIntent().getSerializableExtra("accountList");
-
+        accountType = getIntent().getStringExtra("accountType");
+        Log.d("HJuisdfsf", "Transfer money: "+accountType);
         spinner = findViewById(R.id.spinner);
         edtName = findViewById(R.id.benifeciery_name);
         edtBank = findViewById(R.id.edtBankName);
@@ -103,6 +106,7 @@ public class TransferMoney extends AppCompatActivity {
                     intent.putExtra("amount",amount);
                     intent.putExtra("remarks",remarks);
                     intent.putExtra("paymentMode",selectedSpinnerValue);
+                    intent.putExtra("accountType",accountType);
                     startActivity(intent);
                 }
 

@@ -15,6 +15,7 @@ import com.example.payertrustdemo.model.ContactResponse;
 import com.example.payertrustdemo.model.CreateContactResponse;
 import com.example.payertrustdemo.model.FcmTokenResponse;
 import com.example.payertrustdemo.model.FundTransferResponse;
+import com.example.payertrustdemo.model.FundTransferResponseDMT2;
 import com.example.payertrustdemo.model.GetAgentNameResponse;
 import com.example.payertrustdemo.model.GetNameResponse;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
@@ -32,6 +33,7 @@ import com.example.payertrustdemo.model.StateListResponse;
 import com.example.payertrustdemo.model.WalletReportResponse;
 import com.example.payertrustdemo.model.WalletTransferResponse;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -41,7 +43,7 @@ public interface Api {
 
     String BASE_URL = "https://api.payertrust.in/public/index.php/";
 
-//    @Headers({"Content-Type: application/json",
+    //    @Headers({"Content-Type: application/json",
 //            "Authorization: Basic cnpwX2xpdmVfbGhEamtOdzBNNHE1MHU6bXk4Z0kxS3RiNjltV2RaMU1JZkZuMUFK"})
     @POST("api/v1/login")
     @FormUrlEncoded
@@ -113,14 +115,31 @@ public interface Api {
                                              @Field("amount") String amount,
                                              @Field("remarks") String remarks,
                                              @Field("payment_mode") String paymentMode);
+
+    //DMT- 2 Type . . .
+    @POST("api/v1/fundtransferwithcf")
+    @FormUrlEncoded
+    Call<ResponseBody> transferMoneyDmt2(
+            @Field("user_id") String userId,
+            @Field("payout_bank_user_contact_api_id") String payoutBankUserContactApiId,
+            @Field("payout_bank_id") String payoutBankId,
+            @Field("fund_api_id") String fundApiId,
+            @Field("contact_id") String contactId,
+            @Field("account_number") String accountNo,
+            @Field("ifsc_code") String ifscCode,
+            @Field("amount") String amount,
+            @Field("remarks") String remarks,
+            @Field("payment_mode") String paymentMode);
+
     @POST("api/v1/walletreport")
     @FormUrlEncoded
     Call<WalletReportResponse> walletReport(@Field("user_id") String userId,
                                             @Field("offset") String offset);
+
     @POST("api/v1/paymentreport")
     @FormUrlEncoded
     Call<PaymentReportResponse> paymentReport(@Field("user_id") String userId,
-                                             @Field("offset") String offset,
+                                              @Field("offset") String offset,
                                               @Field("from_date") String fromDate,
                                               @Field("to_date") String toDate);
 
@@ -191,11 +210,11 @@ public interface Api {
 
     @POST("api/v1/otpverification")
     @FormUrlEncoded
-    Call<LoginOtpResponse> verifyOtp(@Field("user_id") String userId,@Field("otp") String otp);
+    Call<LoginOtpResponse> verifyOtp(@Field("user_id") String userId, @Field("otp") String otp);
 
     @POST("api/v1/contactus")
     @FormUrlEncoded
-    Call<HelpResponse> contactUs(@Field("user_id") String userId,@Field("message") String message,@Field("image_name") String image_name);
+    Call<HelpResponse> contactUs(@Field("user_id") String userId, @Field("message") String message, @Field("image_name") String image_name);
 
     @POST("api/v1/getservicelist")
     Call<AllOperatorResponse> getAllOperator();
@@ -210,9 +229,9 @@ public interface Api {
     @POST("api/v1/ptmrfwrecharge")
     @FormUrlEncoded
     Call<LoginOtpResponse> paytmRecharge(@Field("lastidEncyptStr") String lastidEncyptStr,
-                                                @Field("mobile") String mobile,
-                                                @Field("request_amount") String amount,
-                                                @Field("user_id") String userid);
+                                         @Field("mobile") String mobile,
+                                         @Field("request_amount") String amount,
+                                         @Field("user_id") String userid);
 
     @POST("api/v1/savetoken")
     @FormUrlEncoded
