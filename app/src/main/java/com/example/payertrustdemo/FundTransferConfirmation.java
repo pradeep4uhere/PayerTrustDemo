@@ -57,7 +57,6 @@ public class FundTransferConfirmation extends AppCompatActivity {
         amount = getIntent().getStringExtra("amount");
         remarks = getIntent().getStringExtra("remarks");
         paymentMode = getIntent().getStringExtra("paymentMode");
-        Log.d("HJuisdfsf", "Confirm: "+accountType);
         txtBankName = findViewById(R.id.txtBankName);
         txtAccount = findViewById(R.id.txtAccountNo);
         txtIfsc = findViewById(R.id.txtIFSC);
@@ -76,7 +75,6 @@ public class FundTransferConfirmation extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Gdshoifsdf", "onClick: "+accountType);
                 if (accountType.equalsIgnoreCase("dmt1")) {
                     fundTransfer();
                 } else {
@@ -120,17 +118,15 @@ public class FundTransferConfirmation extends AppCompatActivity {
                             JSONObject jsonDataSet = jsonObject.getJSONObject("dataSet");
                             FundTransferResponseDMT2 responseData = new Gson().fromJson(jsonDataSet.toString()
                                     , FundTransferResponseDMT2.class);
-                            MoneyTransferSuccessForDMTTwo.getFundTransferResponse=responseData;
+                            MoneyTransferSuccessForDMTTwo.getFundTransferResponse = responseData;
                             Intent intent = new Intent(FundTransferConfirmation.this, MoneyTransferSuccessForDMTTwo.class);
                             startActivity(intent);
                             finish();
-                        }
-                        else {
+                        } else {
                             showToast(jsonObject.getString("message"));
                         }
                     } catch (IOException | JSONException e) {
                         e.printStackTrace();
-                        Log.d("TransferByDMT2", "onResponse: " + e.getMessage());
                     }
                 }
             }

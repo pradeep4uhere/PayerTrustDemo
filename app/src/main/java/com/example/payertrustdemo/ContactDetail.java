@@ -66,7 +66,7 @@ public class ContactDetail extends AppCompatActivity {
         setContentView(R.layout.activity_contact_detail);
         contactDetails = (ContactResponse.Datum) getIntent().getSerializableExtra("contactDetails");
         accountType = getIntent().getStringExtra("accountType");
-        Log.d("HJuisdfsf", "Contact Detail: "+accountType);
+        Log.d("GetAccountType", "Contact Details: "+accountType);
         txtContactName = findViewById(R.id.contact_name_id);
         getTxtContactNo = findViewById(R.id.contact_number_id);
         getTxtContactEmail = findViewById(R.id.contact_email_id);
@@ -231,11 +231,13 @@ public class ContactDetail extends AppCompatActivity {
     }
 
     public void transferMoney(AccountListresponse.AccountList accountList){
-        String accountType = "";
         if(accountType.equalsIgnoreCase("dmt1")) {
             accountType = "dmt1";
         }
-        else {accountType = "dmt2";}
+        else {
+            accountType = "dmt2";
+        }
+        Log.d("GetAccountType", "AdapterTransferMoney: "+accountType);
         Intent intent = new Intent(this, TransferMoney.class);
         intent.putExtra("accountList", (Serializable) accountList);
         intent.putExtra("accountType",accountType);

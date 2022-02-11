@@ -57,7 +57,7 @@ public class TransferMoney extends AppCompatActivity {
         myPreferences = new MyPreferences(this);
         accountList = (AccountListresponse.AccountList) getIntent().getSerializableExtra("accountList");
         accountType = getIntent().getStringExtra("accountType");
-        Log.d("HJuisdfsf", "Transfer money: "+accountType);
+        Log.d("GetAccountType", "Transfer Money: "+accountType);
         spinner = findViewById(R.id.spinner);
         edtName = findViewById(R.id.benifeciery_name);
         edtBank = findViewById(R.id.edtBankName);
