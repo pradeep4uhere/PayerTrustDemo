@@ -79,7 +79,6 @@ public class MoneyTransferSuccessForDMTTwo extends AppCompatActivity {
         txtIfsc.setText("IFSC Code "+getFundTransferResponse.bank.ifsc_code);
         txtPaymentMode.setText(getFundTransferResponse.mode);
         txtAmount.setText("Rs. "+getFundTransferResponse.amount);
-        Log.d("GetStatusType", "BNy DMT 2: "+getFundTransferResponse.status);
         if (getFundTransferResponse.status.equalsIgnoreCase("SUCCESS")){
             txtPaymentStatus.setTextColor(Color.GREEN);
         }
@@ -99,7 +98,6 @@ public class MoneyTransferSuccessForDMTTwo extends AppCompatActivity {
                 showPopupProgressSpinner(false,MoneyTransferSuccessForDMTTwo.this);
                 if(checkPayoutResponse!= null){
                     if(checkPayoutResponse.status){
-                        Log.d("GetStatusType", "Refresh DMT 2: "+checkPayoutResponse.message);
                         if (checkPayoutResponse.message.equalsIgnoreCase("SUCCESS")){
                             txtPaymentStatus.setTextColor(Color.GREEN);
                         }

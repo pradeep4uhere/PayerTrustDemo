@@ -101,7 +101,8 @@ public class FundTransferConfirmation extends AppCompatActivity {
         String accNo = String.valueOf(accountList.account_number);
         String ifsc = String.valueOf(accountList.ifsc_code);
         Call<ResponseBody> call = RetrofitClient.getInstance().getMyApi().transferMoneyDmt2(userId, payoutBankUserContactApiId, "2"
-                , fundApiId, contactId, accNo, ifsc, String.valueOf(amount), remarks, paymentMode);
+                , fundApiId, contactId, accNo, ifsc,amount, remarks, paymentMode);
+        Log.d("GetAmtWhich", "fundTransferByDmtTwo: "+amount);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
