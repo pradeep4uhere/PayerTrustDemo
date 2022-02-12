@@ -1,5 +1,4 @@
 package com.example.payertrustdemo;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,8 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
-import android.util.Xml;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,22 +13,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.payertrustdemo.model.FcmTokenResponse;
-import com.example.payertrustdemo.model.LoginRequest;
 import com.example.payertrustdemo.model.LoginResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -43,6 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;

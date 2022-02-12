@@ -30,7 +30,6 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
-import com.example.payertrustdemo.ui.contact.ContactFragment;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.navigation.NavigationView;
