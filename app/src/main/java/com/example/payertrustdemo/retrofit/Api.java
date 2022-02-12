@@ -247,4 +247,15 @@ public interface Api {
 //    @FormUrlEncoded
 //    @POST("/api/users?")
 //    Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);
+
+    //Request Money API . . . - api/v1/paymentrequest
+    @POST("api/v1/paymentrequest")
+    @FormUrlEncoded
+    Call<ResponseBody> requestMoney(
+            @Field("user_id") String userId,
+            @Field("amount") String amount,
+            @Field("reason") String reason,
+            @Field("txn_id") String txn_id,
+            @Field("image") String image
+    );
 }

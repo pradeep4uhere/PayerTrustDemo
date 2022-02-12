@@ -225,6 +225,7 @@
                                     android:fontFamily="@font/roboto_medium"
                                     android:text="Processing"
                                     android:textColor="#ff0000"
+                                    android:textStyle="bold"
                                     android:textSize="12dp" />
                             </LinearLayout>
 

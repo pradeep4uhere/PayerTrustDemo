@@ -66,7 +66,6 @@ public class FundTransferConfirmation extends AppCompatActivity {
         txtCharge = findViewById(R.id.txtCharge);
         txtTotAmount = findViewById(R.id.txtTotAmount);
         bankImage = findViewById(R.id.bankimage);
-
         //initializeView
         initView();
 
@@ -107,6 +106,7 @@ public class FundTransferConfirmation extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    showPopupProgressSpinner(false, FundTransferConfirmation.this);
                     try {
                         String s = null;
                         assert response.body() != null;

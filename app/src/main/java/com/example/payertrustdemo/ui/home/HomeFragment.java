@@ -1,7 +1,13 @@
 package com.example.payertrustdemo.ui.home;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +20,14 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.payertrustdemo.FundTransferConfirmation;
 import com.example.payertrustdemo.HelpActivity;
+import com.example.payertrustdemo.MoneyTransferSuccessForDMTTwo;
 import com.example.payertrustdemo.PrepaidRecharge;
 import com.example.payertrustdemo.R;
 import com.example.payertrustdemo.WebLinkActivity;
 import com.example.payertrustdemo.databinding.FragmentHomeBinding;
+import com.example.payertrustdemo.model.FundTransferResponseDMT2;
 import com.example.payertrustdemo.model.GetUserUpdateResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.ui.contact.ContactFragment;
@@ -27,9 +36,18 @@ import com.example.payertrustdemo.ui.recharge.PaymentLinkActivity;
 import com.example.payertrustdemo.ui.recharge.RechargeFragment;
 import com.example.payertrustdemo.ui.wallet.WalletReportFragment;
 import com.example.payertrustdemo.util.Constants;
+import com.example.payertrustdemo.util.ImageUtil;
 import com.example.payertrustdemo.util.MyPreferences;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,6 +60,7 @@ public class HomeFragment extends Fragment  {
     MyPreferences myPreferences;
     CardView cardView, card1, card2, card3, card4, card5, card6, card7, card8, card9,card10,card11,card12;
     TextView txtBalance,txtName, textBtn, textBtneqquest;
+    String imageUrlOfDocumentReq;
     public  HomeFragment(){
 
     }
@@ -172,17 +191,75 @@ public class HomeFragment extends Fragment  {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());
                 bottomSheetDialog.setContentView(R.layout.bottom_request_money);
                 Button btnSubmit = bottomSheetDialog.findViewById(R.id.btnSubmit);
+                Button uploadDocumentBtn = bottomSheetDialog.findViewById(R.id.pofile_img_upload_btn2);
+                TextInputEditText enterAmount=bottomSheetDialog.findViewById(R.id.edtName);
+                TextInputEditText enterRemarks=bottomSheetDialog.findViewById(R.id.message);
+                TextInputEditText enterTransactionId=bottomSheetDialog.findViewById(R.id.enterTransactionId);
+                uploadDocumentBtn.setOnClickListener(view1 -> {
+                    Intent i = new Intent();
+                    i.setType("image/*");
+                    i.setAction(Intent.ACTION_GET_CONTENT);
+                    // pass the constant to compare it
+                    // with the returned requestCode
+                    startActivityForResult(Intent.createChooser(i, "Select Picture"), 21);
+                });
                 btnSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Log.d("GetImageUrl", "onClick: "+imageUrlOfDocumentReq);
+                        if (enterAmount.getText().toString().isEmpty()){
+                            enterAmount.setError("Please Enter Amount !");
+                            enterAmount.requestFocus();
+                            return;
+                        }
+                        if (enterRemarks.getText().toString().isEmpty()){
+                            enterRemarks.setError("Please Enter Amount !");
+                            enterRemarks.requestFocus();
+                            return;
+                        }
+                        if (enterTransactionId.getText().toString().isEmpty()){
+                            enterTransactionId.setError("Please Enter Amount !");
+                            enterTransactionId.requestFocus();
+                            return;
+                        }
+                        Call<ResponseBody> call = RetrofitClient.getInstance().getMyApi().requestMoney(myPreferences.getString(Constants.userId)
+                                ,enterAmount.getText().toString().trim(),enterRemarks.getText().toString().trim(),
+                                enterTransactionId.getText().toString().trim(),imageUrlOfDocumentReq);
+                        call.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()) {
+                                    bottomSheetDialog.dismiss();
+                                    try {
+                                        String s = null;
+                                        assert response.body() != null;
+                                        s = response.body().string();
+                                        JSONObject jsonObject = new JSONObject(s);
+                                        Log.d("RequestMoney", "onResponse: " + jsonObject);
+                                        if (jsonObject.getBoolean("success")) {
+                                            Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
 
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(getContext(), "An error has occured", Toast.LENGTH_SHORT).show();
+                                Log.d("TransferByDMT2", "onFailure: " + t.getMessage());
+                            }
+                        });
                     }
                 });
                 bottomSheetDialog.setCanceledOnTouchOutside(true);
                 bottomSheetDialog.show();
-
             }
         });
+
 
         textBtn = (TextView) view.findViewById(R.id.add_moneny_btn);
         textBtn.setOnClickListener(new View.OnClickListener() {
@@ -218,6 +295,29 @@ public class HomeFragment extends Fragment  {
             }
         });
         return view;
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
+            if (requestCode == 21) {
+                // Get the url of the image from data
+                Uri selectedImageUri = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImageUri);
+                    imageUrlOfDocumentReq = ImageUtil.convert(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (null != selectedImageUri) {
+                    // update the preview image in the layout
+
+                }
+            }
+        }
     }
 
 

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -85,6 +86,10 @@ public class MoneyTransferSuccess extends AppCompatActivity {
         txtIfsc.setText("IFSC Code "+fundTransferResponse.dataSet.bank.ifsc_code);
         txtPaymentMode.setText(fundTransferResponse.dataSet.mode);
         txtAmount.setText("Rs. "+fundTransferResponse.dataSet.amount);
+        Log.d("GetStatusType", "By DMT1: "+fundTransferResponse.dataSet.status);
+        if (fundTransferResponse.dataSet.status.equalsIgnoreCase("SUCCESS")){
+            txtPaymentStatus.setTextColor(Color.GREEN);
+        }
         txtPaymentStatus.setText(fundTransferResponse.dataSet.status);
         txtRefNo.setText("Ref No "+fundTransferResponse.dataSet.RefNo);
         txtDate.setText(fundTransferResponse.dataSet.PaymentDate);
@@ -101,6 +106,10 @@ public class MoneyTransferSuccess extends AppCompatActivity {
                 showPopupProgressSpinner(false,MoneyTransferSuccess.this);
                 if(checkPayoutResponse!= null){
                     if(checkPayoutResponse.status){
+                        Log.d("GetStatusType", "By DMT1 Refresh: "+fundTransferResponse.dataSet.status);
+                        if (checkPayoutResponse.message.equalsIgnoreCase("SUCCESS")){
+                            txtPaymentStatus.setTextColor(Color.GREEN);
+                        }
                         txtPaymentStatus.setText(checkPayoutResponse.message);
                     }
                     else{
