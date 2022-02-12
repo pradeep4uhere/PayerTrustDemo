@@ -9,9 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -57,7 +55,7 @@ public class TransferMoney extends AppCompatActivity {
         myPreferences = new MyPreferences(this);
         accountList = (AccountListresponse.AccountList) getIntent().getSerializableExtra("accountList");
         accountType = getIntent().getStringExtra("accountType");
-        Log.d("GetAccountType", "Transfer Money: "+accountType);
+
         spinner = findViewById(R.id.spinner);
         edtName = findViewById(R.id.benifeciery_name);
         edtBank = findViewById(R.id.edtBankName);
