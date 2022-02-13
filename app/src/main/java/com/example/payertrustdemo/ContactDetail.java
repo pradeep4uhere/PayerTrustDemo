@@ -229,7 +229,6 @@ public class ContactDetail extends AppCompatActivity {
     }
 
     public void transferMoney(AccountListresponse.AccountList accountList){
-        String accountType = "";
         if(accountType.equalsIgnoreCase("dmt1")) {
             accountType = "dmt1";
         }
