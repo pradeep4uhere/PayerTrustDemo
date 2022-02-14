@@ -10,8 +10,8 @@ android {
         applicationId "com.payertrust.payertrust"
         minSdk 19
         targetSdk 31
-        versionCode 5
-        versionName "1.2.3"
+        versionCode 7
+        versionName "1.2.5"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,6 +35,14 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    signingConfigs {
+        config {
+            storeFile file("C:\\Users\\sg420\\AndroidStudioProjects\\PayerTrustDemo\\Release\\payertrust.jks")
+            storePassword 'PayerTrust@3300!@#'
+            keyAlias = 'key0'
+            keyPassword 'PayerTrust@3300!@#'
+        }
     }
 }
 

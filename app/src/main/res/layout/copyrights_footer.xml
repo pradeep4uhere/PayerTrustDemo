@@ -15,7 +15,7 @@
         android:layout_marginTop="30dp"
         android:clickable="true"
         android:gravity="center_horizontal|center_vertical"
-        android:text="www.payertrust.in" />
+        android:text="www.payertrust.com" />
 
     <TextView
         android:id="@+id/textView4"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textSize="10dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Copyright © 2020 Kanpekina Soryushon IT Technologies Private Limited."
+        android:text="Copyright © 2020 Tech Radiation Infosystem Pvt. Ltd."
         />
         <TextView
             android:id="@+id/info"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:textSize="10dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Email: info@payertrust.in | Whatsapp: +91-9142562743"/>
+            android:text="Email: info@payertrust.com | Whatsapp: +91-9142562743"/>
         <TextView
             android:id="@+id/vesrion"
             android:layout_width="match_parent"

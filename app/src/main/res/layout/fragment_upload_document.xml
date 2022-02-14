@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center_vertical"
-                    android:text="Email: info@payertrust.in"
+                    android:text="Email: info@payertrust.com"
                     android:textSize="12sp" />
 
                 <LinearLayout

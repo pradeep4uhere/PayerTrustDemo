@@ -41,7 +41,8 @@ import retrofit2.http.POST;
 
 public interface Api {
 
-    String BASE_URL = "https://api.payertrust.in/public/index.php/";
+//    String BASE_URL = "https://api.payertrust.in/public/index.php/";
+    String BASE_URL = "https://merchantapi.payertrust.com/public/index.php/";
 
     //    @Headers({"Content-Type: application/json",
 //            "Authorization: Basic cnpwX2xpdmVfbGhEamtOdzBNNHE1MHU6bXk4Z0kxS3RiNjltV2RaMU1JZkZuMUFK"})

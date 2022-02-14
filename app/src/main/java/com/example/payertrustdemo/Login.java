@@ -182,7 +182,7 @@ public class Login extends AppCompatActivity {
                 byte[] data1 = auth.getBytes("UTF-8");
                 String base64 = Base64.encodeToString(data1, Base64.NO_WRAP);
                 //Connect
-                urlConnection = (HttpURLConnection) ((new URL("https://api.payertrust.in/public/api/v1/login").openConnection()));
+                urlConnection = (HttpURLConnection) ((new URL("https://api.payertrust.com/public/api/v1/login").openConnection()));
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestProperty("Content-Type", "application/json");
                 urlConnection.setRequestProperty("Authorization", "Basic "+base64);

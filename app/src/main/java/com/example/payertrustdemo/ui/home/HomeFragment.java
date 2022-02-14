@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://www.payertrust.in/electricity");
+                intent.putExtra("link",  "https://www.payertrust.com/electricity");
                 intent.putExtra("title",  "Electricity");
                 getContext().startActivity(intent);
             }
@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://www.payertrust.in/gas");
+                intent.putExtra("link",  "https://www.payertrust.com/gas");
                 intent.putExtra("title",  "Gas");
                 getContext().startActivity(intent);
             }
@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://payertrust.in/dth");
+                intent.putExtra("link",  "https://payertrust.com/dth");
                 intent.putExtra("title",  "DTH");
                 getContext().startActivity(intent);
             }
@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://www.payertrust.in/water");
+                intent.putExtra("link",  "https://www.payertrust.com/water");
                 intent.putExtra("title",  "Water");
                 getContext().startActivity(intent);
             }
@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://www.payertrust.in/landline");
+                intent.putExtra("link",  "https://www.payertrust.com/landline");
                 intent.putExtra("title",  "Card");
                 getContext().startActivity(intent);
             }
@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://www.payertrust.in/payrent");
+                intent.putExtra("link",  "https://www.payertrust.com/payrent");
                 intent.putExtra("title",  "Pay Rent");
                 getContext().startActivity(intent);
             }
@@ -154,7 +154,7 @@ public class HomeFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebLinkActivity.class);
-                intent.putExtra("link",  "https://www.payertrust.in/faqs");
+                intent.putExtra("link",  "https://www.payertrust.com/faqs");
                 intent.putExtra("title",  "FAQ");
                 getContext().startActivity(intent);
             }
