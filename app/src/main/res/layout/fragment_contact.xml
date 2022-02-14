@@ -89,7 +89,7 @@
         android:id="@+id/add_contact_fab_btn"
         android:src="@drawable/ic_white_add"
         android:layout_gravity="end|bottom"
-        android:layout_margin="30dp"
+        android:layout_margin="60dp"
         app:fabSize="auto"/>
 
 </FrameLayout>

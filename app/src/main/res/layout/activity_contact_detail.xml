@@ -217,7 +217,7 @@
         android:textColorHint="#000FFF"
         android:textColorLink="#fff"
         android:scrollbarFadeDuration="200"
-        android:layout_gravity="end|bottom"
+        android:layout_gravity="center_horizontal|bottom"
         android:fontFamily="@font/roboto"
         android:text="Add New Account"
         app:backgroundTint="#2196F3" />
