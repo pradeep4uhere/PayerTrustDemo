@@ -18,14 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.payertrustdemo.databinding.ActivityRechargeConfirmationBinding;
-import com.example.payertrustdemo.databinding.ActivityWalletPaySuccess2Binding;
 import com.example.payertrustdemo.model.LoginOtpResponse;
 import com.example.payertrustdemo.model.MobileRechargeResponse;
 import com.example.payertrustdemo.retrofit.RetrofitClient;
 import com.example.payertrustdemo.util.Constants;
 import com.example.payertrustdemo.util.MyPreferences;
-
-import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;

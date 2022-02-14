@@ -47,8 +47,6 @@ import retrofit2.Response;
 
 public class ContactDetail extends AppCompatActivity {
     public FloatingActionButton floatingActionButton;
-    Dialog dialog;
-    Button button;
     TextView txtContactName,getTxtContactNo,getTxtContactEmail;
     ImageView imageView;
     ExtendedFloatingActionButton addAcount;
@@ -65,6 +63,7 @@ public class ContactDetail extends AppCompatActivity {
         setContentView(R.layout.activity_contact_detail);
         contactDetails = (ContactResponse.Datum) getIntent().getSerializableExtra("contactDetails");
         accountType = getIntent().getStringExtra("accountType");
+        Log.d("GetDatahfdfh", "onCreate: "+accountType);
         txtContactName = findViewById(R.id.contact_name_id);
         getTxtContactNo = findViewById(R.id.contact_number_id);
         getTxtContactEmail = findViewById(R.id.contact_email_id);
@@ -229,7 +228,6 @@ public class ContactDetail extends AppCompatActivity {
     }
 
     public void transferMoney(AccountListresponse.AccountList accountList){
-        String accountType = "";
         if(accountType.equalsIgnoreCase("dmt1")) {
             accountType = "dmt1";
         }
