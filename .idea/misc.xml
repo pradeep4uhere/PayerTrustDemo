@@ -8,22 +8,9 @@
         <entry key="..\:/PayerTrustDemo/app/src/main/res/layout/activity_signup.xml" value="0.14739583333333334" />
         <entry key="..\:/PayerTrustDemo/app/src/main/res/layout/content_left_navigation.xml" value="0.11354166666666667" />
         <entry key="..\:/PayerTrustDemo/app/src/main/res/menu/activity_main_drawer.xml" value="0.11354166666666667" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/account_list_item.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_add_account.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_contact_detail.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_fund_transfer_confirmation.xml" value="0.40555555555555556" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_left_navigation.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_money_transfer_success.xml" value="0.33" />
+        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_fund_transfer_confirmation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_money_transfer_success.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/activity_money_transfer_success_for_dmttwo.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/app_bar_left_navigation.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/bottom_request_money.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/cardview_item_contact.xml" value="0.20102564102564102" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/content_left_navigation.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/dmt_bottomsheet.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/fragment_contact.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/layout/nav_header_left_navigation.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/sumit/AndroidStudioProjects/PayerTrustDemo/app/src/main/res/menu/activity_main_drawer.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/drawable-v19/ic_baseline_360_24.xml" value="0.10729166666666666" />
         <entry key="app/src/main/res/drawable-v21/ic_menu_camera.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v21/ic_menu_slideshow.xml" value="0.17393162393162392" />
@@ -39,6 +26,7 @@
         <entry key="app/src/main/res/drawable/right_24.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/font/roboto_medium.xml" value="0.15833333333333333" />
+        <entry key="app/src/main/res/layout-v21/activity_signup.xml" value="0.18" />
         <entry key="app/src/main/res/layout/SpringFabMenu.xml" value="0.1606837606837607" />
         <entry key="app/src/main/res/layout/account_list_item.xml" value="0.31666666666666665" />
         <entry key="app/src/main/res/layout/activity_add_account.xml" value="0.19583333333333333" />
@@ -55,13 +43,14 @@
         <entry key="app/src/main/res/layout/activity_login_otp.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_money_transfer_success.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/activity_money_transfer_success_for_dmttwo.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_notification_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_on_boarding_screen.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_payment_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_prepaid_recharge.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_profile_kyc.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_rest_password_success.xml" value="0.22821576763485477" />
-        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.23728813559322035" />
         <entry key="app/src/main/res/layout/activity_transfer_money.xml" value="0.19583333333333333" />
         <entry key="app/src/main/res/layout/activity_verify_otp_screen.xml" value="0.24074074074074073" />
         <entry key="app/src/main/res/layout/activity_wallet_pay_success.xml" value="0.17175925925925925" />
